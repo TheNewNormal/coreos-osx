@@ -1,0 +1,45 @@
+#cloud-config
+
+hostname: coreos-osx1
+
+coreos:
+  etcd:
+    #generate a new token for each unique cluster from https://discovery.etcd.io/new
+    #discovery: https://discovery.etcd.io/d7b61fd274996b942dddebee52bf6d6e
+    addr: $public_ipv4:4001
+    peer-addr: $public_ipv4:7001
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+      runtime: no
+      content: |
+         [Unit]
+         Description=fleet
+
+         [Service]
+         Environment=FLEET_PUBLIC_IP=$public_ipv4
+         ExecStart=/usr/bin/fleet
+    - name: docker-tcp.socket
+      command: start
+      content: |
+        [Unit]
+        Description=Docker Socket for the API
+
+        [Socket]
+        ListenStream=4243
+        Service=docker.service
+        BindIPv6Only=both
+
+        [Install]
+        WantedBy=sockets.target
+    - name: enable-docker-tcp.service
+      command: start
+      content: |
+        [Unit]
+        Description=Enable the Docker Socket for the API
+
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/bin/systemctl enable docker-tcp.socket

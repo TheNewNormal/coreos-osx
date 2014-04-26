@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0102119118B019D5009A549A /* coreos-update.command in Resources */ = {isa = PBXBuildFile; fileRef = 0102119018B019D5009A549A /* coreos-update.command */; };
+		0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* coreos-vagrant.command */; };
+		014E6F9418B63AF700E697C0 /* bash_profile_bin in Resources */ = {isa = PBXBuildFile; fileRef = 014E6F8E18B63AF700E697C0 /* bash_profile_bin */; };
+		014E6F9518B63AF700E697C0 /* bash_profile_docker in Resources */ = {isa = PBXBuildFile; fileRef = 014E6F8F18B63AF700E697C0 /* bash_profile_docker */; };
+		01A7EF8118B0EF2F00F94590 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01A7EF7F18B0EF2F00F94590 /* About.xib */; };
+		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
+		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
+		01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01E2854618A6C4E300BC630D /* InfoPlist.strings */; };
+		01E2854A18A6C4E300BC630D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E2854918A6C4E300BC630D /* main.m */; };
+		01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 01E2854C18A6C4E300BC630D /* Credits.rtf */; };
+		01E2855118A6C4E300BC630D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E2855018A6C4E300BC630D /* AppDelegate.m */; };
+		01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855218A6C4E300BC630D /* MainMenu.xib */; };
+		01E2855618A6C4E300BC630D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855518A6C4E300BC630D /* Images.xcassets */; };
+		01E285B618A6D7B000BC630D /* icon_bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B518A6D7B000BC630D /* icon_bw.png */; };
+		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		01E285CF18A6F78A00BC630D /* icon_or.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285CE18A6F78A00BC630D /* icon_or.png */; };
+		01E285D818A6FE1800BC630D /* docker.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285D718A6FE1800BC630D /* docker.png */; };
+		01E285DA18A708E800BC630D /* Docker Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285D918A708E800BC630D /* Docker Icon.png */; };
+		01E285DE18A70B5800BC630D /* Docker Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01E285DD18A70B5800BC630D /* Docker Icon.icns */; };
+		01ED913B19028B2600198FB1 /* shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 01ED913919028B2600198FB1 /* shell.command */; };
+		01ED913C19028B2600198FB1 /* ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 01ED913A19028B2600198FB1 /* ssh.command */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0102119018B019D5009A549A /* coreos-update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-update.command"; sourceTree = "<group>"; };
+		0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS GUI.entitlements"; sourceTree = "<group>"; };
+		0145318318FF209D007F9C95 /* coreos-vagrant.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant.command"; sourceTree = "<group>"; };
+		014E6F8E18B63AF700E697C0 /* bash_profile_bin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bash_profile_bin; sourceTree = "<group>"; };
+		014E6F8F18B63AF700E697C0 /* bash_profile_docker */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bash_profile_docker; sourceTree = "<group>"; };
+		01A7EF7F18B0EF2F00F94590 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
+		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		01E2853A18A6C4E300BC630D /* CoreOS GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS GUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01E2853D18A6C4E300BC630D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		01E2854018A6C4E300BC630D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		01E2854118A6C4E300BC630D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		01E2854218A6C4E300BC630D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		01E2854518A6C4E300BC630D /* CoreOS GUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreOS GUI-Info.plist"; sourceTree = "<group>"; };
+		01E2854718A6C4E300BC630D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		01E2854918A6C4E300BC630D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		01E2854B18A6C4E300BC630D /* CoreOS GUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreOS GUI-Prefix.pch"; sourceTree = "<group>"; };
+		01E2854D18A6C4E300BC630D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		01E2854F18A6C4E300BC630D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		01E2855018A6C4E300BC630D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		01E2855318A6C4E300BC630D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		01E2855518A6C4E300BC630D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		01E285B518A6D7B000BC630D /* icon_bw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw.png; sourceTree = "<group>"; };
+		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		01E285CE18A6F78A00BC630D /* icon_or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_or.png; sourceTree = "<group>"; };
+		01E285D718A6FE1800BC630D /* docker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docker.png; sourceTree = "<group>"; };
+		01E285D918A708E800BC630D /* Docker Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Docker Icon.png"; sourceTree = "<group>"; };
+		01E285DD18A70B5800BC630D /* Docker Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Docker Icon.icns"; sourceTree = "<group>"; };
+		01ED913919028B2600198FB1 /* shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = shell.command; sourceTree = "<group>"; };
+		01ED913A19028B2600198FB1 /* ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ssh.command; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01E2853718A6C4E300BC630D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		014E6F8B18B63AF700E697C0 /* Installation Files */ = {
+			isa = PBXGroup;
+			children = (
+				014E6F8E18B63AF700E697C0 /* bash_profile_bin */,
+				014E6F8F18B63AF700E697C0 /* bash_profile_docker */,
+			);
+			path = "Installation Files";
+			sourceTree = "<group>";
+		};
+		01E2853118A6C4E300BC630D = {
+			isa = PBXGroup;
+			children = (
+				01E285D018A6F79800BC630D /* Images */,
+				01E2854318A6C4E300BC630D /* CoreOS GUI */,
+				014E6F8B18B63AF700E697C0 /* Installation Files */,
+				01E285B918A6E23C00BC630D /* Scripts */,
+				01E2853C18A6C4E300BC630D /* Frameworks */,
+				01E2853B18A6C4E300BC630D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01E2853B18A6C4E300BC630D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01E2853A18A6C4E300BC630D /* CoreOS GUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01E2853C18A6C4E300BC630D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01E2853D18A6C4E300BC630D /* Cocoa.framework */,
+				01E2855C18A6C4E300BC630D /* XCTest.framework */,
+				01E2853F18A6C4E300BC630D /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		01E2853F18A6C4E300BC630D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01E2854018A6C4E300BC630D /* AppKit.framework */,
+				01E2854118A6C4E300BC630D /* CoreData.framework */,
+				01E2854218A6C4E300BC630D /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		01E2854318A6C4E300BC630D /* CoreOS GUI */ = {
+			isa = PBXGroup;
+			children = (
+				0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */,
+				01E2854F18A6C4E300BC630D /* AppDelegate.h */,
+				01E2855018A6C4E300BC630D /* AppDelegate.m */,
+				01E2855218A6C4E300BC630D /* MainMenu.xib */,
+				01A7EF7F18B0EF2F00F94590 /* About.xib */,
+				01E2855518A6C4E300BC630D /* Images.xcassets */,
+				01E2854418A6C4E300BC630D /* Supporting Files */,
+			);
+			path = "CoreOS GUI";
+			sourceTree = "<group>";
+		};
+		01E2854418A6C4E300BC630D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				01E2854518A6C4E300BC630D /* CoreOS GUI-Info.plist */,
+				01E2854618A6C4E300BC630D /* InfoPlist.strings */,
+				01E2854918A6C4E300BC630D /* main.m */,
+				01E2854B18A6C4E300BC630D /* CoreOS GUI-Prefix.pch */,
+				01E2854C18A6C4E300BC630D /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		01E285B918A6E23C00BC630D /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
+				01ED913919028B2600198FB1 /* shell.command */,
+				01ED913A19028B2600198FB1 /* ssh.command */,
+				0102119018B019D5009A549A /* coreos-update.command */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
+		01E285D018A6F79800BC630D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				01E285D918A708E800BC630D /* Docker Icon.png */,
+				01E285DD18A70B5800BC630D /* Docker Icon.icns */,
+				01E285B718A6D7F400BC630D /* icon.png */,
+				01E285D718A6FE1800BC630D /* docker.png */,
+				01D3685818E5C184006510B5 /* icon.icns */,
+				01E285CE18A6F78A00BC630D /* icon_or.png */,
+				01E285B518A6D7B000BC630D /* icon_bw.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01E2853918A6C4E300BC630D /* CoreOS GUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01E2856B18A6C4E300BC630D /* Build configuration list for PBXNativeTarget "CoreOS GUI" */;
+			buildPhases = (
+				01E2853618A6C4E300BC630D /* Sources */,
+				01E2853718A6C4E300BC630D /* Frameworks */,
+				01E2853818A6C4E300BC630D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CoreOS GUI";
+			productName = "CoreOS GUI";
+			productReference = 01E2853A18A6C4E300BC630D /* CoreOS GUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01E2853218A6C4E300BC630D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Rimantas Mocevicius";
+				TargetAttributes = {
+					01E2853918A6C4E300BC630D = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 01E2853518A6C4E300BC630D /* Build configuration list for PBXProject "CoreOS GUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01E2853118A6C4E300BC630D;
+			productRefGroup = 01E2853B18A6C4E300BC630D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01E2853918A6C4E300BC630D /* CoreOS GUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01E2853818A6C4E300BC630D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */,
+				014E6F9518B63AF700E697C0 /* bash_profile_docker in Resources */,
+				01D3685918E5C184006510B5 /* icon.icns in Resources */,
+				01E285B618A6D7B000BC630D /* icon_bw.png in Resources */,
+				01E285D818A6FE1800BC630D /* docker.png in Resources */,
+				01ED913B19028B2600198FB1 /* shell.command in Resources */,
+				01E285B818A6D7F400BC630D /* icon.png in Resources */,
+				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
+				01ED913C19028B2600198FB1 /* ssh.command in Resources */,
+				014E6F9418B63AF700E697C0 /* bash_profile_bin in Resources */,
+				01E2855618A6C4E300BC630D /* Images.xcassets in Resources */,
+				01E285CF18A6F78A00BC630D /* icon_or.png in Resources */,
+				0102119118B019D5009A549A /* coreos-update.command in Resources */,
+				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
+				01A7EF8118B0EF2F00F94590 /* About.xib in Resources */,
+				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
+				01E285DE18A70B5800BC630D /* Docker Icon.icns in Resources */,
+				01E285DA18A708E800BC630D /* Docker Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01E2853618A6C4E300BC630D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01E2855118A6C4E300BC630D /* AppDelegate.m in Sources */,
+				01E2854A18A6C4E300BC630D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		01E2854618A6C4E300BC630D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01E2854718A6C4E300BC630D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		01E2854C18A6C4E300BC630D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01E2854D18A6C4E300BC630D /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		01E2855218A6C4E300BC630D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01E2855318A6C4E300BC630D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		01E2856918A6C4E300BC630D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		01E2856A18A6C4E300BC630D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		01E2856C18A6C4E300BC630D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
+				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "CoreOS GUI";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		01E2856D18A6C4E300BC630D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
+				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "CoreOS GUI";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01E2853518A6C4E300BC630D /* Build configuration list for PBXProject "CoreOS GUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01E2856918A6C4E300BC630D /* Debug */,
+				01E2856A18A6C4E300BC630D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01E2856B18A6C4E300BC630D /* Build configuration list for PBXNativeTarget "CoreOS GUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01E2856C18A6C4E300BC630D /* Debug */,
+				01E2856D18A6C4E300BC630D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01E2853218A6C4E300BC630D /* Project object */;
+}
