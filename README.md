@@ -1,4 +1,4 @@
-CoreOS Vagrant GUI for Mac OS X
+CoreOS-Vagrant GUI for Mac OS X
 ============================
 
 CoreOS Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the coreos-vagrant command line tool.
