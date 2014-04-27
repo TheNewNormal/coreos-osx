@@ -18,10 +18,7 @@ mkdir ~/coreos-osx/share
 # download latest coreos-vagrant
 git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/coreos-vagrant
 
-pwd > ~/coreos-osx/share/ttt.txt
-cd CoreOS\ GUI.app/Contents/Resources
-pwd >> ~/coreos-osx/share/ttt.txt
-
+cd ~/Desktop/CoreOS\ GUI.app/Contents/Resources
 
 # copy updated Vagrantfile till the sed insert will be implemented
 cp Vagrantfile ~/coreos-osx/coreos-vagrant/

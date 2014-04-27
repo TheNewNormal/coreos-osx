@@ -26,8 +26,8 @@ If you do not have it, download [iTerm 2](http://www.iterm2.com/#/section/downlo
 
 * Install [CoreOS Vagrant](https://github.com/coreos/coreos-vagrant).
 
-* Unzip the ````CoreOS Vagrant OSX GUI latest.zip```` and copy the App to whatever place you like.
-
+* Unzip the ````CoreOS Vagrant OSX GUI latest.zip```` on to your Mac Desktop 
+(after the ````initial setup```` you can copy the App to whatever place you like)
 * Start the ````CoreOS Vagrant OSX GUI```` and from menu ````Setup/Update```` choose ````Initial setup of CoreOS-Vagrant```` 
 * and the install will do the following:
 ````
@@ -50,6 +50,7 @@ Just start ````CoreOS Vagrant OSX GUI```` application and you will find a small 
 * ````Update```` ````docker OS X client```` will update to the latest docker OS X client
 * ````Vagrant ssh```` will open VM shell
 * ````OS shell```` will have ````export DOCKER_HOST=tcp://localhost:4243```` set
+* ````DockerUI```` will show all running containers and etc (it might take a bit time after install for it to work as it needs to download itself)
 
 
 TO-DOs
