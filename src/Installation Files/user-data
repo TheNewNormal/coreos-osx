@@ -5,7 +5,7 @@ hostname: coreos-osx1
 coreos:
   etcd:
     #generate a new token for each unique cluster from https://discovery.etcd.io/new
-    #discovery: https://discovery.etcd.io/d7b61fd274996b942dddebee52bf6d6e
+    #discovery: https://discovery.etcd.io/token
     addr: $public_ipv4:4001
     peer-addr: $public_ipv4:7001
   units:
