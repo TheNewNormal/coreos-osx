@@ -1,3 +1,0 @@
-
-# Set the environment variable for the docker daemon
-export DOCKER_HOST=tcp://localhost:4243
