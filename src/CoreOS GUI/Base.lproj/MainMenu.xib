@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -685,7 +685,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="jV7-Ne-Ped"/>
-                <menuItem title="ssh" id="dvF-TI-XNx">
+                <menuItem title="Vagrant ssh" id="dvF-TI-XNx">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh:" target="494" id="wqL-gr-E0t"/>
@@ -701,18 +701,24 @@
                 <menuItem title="DockerUI" id="LkH-Oi-Kkr">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="Restart:" target="494" id="1BI-Us-Ex2"/>
+                        <action selector="dockerUI:" target="494" id="f0M-1e-B5e"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="S6r-5F-jA0"/>
-                <menuItem title="Update" id="VT6-tu-oxP">
+                <menuItem title="Setup/Update" id="VT6-tu-oxP" userLabel="Menu Item - Setup/Update">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Update" id="DFA-8C-ne3">
+                    <menu key="submenu" title="Setup/Update" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="docker OS X client" id="KYE-xq-LpJ">
+                            <menuItem title="Update docker OS X client" id="KYE-xq-LpJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="updateDockerClient:" target="494" id="HN8-Kj-kI6"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Initial setup of CoreOS-Vagrant" id="yJc-l8-9be">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="initialInstall:" target="494" id="Aeh-zq-dDP"/>
                                 </connections>
                             </menuItem>
                         </items>

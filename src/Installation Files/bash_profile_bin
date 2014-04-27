@@ -1,2 +1,0 @@
-# path to the bin folder where we store boot2docker and docker files
-export PATH=$PATH:${HOME}/bin

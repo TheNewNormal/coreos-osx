@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#  shell.command
+#  iTerm-shell.command
 #  CoreOS GUI for OS X
 #
 #  Created by Rimantas on 01/04/2014.
@@ -12,8 +12,5 @@ eval $(echo "export DOCKER_HOST=tcp://localhost:4243")
 # path to the bin folder where we store our binary files
 eval $(echo "export PATH=$PATH:${HOME}/coreos-osx/bin")
 
-/bin/bash
-
-
-
+open -a iTerm.app ~/coreos-osx/bin/shell.command
 

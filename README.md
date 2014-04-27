@@ -14,15 +14,32 @@ Head over to the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releas
 How to install
 ----------
 
+Required software
 * It needs ````VirtualBox for OS X```` to be present on the OS X.
 If you do not have it, download [VirtualBox for Mac OS X hosts](https://www.virtualbox.org/wiki/Downloads) and install it.
 
 * It needs ````Vagrant for OS X```` to be present on the OS X too.
 If you do not have it, download [Vagrant for Mac OS X](http://www.vagrantup.com/downloads.html) and install it.
 
+* It needs ````iTerm 2```` to be present on the OS X too.
+If you do not have it, download [iTerm 2](http://www.iterm2.com/#/section/downloads) and install it.
+
 * Install [CoreOS Vagrant](https://github.com/coreos/coreos-vagrant).
 
-* Unzip the ````CoreOS Vagrant OSX GUI latest.zip```` and copy the App to whatever place you like.
+* Unzip the ````CoreOS Vagrant OSX GUI latest.zip```` on to your Mac Desktop 
+(after the ````initial setup```` you can copy the App to whatever place you like)
+* Start the ````CoreOS Vagrant OSX GUI```` and from menu ````Setup/Update```` choose ````Initial setup of CoreOS-Vagrant```` 
+* and the install will do the following:
+````
+1) All dependent file will be put under coreos-osx folder in the user's home folder
+2) Will clone coreos-vagrant from git
+3) user-data file will have fleet, etcd, [Docker Socket for the API](https://coreos.com/docs/launching-containers/building/customizing-docker) and [DockerUI](https://github.com/crosbymichael/dockerui) enabled
+4) docker 4243 port will be set for docker OS X client to work properly
+5) Will set VM IP to 172.17.8.99 for DockerUI to properly open in a web browser
+6) Will download and install docker OS X client to ~/coreos-osx/bin/
+7) Will run vagrant up to initialise VM
+8) Shared folder between host and VM will be created under ~/coreos-osx/share
+````
 
 How it works
 ------------
@@ -30,15 +47,14 @@ How it works
 Just start ````CoreOS Vagrant OSX GUI```` application and you will find a small icon with the CoreOS logo in the Status Bar.
 
 * There you can ````Up````, ````Suspend````, ````Halt````, ````Reload```` CoreOS vagrant VM
-* ````Update```` ````docker OS X client```` will install/update to the latest docker OS X client
-* Your ````.bash_profile```` needs ````export DOCKER_HOST=tcp://localhost:4243````
-* Your coreos-vagrant must have [enabled the remote API](https://coreos.com/docs/launching-containers/building/customizing-docker) 
+* ````Update```` ````docker OS X client```` will update to the latest docker OS X client
+* ````Vagrant ssh```` will open VM shell
+* ````OS shell```` will have ````export DOCKER_HOST=tcp://localhost:4243```` set
+* ````DockerUI```` will show all running containers and etc (it might take a bit time after install for it to work as it needs to download itself)
 
 
 TO-DOs
 ------
 
-* Make to work an option to open ````vagrant ssh```` in terminal from the menu
-* Make to work an option to open ````OS shell```` in terminal from the menu
-* Make to work [DockerUI](https://github.com/crosbymichael/dockerui) from the menu
+* Make sed to parse Vagrantfile with folder sharing, network IP and ports changes after git clone is done
 
