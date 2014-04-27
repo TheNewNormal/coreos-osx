@@ -50,7 +50,7 @@ Just start ````CoreOS Vagrant OSX GUI```` application and you will find a small 
 * ````Update```` ````docker OS X client```` will update to the latest docker OS X client
 * ````Vagrant ssh```` will open VM shell
 * ````OS shell```` will have ````export DOCKER_HOST=tcp://localhost:4243```` set
-* ````DockerUI```` will show all running containers and etc (it might take a bit time after install for it to work as it needs to download itself)
+* ````DockerUI```` will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download itself)
 
 
 TO-DOs
