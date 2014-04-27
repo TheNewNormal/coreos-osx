@@ -1,11 +1,14 @@
 #cloud-config
 
-hostname: coreos-osx1
+hostname: coreos-osx
 
 coreos:
   etcd:
+<<<<<<< HEAD:src/user-data
+=======
     #generate a new token for each unique cluster from https://discovery.etcd.io/new
     #discovery: https://discovery.etcd.io/token
+>>>>>>> FETCH_HEAD:src/Installation Files/user-data
     addr: $public_ipv4:4001
     peer-addr: $public_ipv4:7001
   units:
@@ -43,3 +46,19 @@ coreos:
         [Service]
         Type=oneshot
         ExecStart=/usr/bin/systemctl enable docker-tcp.socket
+    - name: dockerui.service
+      command: start
+      content: |
+        [Unit]
+        Description=DockerUI Service
+        After=docker.service
+        Requires=docker.service
+
+        [Service]
+        ExecStartPre=/usr/bin/docker pull crosbymichael/dockerui
+        ExecStart=/bin/bash -c '/usr/bin/docker start -a dockerui || /usr/bin/docker run --name dockerui -p 9000:9000 -v /var/run/docker.sock:/docker.sock crosbymichael/dockerui -e /docker.sock'
+        ExecStop=/usr/bin/docker kill dockerui
+
+        [Install]
+        WantedBy=multi-user.target
+
