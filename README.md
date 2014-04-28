@@ -24,9 +24,7 @@ If you do not have it, download [Vagrant for Mac OS X](http://www.vagrantup.com/
 * It needs ````iTerm 2```` to be present on the OS X too.
 If you do not have it, download [iTerm 2](http://www.iterm2.com/#/section/downloads) and install it.
 
-* Install [CoreOS Vagrant](https://github.com/coreos/coreos-vagrant).
-
-* Unzip the ````CoreOS Vagrant OSX GUI latest.zip```` on to your Mac Desktop 
+* Download and unzip the ````CoreOS Vagrant OSX GUI latest.zip```` on to your Mac Desktop 
 (after the ````initial setup```` you can copy the App to whatever place you like)
 * Start the ````CoreOS Vagrant OSX GUI```` and from menu ````Setup/Update```` choose ````Initial setup of CoreOS-Vagrant```` 
 * and the install will do the following:
