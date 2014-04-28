@@ -2,7 +2,8 @@ CoreOS-Vagrant GUI for Mac OS X
 ============================
 
 CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the coreos-vagrant command line tool.
-[CoreOS](https://github.com/coreos/coreos-vagrant) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
+[CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
+[CoreOS-Vagrant](https://github.com/coreos/coreos-vagrant) is made to run on VirtualBox and VMWare VMs.
 
 ![CoreOS-Vagrant-GUI L](coreos-vagrant-gui.png "CoreOS-Vagrant-GUI")
 
@@ -33,15 +34,17 @@ If you do not have it, download [iTerm 2](http://www.iterm2.com/#/section/downlo
 3) user-data file will have fleet, etcd, [Docker Socket for the API](https://coreos.com/docs/launching-containers/building/customizing-docker) and [DockerUI](https://github.com/crosbymichael/dockerui) enabled
 4) docker 4243 port will be set for docker OS X client to work properly
 5) Will set VM IP to 172.17.8.99 for DockerUI to properly open in a web browser
-6) Will download and install docker OS X client to ~/coreos-osx/bin/
+6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
 7) Will run vagrant up to initialise VM
 8) Shared folder between host and VM will be created under ~/coreos-osx/share
+9) Will forward 80, 9000 and docker ports pool (49000..49900) including 4243 from host to vagrant VM.
 ````
 
 How it works
 ------------
 
 Just start ````CoreOS Vagrant OSX GUI```` application and you will find a small icon with the CoreOS logo in the Status Bar.
+For now it only supports a standalone CoreOS VM, cluster support might come at same stage later one.
 
 * There you can ````Up````, ````Suspend````, ````Halt````, ````Reload```` CoreOS vagrant VM
 * Under ````Up & OS shell```` OS Shell will be opened when ````vagrant up```` finishes up and will have such environment set:
@@ -59,6 +62,13 @@ TO-DOs
 ------
 
 * Make sed to parse Vagrantfile with folder sharing, network IP and ports changes after git clone is done
+* Make it easier to add/delete docker ports.
+
+
+Other links
+-----------
+Also you might like my other [boot2docker GUI for OS X](https://github.com/rimusz/boot2docker-gui-osx) project for [boot2docker](https://github.com/boot2docker/boot2docker),
+as I use both projects depending on the work I need to do.
 
 
 Other links

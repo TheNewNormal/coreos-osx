@@ -14,7 +14,11 @@ eval $(echo "export DOCKER_HOST=tcp://localhost:4243")
 # path to the bin folder where we store our binary files
 eval $(echo "export PATH=$PATH:${HOME}/coreos-osx/bin")
 # set fleetctl endpoint
+<<<<<<< HEAD
 eval $(echo "export FLEETCTL_ENDPOINT=http://localhost")
+=======
+eval $(echo "export FLEETCTL_ENDPOINT=127.0.0.1:2222")
+>>>>>>> dev
 
 cd ~/coreos-osx/share
 
