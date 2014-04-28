@@ -3,6 +3,7 @@ CoreOS-Vagrant GUI for Mac OS X
 
 CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the coreos-vagrant command line tool.
 [CoreOS](https://github.com/coreos/coreos-vagrant) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
+For now it is only for standalone CoreOS VM, cluster support might come at same stage later one.
 
 ![CoreOS-Vagrant-GUI L](coreos-vagrant-gui.png "CoreOS-Vagrant-GUI")
 
@@ -63,6 +64,6 @@ TO-DOs
 
 Other links
 -----------
-Also you might like my other GUI project for [boot2docker](https://github.com/boot2docker/boot2docker) [boot2docker GUI for OS X](https://github.com/rimusz/boot2docker-gui-osx),
+Also you might like my other [boot2docker GUI for OS X](https://github.com/rimusz/boot2docker-gui-osx) project for [boot2docker](https://github.com/boot2docker/boot2docker),
 as I use both projects depending on the work I need to do.
 
