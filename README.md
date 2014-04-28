@@ -3,7 +3,6 @@ CoreOS-Vagrant GUI for Mac OS X
 
 CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the coreos-vagrant command line tool.
 [CoreOS](https://github.com/coreos/coreos-vagrant) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
-For now it is only for standalone CoreOS VM, cluster support might come at same stage later one.
 
 ![CoreOS-Vagrant-GUI L](coreos-vagrant-gui.png "CoreOS-Vagrant-GUI")
 
@@ -43,6 +42,7 @@ How it works
 ------------
 
 Just start ````CoreOS Vagrant OSX GUI```` application and you will find a small icon with the CoreOS logo in the Status Bar.
+For now it only supports a standalone CoreOS VM, cluster support might come at same stage later one.
 
 * There you can ````Up````, ````Suspend````, ````Halt````, ````Reload```` CoreOS vagrant VM
 * Under ````Up & OS shell```` OS Shell will be opened when ````vagrant up```` finishes up and will have such environment set:
