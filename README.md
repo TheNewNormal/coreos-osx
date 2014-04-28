@@ -71,8 +71,3 @@ Also you might like my other [boot2docker GUI for OS X](https://github.com/rimus
 as I use both projects depending on the work I need to do.
 
 
-Other links
------------
-Also you might like my other GUI project for [boot2docker](https://github.com/boot2docker/boot2docker) [boot2docker GUI for OS X](https://github.com/rimusz/boot2docker-gui-osx),
-as I use both projects depending on the work I need to do.
-
