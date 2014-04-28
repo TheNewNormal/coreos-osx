@@ -7,20 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */; };
+		013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */; };
+		013A5C2A190E63D600325EDF /* install_vagrant_sudoers.command in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C29190E63D600325EDF /* install_vagrant_sudoers.command */; };
 		0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* coreos-vagrant.command */; };
 		01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */; };
-		01741B59190DB7C400BB1F91 /* shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B58190DB7C400BB1F91 /* shell.command */; };
 		01741B5B190DB7D000BB1F91 /* Vagrantfile in Resources */ = {isa = PBXBuildFile; fileRef = 01741B5A190DB7D000BB1F91 /* Vagrantfile */; };
-		01741B5D190DB7D900BB1F91 /* iTerm-vagrant-ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B5C190DB7D900BB1F91 /* iTerm-vagrant-ssh.command */; };
 		01741B5F190DB7E300BB1F91 /* vagrant_ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */; };
 		01741B61190DB7F900BB1F91 /* user-data in Resources */ = {isa = PBXBuildFile; fileRef = 01741B60190DB7F900BB1F91 /* user-data */; };
 		01741B63190DB80500BB1F91 /* first-init.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B62190DB80500BB1F91 /* first-init.command */; };
 		01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B64190DB81400BB1F91 /* vagrant_up.command */; };
-		01741B67190DB82100BB1F91 /* docker-update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* docker-update.command */; };
+		01741B67190DB82100BB1F91 /* update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* update.command */; };
 		01A7EF8118B0EF2F00F94590 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01A7EF7F18B0EF2F00F94590 /* About.xib */; };
 		01B087B6190D9B80009A24A7 /* iTerm-vagrant-ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B087B5190D9B80009A24A7 /* iTerm-vagrant-ssh.command */; };
 		01B087BC190DAB52009A24A7 /* iTerm-vagrant-up.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B087BB190DAB52009A24A7 /* iTerm-vagrant-up.command */; };
-		01B087BE190DB1C0009A24A7 /* iTerm-docker-update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B087BD190DB1C0009A24A7 /* iTerm-docker-update.command */; };
+		01B087BE190DB1C0009A24A7 /* iTerm-update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B087BD190DB1C0009A24A7 /* iTerm-update.command */; };
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01E2854618A6C4E300BC630D /* InfoPlist.strings */; };
@@ -29,31 +30,27 @@
 		01E2855118A6C4E300BC630D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E2855018A6C4E300BC630D /* AppDelegate.m */; };
 		01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855218A6C4E300BC630D /* MainMenu.xib */; };
 		01E2855618A6C4E300BC630D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855518A6C4E300BC630D /* Images.xcassets */; };
-		01E285B618A6D7B000BC630D /* icon_bw.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B518A6D7B000BC630D /* icon_bw.png */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
-		01E285CF18A6F78A00BC630D /* icon_or.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285CE18A6F78A00BC630D /* icon_or.png */; };
-		01E285D818A6FE1800BC630D /* docker.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285D718A6FE1800BC630D /* docker.png */; };
 		01E285DA18A708E800BC630D /* Docker Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285D918A708E800BC630D /* Docker Icon.png */; };
-		01E285DE18A70B5800BC630D /* Docker Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01E285DD18A70B5800BC630D /* Docker Icon.icns */; };
-		01ED913C19028B2600198FB1 /* iTerm-shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 01ED913A19028B2600198FB1 /* iTerm-shell.command */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS GUI.entitlements"; sourceTree = "<group>"; };
+		013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-vert-color.png"; sourceTree = "<group>"; };
+		013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-horiz-color.png"; sourceTree = "<group>"; };
+		013A5C29190E63D600325EDF /* install_vagrant_sudoers.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_vagrant_sudoers.command; sourceTree = "<group>"; };
 		0145318318FF209D007F9C95 /* coreos-vagrant.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant.command"; sourceTree = "<group>"; };
 		01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant-install.command"; sourceTree = SOURCE_ROOT; };
-		01741B58190DB7C400BB1F91 /* shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = shell.command; sourceTree = SOURCE_ROOT; };
 		01741B5A190DB7D000BB1F91 /* Vagrantfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vagrantfile; sourceTree = SOURCE_ROOT; };
-		01741B5C190DB7D900BB1F91 /* iTerm-vagrant-ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "iTerm-vagrant-ssh.command"; sourceTree = SOURCE_ROOT; };
 		01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_ssh.command; sourceTree = SOURCE_ROOT; };
 		01741B60190DB7F900BB1F91 /* user-data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "user-data"; sourceTree = SOURCE_ROOT; };
 		01741B62190DB80500BB1F91 /* first-init.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "first-init.command"; sourceTree = SOURCE_ROOT; };
 		01741B64190DB81400BB1F91 /* vagrant_up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_up.command; sourceTree = SOURCE_ROOT; };
-		01741B66190DB82100BB1F91 /* docker-update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "docker-update.command"; sourceTree = SOURCE_ROOT; };
+		01741B66190DB82100BB1F91 /* update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update.command; sourceTree = SOURCE_ROOT; };
 		01A7EF7F18B0EF2F00F94590 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		01B087B5190D9B80009A24A7 /* iTerm-vagrant-ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "iTerm-vagrant-ssh.command"; sourceTree = "<group>"; };
 		01B087BB190DAB52009A24A7 /* iTerm-vagrant-up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "iTerm-vagrant-up.command"; sourceTree = "<group>"; };
-		01B087BD190DB1C0009A24A7 /* iTerm-docker-update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "iTerm-docker-update.command"; sourceTree = "<group>"; };
+		01B087BD190DB1C0009A24A7 /* iTerm-update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "iTerm-update.command"; sourceTree = "<group>"; };
 		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		01E2853A18A6C4E300BC630D /* CoreOS GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS GUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E2853D18A6C4E300BC630D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -70,13 +67,8 @@
 		01E2855318A6C4E300BC630D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		01E2855518A6C4E300BC630D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		01E285B518A6D7B000BC630D /* icon_bw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bw.png; sourceTree = "<group>"; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		01E285CE18A6F78A00BC630D /* icon_or.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_or.png; sourceTree = "<group>"; };
-		01E285D718A6FE1800BC630D /* docker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = docker.png; sourceTree = "<group>"; };
 		01E285D918A708E800BC630D /* Docker Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Docker Icon.png"; sourceTree = "<group>"; };
-		01E285DD18A70B5800BC630D /* Docker Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Docker Icon.icns"; sourceTree = "<group>"; };
-		01ED913A19028B2600198FB1 /* iTerm-shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "iTerm-shell.command"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +89,10 @@
 				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
 				01741B5A190DB7D000BB1F91 /* Vagrantfile */,
 				01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */,
-				01741B58190DB7C400BB1F91 /* shell.command */,
 				01741B60190DB7F900BB1F91 /* user-data */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
 				01741B64190DB81400BB1F91 /* vagrant_up.command */,
-				01741B66190DB82100BB1F91 /* docker-update.command */,
+				01741B66190DB82100BB1F91 /* update.command */,
 			);
 			path = "Installation Files";
 			sourceTree = "<group>";
@@ -175,10 +166,9 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				013A5C29190E63D600325EDF /* install_vagrant_sudoers.command */,
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
-				01ED913A19028B2600198FB1 /* iTerm-shell.command */,
-				01741B5C190DB7D900BB1F91 /* iTerm-vagrant-ssh.command */,
-				01B087BD190DB1C0009A24A7 /* iTerm-docker-update.command */,
+				01B087BD190DB1C0009A24A7 /* iTerm-update.command */,
 				01B087BB190DAB52009A24A7 /* iTerm-vagrant-up.command */,
 				01B087B5190D9B80009A24A7 /* iTerm-vagrant-ssh.command */,
 			);
@@ -189,12 +179,10 @@
 			isa = PBXGroup;
 			children = (
 				01E285D918A708E800BC630D /* Docker Icon.png */,
-				01E285DD18A70B5800BC630D /* Docker Icon.icns */,
+				013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */,
+				013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */,
 				01E285B718A6D7F400BC630D /* icon.png */,
-				01E285D718A6FE1800BC630D /* docker.png */,
 				01D3685818E5C184006510B5 /* icon.icns */,
-				01E285CE18A6F78A00BC630D /* icon_or.png */,
-				01E285B518A6D7B000BC630D /* icon_bw.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -229,6 +217,7 @@
 				ORGANIZATIONNAME = "Rimantas Mocevicius";
 				TargetAttributes = {
 					01E2853918A6C4E300BC630D = {
+						DevelopmentTeam = 5LVLAZJPH7;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -260,31 +249,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01741B5D190DB7D900BB1F91 /* iTerm-vagrant-ssh.command in Resources */,
+				013A5C2A190E63D600325EDF /* install_vagrant_sudoers.command in Resources */,
 				01B087BC190DAB52009A24A7 /* iTerm-vagrant-up.command in Resources */,
 				01741B5B190DB7D000BB1F91 /* Vagrantfile in Resources */,
-				01741B59190DB7C400BB1F91 /* shell.command in Resources */,
+				013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */,
 				01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
-				01E285B618A6D7B000BC630D /* icon_bw.png in Resources */,
-				01E285D818A6FE1800BC630D /* docker.png in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
 				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
-				01B087BE190DB1C0009A24A7 /* iTerm-docker-update.command in Resources */,
-				01ED913C19028B2600198FB1 /* iTerm-shell.command in Resources */,
+				01B087BE190DB1C0009A24A7 /* iTerm-update.command in Resources */,
 				01B087B6190D9B80009A24A7 /* iTerm-vagrant-ssh.command in Resources */,
+				013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */,
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
 				01E2855618A6C4E300BC630D /* Images.xcassets in Resources */,
-				01E285CF18A6F78A00BC630D /* icon_or.png in Resources */,
 				01741B5F190DB7E300BB1F91 /* vagrant_ssh.command in Resources */,
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01A7EF8118B0EF2F00F94590 /* About.xib in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
-				01741B67190DB82100BB1F91 /* docker-update.command in Resources */,
+				01741B67190DB82100BB1F91 /* update.command in Resources */,
 				01741B61190DB7F900BB1F91 /* user-data in Resources */,
-				01E285DE18A70B5800BC630D /* Docker Icon.icns in Resources */,
 				01E285DA18A708E800BC630D /* Docker Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,12 +388,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "CoreOS GUI";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -417,12 +404,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "CoreOS GUI";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

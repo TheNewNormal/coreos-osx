@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13D38" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -657,7 +657,7 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="aYv-Zh-0j1">
             <items>
-                <menuItem title="Up" id="YiP-H1-GtD">
+                <menuItem title="Up &amp; OS shell" id="YiP-H1-GtD">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="Start:" target="494" id="bm1-PN-GK2"/>
@@ -685,16 +685,10 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="jV7-Ne-Ped"/>
-                <menuItem title="Vagrant ssh" id="dvF-TI-XNx">
+                <menuItem title="SSH" id="dvF-TI-XNx">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh:" target="494" id="wqL-gr-E0t"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="OS shell" id="gHw-Nw-ilh">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="osShell:" target="494" id="dof-g7-Xtb"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="K0h-38-tYq"/>
@@ -709,12 +703,13 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Setup/Update" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Update docker OS X client" id="KYE-xq-LpJ">
+                            <menuItem title="Check for updates" id="KYE-xq-LpJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="updateDockerClient:" target="494" id="HN8-Kj-kI6"/>
+                                    <action selector="updates:" target="494" id="UQD-lF-ATd"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="0DO-XC-lky"/>
                             <menuItem title="Initial setup of CoreOS-Vagrant" id="yJc-l8-9be">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

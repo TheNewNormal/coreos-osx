@@ -19,6 +19,8 @@
     [self.statusItem setMenu:self.statusMenu];
     [self.statusItem setImage: [NSImage imageNamed:@"icon"]];
     [self.statusItem setHighlightMode:YES];
+    
+    [self checkVMStatus];
 }
 
 
@@ -26,6 +28,7 @@
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"coreos-vagrant will be up shortly";
+    notification.informativeText = @"and OS shell will be opened";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -37,48 +40,54 @@
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"coreos-vagrant";
-    notification.informativeText = @"coreos-vagrant be suspended";
+    notification.informativeText = @"coreos-vagrant will be suspended";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
     [self runScript:scriptName = @"coreos-vagrant" arguments:arguments = @"suspend"];
+    
+    [self checkVMStatus];
 }
 
 - (IBAction)Stop:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"coreos-vagrant";
-    notification.informativeText = @"coreos-vagrant be stoped";
+    notification.informativeText = @"coreos-vagrant will be stopped";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
     [self runScript:scriptName = @"coreos-vagrant" arguments:arguments = @"halt"];
+    
+    [self checkVMStatus];
 }
 
 - (IBAction)Restart:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"coreos-vagrant";
-    notification.informativeText = @"coreos-vagrant be reloaded";
+    notification.informativeText = @"coreos-vagrant will be reloaded";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
     [self runScript:scriptName = @"coreos-vagrant" arguments:arguments = @"reload"];
+    
+    [self checkVMStatus];
 }
 
-- (IBAction)updateDockerClient:(id)sender {
+- (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"coreos-vagrant";
-    notification.informativeText = @"docker OS X Client will be updated";
+    notification.informativeText = @"docker, etcdclt and fleetctl will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-docker-update" arguments:arguments = @""];
+    [self runScript:scriptName = @"iTerm-update" arguments:arguments = @""];
 }
 
 - (IBAction)initialInstall:(id)sender {
@@ -109,18 +118,6 @@
 }
 
 
-- (IBAction)osShell:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
-    notification.informativeText = @"OS shell will be opened";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *scriptName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-shell" arguments:arguments = @""];
-}
-
 - (IBAction)dockerUI:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.8.99:9000"]];
 }
@@ -135,6 +132,38 @@
     [task waitUntilExit];
 }
 
+
+- (void)checkVMStatus {
+    // check vm status and and return the shell script output
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"coreos-vagrant" ofType:@"command"]];
+    task.arguments  = @[@"status"];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    
+    [task launch];
+    [task waitUntilExit];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *string;
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    //    NSLog (@"Returned:\n%@", string);
+    
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"coreos-vagrant";
+    notification.informativeText = string;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+
+}
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
      shouldPresentNotification:(NSUserNotification *)notification
