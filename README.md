@@ -50,7 +50,7 @@ For now it only supports a standalone CoreOS VM, cluster support might come at s
 * Under ````Up & OS shell```` OS Shell will be opened when ````vagrant up```` finishes up and will have such environment set:
 ````
 DOCKER_HOST=tcp://localhost:4243
-FLEETCTL_ENDPOINT=http://localhost"
+FLEETCTL_TUNNEL=127.0.0.1:2222
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
 ```` 
 * ````Setup/Update```` ````Check for updates```` will update to the latest docker, etcdclt and fleetctl OS X clients
