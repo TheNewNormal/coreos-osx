@@ -24,11 +24,11 @@ If you do not have it, download [Vagrant for Mac OS X](http://www.vagrantup.com/
 * It needs ````iTerm 2```` to be present on the OS X too.
 If you do not have it, download [iTerm 2](http://www.iterm2.com/#/section/downloads) and install it.
 
-* Download the ````CoreOS Vagrant OSX GUI latest.zip```` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases) and unzip it on to your Mac Desktop as otherwise install will not work (after the ````initial setup```` you can copy the App to whatever place you like)
+* Download the ````CoreOS Vagrant OSX GUI latest.zip```` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases) and unzip it on to your Mac Desktop as otherwise install will fail (after the ````initial setup```` you can copy the App to whatever place you like)
 * Start the ````CoreOS Vagrant OSX GUI```` and from menu ````Setup/Update```` choose ````Initial setup of CoreOS-Vagrant```` 
 * and the install will do the following:
 ````
-1) All dependent file will be put under coreos-osx folder in the user's home folder
+1) All dependent files/folders will be put under "coreos-osx" folder in the user's home folder
 2) Will clone coreos-vagrant from git
 3) user-data file will have fleet, etcd, [Docker Socket for the API](https://coreos.com/docs/launching-containers/building/customizing-docker) and [DockerUI](https://github.com/crosbymichael/dockerui) enabled
 4) docker 4243 port will be set for docker OS X client to work properly
@@ -44,14 +44,25 @@ How it works
 Just start ````CoreOS Vagrant OSX GUI```` application and you will find a small icon with the CoreOS logo in the Status Bar.
 
 * There you can ````Up````, ````Suspend````, ````Halt````, ````Reload```` CoreOS vagrant VM
-* ````Update```` ````docker OS X client```` will update to the latest docker OS X client
-* ````Vagrant ssh```` will open VM shell
-* ````OS shell```` will have ````export DOCKER_HOST=tcp://localhost:4243```` set
-* ````DockerUI```` will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download itself)
+* Under ````Up & OS shell```` OS Shell will be opened when ````vagrant up```` finishes up and will have such environment set:
+````
+DOCKER_HOST=tcp://localhost:4243
+FLEETCTL_ENDPOINT=http://localhost"
+Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
+```` 
+* ````Setup/Update```` ````Check for updates```` will update to the latest docker, etcdclt and fleetctl OS X clients
+* ````SSH```` will open VM shell
+* ````DockerUI```` will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)
 
 
 TO-DOs
 ------
 
 * Make sed to parse Vagrantfile with folder sharing, network IP and ports changes after git clone is done
+
+
+Other links
+-----------
+Also you might like my other GUI project for [boot2docker](https://github.com/boot2docker/boot2docker) [boot2docker GUI for OS X](https://github.com/rimusz/boot2docker-gui-osx),
+as I use both projects depending on the work I need to do.
 
