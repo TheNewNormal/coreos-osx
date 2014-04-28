@@ -16,7 +16,10 @@ ssh-add ~/.vagrant.d/insecure_private_key
 # Add current user to sudoers
 echo "Add current user to sudoers for the shared folder access from the VM"
 sudo ~/coreos-osx/bin/install_vagrant_sudoers.command
+<<<<<<< HEAD
+=======
 sudo chmod +w /etc/exports
+>>>>>>> dev
 
 # donwload etcdctl and fleetctl
 cd ~/coreos-osx/bin
