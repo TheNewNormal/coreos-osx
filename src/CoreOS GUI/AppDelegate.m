@@ -20,6 +20,10 @@
     [self.statusItem setImage: [NSImage imageNamed:@"icon"]];
     [self.statusItem setHighlightMode:YES];
     
+    // get the App's main bundle path
+    _resoucesPathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
+//    NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
+                  
     [self checkVMStatus];
 }
 
@@ -33,7 +37,7 @@
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-vagrant-up" arguments:arguments = @"~/coreos-osx/bin/vagrant_up.command"];
+    [self runScript:scriptName = @"iTerm-vagrant-up" arguments:arguments = _resoucesPathFromApp ];
 }
 
 - (IBAction)Pause:(id)sender {
@@ -87,13 +91,13 @@
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-update" arguments:arguments = @""];
+    [self runScript:scriptName = @"iTerm-update" arguments:arguments = _resoucesPathFromApp];
 }
 
 - (IBAction)initialInstall:(id)sender {
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = @""];
+    [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
 }
 
 
@@ -114,7 +118,7 @@
     
     NSString *scriptName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-vagrant-ssh" arguments:arguments = @""];
+    [self runScript:scriptName = @"iTerm-vagrant-ssh" arguments:arguments = _resoucesPathFromApp ];
 }
 
 

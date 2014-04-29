@@ -10,22 +10,14 @@ function pause(){
 read -p "$*"
 }
 
-# update shell scripts in ~/coreos-osx/bin/ folder in case of the new App version was installed
-# copy vagrant_ssh.command
-cp -rf vagrant_ssh.command ~/coreos-osx/bin/
-chmod +x ~/coreos-osx/bin/vagrant_ssh.command
-# copy vagrant_up.command
-cp -rf vagrant_up.command ~/coreos-osx/bin/
-chmod +x ~/coreos-osx/bin/vagrant_up.command
-
 # download latest versions of etcdctl and fleetctl
-echo "Download the lastest etcdctl for OS X"
+echo "Downloading the lastest etcdctl for OS X"
 LATEST_RELEASE=$(curl 'https://api.github.com/repos/coreos/etcd/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' "')
 curl -L -o etcd.zip "https://github.com/coreos/etcd/releases/download/$LATEST_RELEASE/etcd-$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "etcd.zip" "etcd-$LATEST_RELEASE-darwin-amd64/etcdctl"
 mv -f etcdctl ~/coreos-osx/bin/ && rm -f etcd.zip
 #
-echo "Download the lastest fleetctl for OS X"
+echo "Downloading the lastest fleetctl for OS X"
 LATEST_RELEASE=$(curl 'https://api.github.com/repos/coreos/fleet/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' "')
 curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/$LATEST_RELEASE/fleet-$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "fleet.zip" "fleet-$LATEST_RELEASE-darwin-amd64/fleetctl"

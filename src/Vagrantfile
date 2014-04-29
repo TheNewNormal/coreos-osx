@@ -92,8 +92,8 @@ Vagrant.configure("2") do |config|
       (49000..49169).each do |port|
         config.vm.network :forwarded_port, :host => port, :guest => port
       end
-      # 49170, 49171, 49171 are taken
-      (49173..49900).each do |port|
+      # 49170 ... 49200 are taken
+      (49201..49900).each do |port|
         config.vm.network :forwarded_port, :host => port, :guest => port
       end
 

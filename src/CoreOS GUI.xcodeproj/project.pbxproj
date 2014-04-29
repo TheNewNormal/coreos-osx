@@ -87,12 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
-				01741B5A190DB7D000BB1F91 /* Vagrantfile */,
-				01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */,
-				01741B60190DB7F900BB1F91 /* user-data */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
-				01741B64190DB81400BB1F91 /* vagrant_up.command */,
-				01741B66190DB82100BB1F91 /* update.command */,
+				01741B5A190DB7D000BB1F91 /* Vagrantfile */,
+				01741B60190DB7F900BB1F91 /* user-data */,
 			);
 			path = "Installation Files";
 			sourceTree = "<group>";
@@ -166,6 +163,9 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */,
+				01741B64190DB81400BB1F91 /* vagrant_up.command */,
+				01741B66190DB82100BB1F91 /* update.command */,
 				013A5C29190E63D600325EDF /* install_vagrant_sudoers.command */,
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
 				01B087BD190DB1C0009A24A7 /* iTerm-update.command */,

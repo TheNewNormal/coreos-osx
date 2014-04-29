@@ -15,7 +15,7 @@ ssh-add ~/.vagrant.d/insecure_private_key
 
 # Add current user to sudoers
 echo "Add current user to sudoers for the shared folder access from the VM"
-sudo ~/coreos-osx/bin/install_vagrant_sudoers.command
+sudo "$1"/install_vagrant_sudoers.command
 
 sudo chmod 664 /etc/exports
 
@@ -40,7 +40,6 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
 
-
 # removing the old box file and vagrant will download the latest one on the next vagrant up
 vagrant box remove coreos-alpha --provider virtualbox
 
@@ -49,6 +48,6 @@ echo "Setting up Vagrant VM for CoreOS"
 cd ~/coreos-osx/coreos-vagrant
 vagrant up
 
-echo "Installation has finished, your CoreOS-Vagrant VM is up and running, enjoy !!!"
+echo "Installation has finished, enjoy CoreOS-Vagrant VM !!!"
 pause 'Press [Enter] key to continue...'
 

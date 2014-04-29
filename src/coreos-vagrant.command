@@ -8,10 +8,5 @@
 
 
 # pass first argument - up, halt ...
-
 cd ~/coreos-osx/coreos-vagrant
-
 vagrant $1
-
-
-
