@@ -31,7 +31,7 @@ If you do not have it, download [iTerm 2](http://www.iterm2.com/#/section/downlo
 ````
 1) All dependent files/folders will be put under "coreos-osx" folder in the user's home folder e.g /Users/someuser/coreos-osx
 2) Will clone latest coreos-vagrant from git
-3) user-data file will have fleet, etcd, [Docker Socket for the API](https://coreos.com/docs/launching-containers/building/customizing-docker) and [DockerUI](https://github.com/crosbymichael/dockerui) enabled
+3) user-data file will have fleet, etcd, Docker Socket for the API and DockerUI enabled
 4) docker 4243 port will be set for docker OS X client to work properly
 5) Will set VM IP to 172.17.8.99 for DockerUI to properly open in a default web browser
 6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
