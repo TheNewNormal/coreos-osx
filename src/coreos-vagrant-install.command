@@ -20,7 +20,7 @@ if [ ! -d ~/coreos-osx/ ]; then
     # download latest coreos-vagrant
     git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/coreos-vagrant
 
-    cd ~/Desktop/CoreOS\ GUI.app/Contents/Resources
+    cd "$1"
 
     # copy updated Vagrantfile till the sed insert will be implemented
     cp Vagrantfile ~/coreos-osx/coreos-vagrant/
@@ -32,16 +32,12 @@ if [ ! -d ~/coreos-osx/ ]; then
     #sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
 
     # copy vagrant_ssh.command
-    cp vagrant_ssh.command ~/coreos-osx/bin/
+#    cp vagrant_ssh.command ~/coreos-osx/bin/
 
     # copy vagrant_up.command
-    cp vagrant_up.command ~/coreos-osx/bin/
-
-    # copy install_vagrant_sudoers.command
-    cp install_vagrant_sudoers.command ~/coreos-osx/bin/
+#    cp vagrant_up.command ~/coreos-osx/bin/
 
     # initial init
-    cp first-init.command ~/coreos-osx/bin/
-    open -a iTerm.app ~/coreos-osx/bin/first-init.command
+    open -a iTerm.app "$1"/first-init.command "$1"
 
 fi
