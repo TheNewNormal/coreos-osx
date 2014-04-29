@@ -31,9 +31,6 @@ if [ ! -d ~/coreos-osx/ ]; then
     # Make changes to Vagrant file
     #sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
 
-    # copy shell.command
-    cp shell.command ~/coreos-osx/bin/
-
     # copy vagrant_ssh.command
     cp vagrant_ssh.command ~/coreos-osx/bin/
 
