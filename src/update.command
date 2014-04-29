@@ -10,6 +10,14 @@ function pause(){
 read -p "$*"
 }
 
+# update shell scripts in ~/coreos-osx/bin/ folder in case of the new App version was installed
+# copy vagrant_ssh.command
+cp -rf vagrant_ssh.command ~/coreos-osx/bin/
+chmod +x ~/coreos-osx/bin/vagrant_ssh.command
+# copy vagrant_up.command
+cp -rf vagrant_up.command ~/coreos-osx/bin/
+chmod +x ~/coreos-osx/bin/vagrant_up.command
+
 # download latest versions of etcdctl and fleetctl
 echo "Download the lastest etcdctl for OS X"
 LATEST_RELEASE=$(curl 'https://api.github.com/repos/coreos/etcd/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' "')
