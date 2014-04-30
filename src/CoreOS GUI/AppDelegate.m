@@ -35,15 +35,14 @@
     notification.informativeText = @"and OS shell will be opened";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
-    NSString *scriptName = [[NSString alloc] init];
+    NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-vagrant-up" arguments:arguments = _resoucesPathFromApp ];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_up.command"]];
 }
 
 - (IBAction)Pause:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
     notification.informativeText = @"coreos-vagrant will be suspended";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -57,7 +56,6 @@
 - (IBAction)Stop:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
     notification.informativeText = @"coreos-vagrant will be stopped";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -71,7 +69,6 @@
 - (IBAction)Restart:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
     notification.informativeText = @"coreos-vagrant will be reloaded";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -82,43 +79,62 @@
     [self checkVMStatus];
 }
 
+
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
     notification.informativeText = @"docker, etcdclt and fleetctl will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
-    NSString *scriptName = [[NSString alloc] init];
+    NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-update" arguments:arguments = _resoucesPathFromApp];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]];
+    //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
 }
 
-- (IBAction)initialInstall:(id)sender {
-    NSString *scriptName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
+
+- (IBAction)initialInstall:(id)sender
+{
+    NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
+    
+    BOOL isDir;
+    if([[NSFileManager defaultManager]
+        fileExistsAtPath:home_folder isDirectory:&isDir] && isDir){
+        NSString *msg = [NSString stringWithFormat:@"%@ %@ %@", @"Folder", home_folder, @"exists, please delete or rename that folder !!!"];
+        [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
+    }
+    else
+    {
+//        NSLog(@"Folder does not exists: '%@'", home_folder);
+        NSString *scriptName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
+    }
 }
 
 
 - (IBAction)About:(id)sender {
-//    [NSBundle loadNibNamed:@"About" owner:self ];
     
-    self.myWindowController= [[NSWindowController alloc] initWithWindowNibName:@"About"];
-    [self.myWindowController showWindow:self];
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+//    NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+//    NSString *app_version = [NSString stringWithFormat:@"%@.%@", version, build];
+    NSString *app_version = [NSString stringWithFormat:@"%@", version];
+    
+    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS-Vagrant GUI for OS X", app_version];
+    NSString *infoText = @"It is a simple wrapper around the CoreOS-Vagrant, which allows to control CoreOS-Vagrant via the Status Bar !!!";
+    [self displayWithMessage:mText infoText:infoText];
 }
 
 
 - (IBAction)runSsh:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
     notification.informativeText = @"vagrant ssh shell will be opened";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
-    NSString *scriptName = [[NSString alloc] init];
+    NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"iTerm-vagrant-ssh" arguments:arguments = _resoucesPathFromApp ];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_ssh.command"]];
 }
 
 
@@ -134,6 +150,13 @@
     task.arguments  = @[arguments];
     [task launch];
     [task waitUntilExit];
+}
+
+
+- (void)runApp:(NSString*)appName arguments:(NSString*)arguments
+{
+    // lunch an external App from the mainBundle
+    [[NSWorkspace sharedWorkspace] openFile:arguments withApplication:appName];
 }
 
 
@@ -162,17 +185,26 @@
     
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant";
     notification.informativeText = string;
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-
 }
+
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
      shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
+}
+
+
+-(void) displayWithMessage:(NSString *)mText infoText:(NSString*)infoText
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setAlertStyle:NSInformationalAlertStyle];
+//    [alert setIcon:[NSImage imageNamed:@"coreos-wordmark-vert-color"]];
+    [alert setMessageText:mText];
+    [alert setInformativeText:infoText];
+    [alert runModal];
 }
 
 
