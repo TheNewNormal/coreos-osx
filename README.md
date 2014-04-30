@@ -55,7 +55,7 @@ Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
 ```` 
 * ````Setup/Update```` ````Check for updates```` will update to the latest docker, etcdclt and fleetctl OS X clients
 * ````SSH```` will open VM shell
-* ````DockerUI```` will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)
+* (DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)
 
 TO-DOs
 ------
