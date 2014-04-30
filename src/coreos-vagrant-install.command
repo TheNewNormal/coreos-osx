@@ -6,8 +6,6 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
-if [ ! -d ~/coreos-osx/ ]; then
-
     # create "coreos-osx" folder at user's home folder where the all files will be stored
     mkdir ~/coreos-osx
 
@@ -31,13 +29,5 @@ if [ ! -d ~/coreos-osx/ ]; then
     # Make changes to Vagrant file
     #sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
 
-    # copy vagrant_ssh.command
-#    cp vagrant_ssh.command ~/coreos-osx/bin/
-
-    # copy vagrant_up.command
-#    cp vagrant_up.command ~/coreos-osx/bin/
-
     # initial init
     open -a iTerm.app "$1"/first-init.command "$1"
-
-fi
