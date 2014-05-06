@@ -52,6 +52,7 @@ For now it only supports a standalone CoreOS VM, cluster support might come at s
 DOCKER_HOST=tcp://localhost:4243
 FLEETCTL_TUNNEL=127.0.0.1:2222
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
+ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work properly
 ```` 
 * ````Setup/Update```` ````Check for updates```` will update to the latest docker, etcdclt and fleetctl OS X clients
 * ````SSH```` will open VM shell
