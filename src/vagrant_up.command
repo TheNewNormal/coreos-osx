@@ -16,6 +16,8 @@ eval $(echo "export PATH=$PATH:${HOME}/coreos-osx/bin")
 # set fleetctl tunnel
 eval $(echo "export FLEETCTL_TUNNEL=127.0.0.1:2222")
 
+ssh-add ~/.vagrant.d/insecure_private_key
+
 cd ~/coreos-osx/share
 
 /bin/bash

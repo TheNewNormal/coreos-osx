@@ -15,6 +15,9 @@
     # create the "share" folder share
     mkdir ~/coreos-osx/share
 
+    # create the "logs" folder share
+    mkdir ~/coreos-osx/logs
+
     # download latest coreos-vagrant
     git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/coreos-vagrant
 
