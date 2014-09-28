@@ -1,46 +1,5 @@
-#cloud-config
 
-hostname: coreos-osx
-
-coreos:
-  etcd:
-    addr: $public_ipv4:4001
-    peer-addr: $public_ipv4:7001
-  units:
-    - name: etcd.service
-      command: start
-    - name: fleet.service
-      command: start
-      runtime: no
-      content: |
-         [Unit]
-         Description=fleet
-
-         [Service]
-         Environment=FLEET_PUBLIC_IP=$public_ipv4
-         ExecStart=/usr/bin/fleet
-    - name: docker-tcp.socket
-      command: start
-      content: |
-        [Unit]
-        Description=Docker Socket for the API
-
-        [Socket]
-        ListenStream=4243
-        Service=docker.service
-        BindIPv6Only=both
-
-        [Install]
-        WantedBy=sockets.target
-    - name: enable-docker-tcp.service
-      command: start
-      content: |
-        [Unit]
-        Description=Enable the Docker Socket for the API
-
-        [Service]
-        Type=oneshot
-        ExecStart=/usr/bin/systemctl enable docker-tcp.socket
+## Start - Inserted by CoreOS-Vagrant GUI App
     - name: dockerui.service
       command: start
       content: |
@@ -51,9 +10,10 @@ coreos:
 
         [Service]
         ExecStartPre=/usr/bin/docker pull crosbymichael/dockerui
-        ExecStart=/bin/bash -c '/usr/bin/docker start -a dockerui || /usr/bin/docker run --name dockerui -p 9000:9000 -v /var/run/docker.sock:/docker.sock crosbymichael/dockerui -e /docker.sock'
-        ExecStop=/usr/bin/docker kill dockerui
+        ExecStart=/bin/bash -c '/usr/bin/docker start -a dockerui || /usr/bin/docker run --rm --name dockerui -p 9000:9000 -v /var/run/docker.sock:/docker.sock crosbymichael/dockerui -e /docker.sock'
+        ExecStop=/usr/bin/docker stop dockerui
 
         [Install]
         WantedBy=multi-user.target
+## End - Inserted by CoreOS-Vagrant GUI App
 
