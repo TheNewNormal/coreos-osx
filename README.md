@@ -50,7 +50,7 @@ FLEETCTL_TUNNEL=127.0.0.1:2222
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
 ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work properly
 ```` 
-* ````Check for updates```` will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VN runs. It will store downloads from github ````coreos-vagrant```` in ````~/coreos-osx/github```` folder, it will not overwrite user's ````Vagrantfile, config.rb and users-data```` files.
+* ````Check for updates```` will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. It will store downloads from github ````coreos-vagrant```` in ````~/coreos-osx/github```` folder, it will not overwrite user's ````Vagrantfile, config.rb and users-data```` files.
 * ````SSH```` will open VM shell
 * [DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)
 
