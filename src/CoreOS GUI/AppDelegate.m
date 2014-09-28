@@ -23,21 +23,47 @@
     // get the App's main bundle path
     _resoucesPathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
 //    NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
-                  
-    [self checkVMStatus];
+
+    NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
+    
+    BOOL isDir;
+    if([[NSFileManager defaultManager]
+        fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
+    {
+        [self checkVMStatus];
+    }
+    else
+    {
+        NSString *msg = [NSString stringWithFormat:@"%@ ", @"CoreOS-Vagrant was not set, run from menu 'Setup' - 'Initial setup of CoreOS-Vagrant' to do that !!! "];
+        [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
+    }
 }
 
 
 - (IBAction)Start:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant will be up shortly";
-    notification.informativeText = @"and OS shell will be opened";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_up.command"]];
+    NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
+    
+    BOOL isDir;
+    if([[NSFileManager defaultManager]
+        fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
+    {
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"coreos-vagrant will be up shortly";
+        notification.informativeText = @"and OS shell will be opened";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_up.command"]];
+    }
+    else
+    {
+        NSString *msg = [NSString stringWithFormat:@"%@ ", @"App was not installed, run from menu 'Setup/Update' - 'Initial setup of CoreOS-Vagrant' !!! "];
+        [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
+        
+    }
 }
 
 - (IBAction)Pause:(id)sender {
@@ -83,7 +109,8 @@
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"docker, etcdclt and fleetctl will be updated";
+    notification.title = @"coreos-vagrant, docker, etcdclt and fleetctl will be updated";
+    notification.informativeText = @"coreos-vagrant git updates will be donwloaded to ~/coreos-osx/github";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];

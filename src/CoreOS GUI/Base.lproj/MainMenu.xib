@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13D38" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,13 +10,13 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="Boot2Docker GUI" id="56">
-                    <menu key="submenu" title="Boot2Docker GUI" systemMenu="apple" id="57">
+                <menuItem title="CoreOS OS X GUI" id="56" userLabel="CoreOS OS X GUI">
+                    <menu key="submenu" title="CoreOS OS X GUI" systemMenu="apple" id="57" userLabel="CoreOS OSX GUI">
                         <items>
-                            <menuItem title="About Boot2Docker GUI" id="58">
+                            <menuItem title="About CoreOS OS X GUI" id="58" userLabel="About CoreOS OS X GUI">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
@@ -36,7 +35,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide Boot2Docker GUI" keyEquivalent="h" id="134">
+                            <menuItem title="Hide CoreOS OS X GUI" keyEquivalent="h" id="134" userLabel="Hide CoreOS OS X GUI">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -55,7 +54,7 @@
                             <menuItem isSeparatorItem="YES" id="149">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Quit Boot2Docker GUI" keyEquivalent="q" id="136">
+                            <menuItem title="Quit CoreOS OS X GUI" keyEquivalent="q" id="136" userLabel="Quit CoreOS OS X GUI">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
                                 </connections>
@@ -699,17 +698,17 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="S6r-5F-jA0"/>
-                <menuItem title="Setup/Update" id="VT6-tu-oxP" userLabel="Menu Item - Setup/Update">
+                <menuItem title="Check for updates" id="KYE-xq-LpJ">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Setup/Update" id="DFA-8C-ne3">
+                    <connections>
+                        <action selector="updates:" target="494" id="UQD-lF-ATd"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="lFG-hr-LPH"/>
+                <menuItem title="Setup" id="VT6-tu-oxP" userLabel="Menu Item - Setup">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Setup" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Check for updates" id="KYE-xq-LpJ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="updates:" target="494" id="UQD-lF-ATd"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="0DO-XC-lky"/>
                             <menuItem title="Initial setup of CoreOS-Vagrant" id="yJc-l8-9be">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
