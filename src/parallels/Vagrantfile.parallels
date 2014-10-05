@@ -1,4 +1,3 @@
-
 ### Start - Parallels support - Inserted by CoreOS-Vagrant GUI App
   config.vm.provider :parallels do |vb, override|
     if $update_channel=='stable'
@@ -13,7 +12,4 @@
   end
 ### End - Parallels support - Inserted by CoreOS-Vagrant GUI App
 
-  # plugin conflict
-  if Vagrant.has_plugin?("vagrant-vbguest") then
-    config.vbguest.auto_update = false
-  end
+  #plugin conflict
