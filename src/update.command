@@ -46,7 +46,7 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
 #
-echo " "
 
+echo " "
 echo "Update has finished !!!"
 pause 'Press [Enter] key to continue...'

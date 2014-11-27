@@ -21,23 +21,31 @@
     # cd to App's Resources folder
     cd "$1"
 
-### Vagrantfile ###
+    # copy gsed to ~/coreos-osx/bin
+    cp "$1"/gsed ~/coreos-osx/bin
+
+    # Vagrantfile
     cp ~/coreos-osx/github/Vagrantfile ~/coreos-osx/coreos-vagrant/Vagrantfile
 
     # change IP to static
     sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
 
-### Vagrantfile ###
+    # copy temporal files for first-init.command script use
+    # shared folder
+    cp "$1"/Vagrantfile ~/coreos-osx/tmp/Vagrantfile
+    # copy sudoers file
+    cp "$1"/sudoers ~/coreos-osx/tmp
+    #
 
-### user-data file ###
+    # user-data file
     cat ~/coreos-osx/github/user-data.sample user-data > ~/coreos-osx/coreos-vagrant/user-data
+    #
 
     # config.rb file
     cp ~/coreos-osx/github/config.rb.sample ~/coreos-osx/coreos-vagrant/config.rb
-
     # expose docker port
     sed -i "" 's/#$expose_docker_tcp/$expose_docker_tcp/' ~/coreos-osx/coreos-vagrant/config.rb
-### user-data file ###
+    #
 
     # initial init
-    open -a iTerm.app "$1"/first-init.command "$1"
+    open -a iTerm.app "$1"/first-init.command

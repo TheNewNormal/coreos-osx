@@ -6,109 +6,104 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
-pwd
-
-### Insert shared folder
+### Insert shared folder to Vagrantfile
 LOOP=1
 while [ $LOOP -gt 0 ]
 do
-VALID_MAIN=0
-echo "Enable NFS shared local folder '~/coreos-osx/share' to CoreOS VM '/home/coreos/share' one? [y/n]"
-echo "(You will be asked for your OS X user password !!!)"
+    VALID_MAIN=0
+    echo "Do you want to enable NFS shared local folder '~/coreos-osx/share' to CoreOS VM '/home/coreos/share' one? [y/n]"
+    echo "(You will be asked for your OS X user password !!!)"
 
-read RESPONSE
-XX=${RESPONSE:=Y}
+    read RESPONSE
+    XX=${RESPONSE:=Y}
 
-if [ $RESPONSE = y ]
-then
-VALID_MAIN=1
-# shared folder
-cp "$1"/Vagrantfile ~/coreos-osx/tmp/Vagrantfile
-"$1"/gsed -i "/#config.vm.synced_folder/r $HOME/coreos-osx/tmp/Vagrantfile" ~/coreos-osx/coreos-vagrant/Vagrantfile
-rm -f ~/coreos-osx/tmp/Vagrantfile
+    if [ $RESPONSE = y ]
+    then
+        VALID_MAIN=1
+        # shared folder
+        ~/coreos-osx/bin/gsed -i "/#config.vm.synced_folder/r $HOME/coreos-osx/tmp/Vagrantfile" ~/coreos-osx/coreos-vagrant/Vagrantfile
+        rm -f ~/coreos-osx/tmp/Vagrantfile
 
-# update /etc/sudoers file
-CHECK_SUDOERS=$(sudo cat /etc/sudoers | grep "# Added by CoreOS GUI App")
-if [ $CHECK_SUDOERS = "" ]
-then
-echo "Updating /etc/sudoers file"
-sudo cat "$1"/sudoers >> /etc/sudoers
-else
-echo "You already have in /etc/sudoers '# Added by CoreOS GUI App' lines !!!"
-echo "Please double check /etc/sudoers file for it and delete all lines starting # Added by CoreOS GUI App - start' !!!"
-echo "inclusevely lines with # Added by CoreOS GUI App too "
-echo "and add the entry shown below !!!"
-sudo cat "$1"/sudoers
-fi
+        # update /etc/sudoers file
+        CHECK_SUDOERS=$(sudo cat /etc/sudoers | grep "# Added by CoreOS GUI App")
+        if [ $CHECK_SUDOERS = "" ]
+        then
+            echo "Updating /etc/sudoers file"
+            sudo cat ~/coreos-osx/tmp/sudoers >> /etc/sudoers
+        else
+            echo "You already have in /etc/sudoers '# Added by CoreOS GUI App' lines !!!"
+            echo "Please double check /etc/sudoers file for it and delete all lines starting # Added by CoreOS GUI App - start' !!!"
+            echo "inclusevely lines with # Added by CoreOS GUI App too "
+            echo "and add the entry shown below !!!"
+            sudo cat ~/coreos-osx/tmp/sudoers
+        fi
+        LOOP=0
+    fi
 
-LOOP=0
-fi
+    if [ $RESPONSE = n ]
+    then
+        VALID_MAIN=1
+        LOOP=0
+    fi
 
-if [ $RESPONSE = n ]
-then
-VALID_MAIN=1
-
-LOOP=0
-fi
-
-if [ $VALID_MAIN != y ] || [ $VALID_MAIN != n ]
-then
-continue
-fi
+    if [ $VALID_MAIN != y ] || [ $VALID_MAIN != n ]
+    then
+        continue
+    fi
 done
-### Insert shared folder
+
+rm -f cat ~/coreos-osx/tmp/sudoers
+### Insert shared folder to Vagrantfile
 
 ### Set release channel
 LOOP=1
 while [ $LOOP -gt 0 ]
 do
-VALID_MAIN=0
-echo " "
-echo " CoreOS Release Channel:"
-echo " 1)  Alpha "
-echo " 2)  Beta "
-echo " 3)  Stable "
-echo " "
-echo "Select an option:"
+    VALID_MAIN=0
+    echo " "
+    echo " CoreOS Release Channel:"
+    echo " 1)  Alpha "
+    echo " 2)  Beta "
+    echo " 3)  Stable "
+    echo " "
+    echo "Select an option:"
 
-read RESPONSE
-XX=${RESPONSE:=Y}
+    read RESPONSE
+    XX=${RESPONSE:=Y}
 
-if [ $RESPONSE = 1 ]
-then
-VALID_MAIN=1
-sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
-sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
-sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
-LOOP=0
-fi
+    if [ $RESPONSE = 1 ]
+    then
+        VALID_MAIN=1
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
+        LOOP=0
+    fi
 
-if [ $RESPONSE = 2 ]
-then
-VALID_MAIN=1
-sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
-sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
-sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
-LOOP=0
-fi
+    if [ $RESPONSE = 2 ]
+    then
+        VALID_MAIN=1
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
+        LOOP=0
+    fi
 
-if [ $RESPONSE = 3 ]
-then
-VALID_MAIN=1
-sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
-sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
-sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
-LOOP=0
-fi
+    if [ $RESPONSE = 3 ]
+    then
+        VALID_MAIN=1
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
+        LOOP=0
+    fi
 
-if [ $VALID_MAIN != 1 ]
-then
-continue
-fi
+    if [ $VALID_MAIN != 1 ]
+    then
+        continue
+    fi
 done
 ### Set release channel
-
-
 
 
 function pause(){
