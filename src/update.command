@@ -12,7 +12,6 @@ read -p "$*"
 
 cd ~/coreos-osx/coreos-vagrant
 vagrant box update
-vagrant plugin update vagrant-parallels
 vagrant up
 
 # download latest coreos-vagrant

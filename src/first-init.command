@@ -38,7 +38,7 @@ curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST
 unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl"
 rm -f fleet.zip
 
-# download docker file
+# download docker client
 cd ~/coreos-osx/coreos-vagrant
 LATEST_RELEASE=$(vagrant ssh -c 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r')
 echo "Downloading docker v$LATEST_RELEASE client for OS X"
@@ -47,7 +47,21 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 chmod +x ~/coreos-osx/bin/docker
 #
 
+# set fleetctl tunnel and install fleet units
+# path to the bin folder where we store our binary files
+export PATH=$PATH:${HOME}/coreos-osx/bin
+# set fleetctl tunnel
+vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
+export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
+# install fleet units
+echo "Installing fleet units from '~/coreos-osx/fleet' folder"
+cd ~/coreos-osx/coreos-vagrant/fleet
+fleectl submit *.service
+fleectl start *.service
+echo "Finished installing fleet units"
+echo " "
 
+#
 echo "Installation has finished, enjoy CoreOS-Vagrant VM on your Mac!!!"
 pause 'Press [Enter] key to continue...'
 
