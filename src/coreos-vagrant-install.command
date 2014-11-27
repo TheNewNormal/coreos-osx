@@ -12,6 +12,7 @@
     mkdir ~/coreos-osx/tmp
     mkdir ~/coreos-osx/bin
     mkdir ~/coreos-osx/share
+    chmod -R 777 ~/coreos-osx/share
     mkdir ~/coreos-osx/fleet
 
     # download latest coreos-vagrant
@@ -20,6 +21,9 @@
 
     # cd to App's Resources folder
     cd "$1"
+
+    # copy fleet units
+    cp "$1"/*.service ~/coreos-osx/fleet/
 
     # copy gsed to ~/coreos-osx/bin
     cp "$1"/gsed ~/coreos-osx/bin

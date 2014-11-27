@@ -12,7 +12,6 @@ while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
     echo "Do you want to enable NFS shared local folder '~/coreos-osx/share' to CoreOS VM '/home/coreos/share' one? [y/n]"
-    echo "(You will be asked for your OS X user password !!!)"
 
     read RESPONSE
     XX=${RESPONSE:=Y}
@@ -22,14 +21,14 @@ do
         VALID_MAIN=1
         # shared folder
         ~/coreos-osx/bin/gsed -i "/#config.vm.synced_folder/r $HOME/coreos-osx/tmp/Vagrantfile" ~/coreos-osx/coreos-vagrant/Vagrantfile
-        rm -f ~/coreos-osx/tmp/Vagrantfile
 
         # update /etc/sudoers file
-        CHECK_SUDOERS=$(sudo cat /etc/sudoers | grep "# Added by CoreOS GUI App")
-        if [ $CHECK_SUDOERS = "" ]
+        echo "(You will be asked for your OS X user password !!!)"
+        CHECK_SUDOERS=$(sudo -s 'cat /etc/sudoers | grep "# Added by CoreOS GUI App"')
+        if [ "$CHECK_SUDOERS" = "" ]
         then
             echo "Updating /etc/sudoers file"
-            sudo cat ~/coreos-osx/tmp/sudoers >> /etc/sudoers
+            sudo -s 'cat ~/coreos-osx/tmp/sudoers >> /etc/sudoers'
         else
             echo "You already have in /etc/sudoers '# Added by CoreOS GUI App' lines !!!"
             echo "Please double check /etc/sudoers file for it and delete all lines starting # Added by CoreOS GUI App - start' !!!"
@@ -52,7 +51,9 @@ do
     fi
 done
 
-rm -f cat ~/coreos-osx/tmp/sudoers
+# remove temporal files
+rm -f ~/coreos-osx/tmp/*
+
 ### Insert shared folder to Vagrantfile
 
 ### Set release channel
@@ -117,7 +118,6 @@ vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
 # first up to initialise VM
 echo "Setting up Vagrant VM for CoreOS on OS X"
 cd ~/coreos-osx/coreos-vagrant
-vagrant box update
 vagrant up
 
 # download etcdctl and fleetctl
@@ -148,20 +148,20 @@ chmod +x ~/coreos-osx/bin/docker
 #
 
 # set fleetctl tunnel and install fleet units
-# path to the bin folder where we store our binary files
-export PATH=$PATH:${HOME}/coreos-osx/bin
-# set fleetctl tunnel
 vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
 export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
 # install fleet units
 echo "Installing fleet units from '~/coreos-osx/fleet' folder"
-cd ~/coreos-osx/coreos-vagrant/fleet
-fleectl submit *.service
-fleectl start *.service
+cd ~/coreos-osx/fleet
+~/coreos-osx/bin/fleetctl --strict-host-key-checking=false submit *.service
+~/coreos-osx/bin/fleetctl --strict-host-key-checking=false start *.service
+
 echo "Finished installing fleet units"
 echo " "
 
 #
-echo "Installation has finished, enjoy CoreOS-Vagrant VM on your Mac!!!"
+echo "Installation has finished, CoreOS VM is up and running !!!"
+echo "Enjoy CoreOS-Vagrant VM on your Mac !!!"
+echo ""
 pause 'Press [Enter] key to continue...'
 
