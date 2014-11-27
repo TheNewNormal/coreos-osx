@@ -16,6 +16,7 @@
 		01741B63190DB80500BB1F91 /* first-init.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B62190DB80500BB1F91 /* first-init.command */; };
 		01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B64190DB81400BB1F91 /* vagrant_up.command */; };
 		01741B67190DB82100BB1F91 /* update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* update.command */; };
+		017E2BF81A27B5E4007AEF23 /* sudoers in Resources */ = {isa = PBXBuildFile; fileRef = 017E2BF71A27B5E4007AEF23 /* sudoers */; };
 		01AB706219D84622003B55EF /* Vagrantfile in Resources */ = {isa = PBXBuildFile; fileRef = 01AB706119D84622003B55EF /* Vagrantfile */; };
 		01AD94B81A277708009A400B /* gsed in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94B71A277708009A400B /* gsed */; };
 		01AD94BC1A277719009A400B /* dockerui.service in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BA1A277719009A400B /* dockerui.service */; };
@@ -44,6 +45,7 @@
 		01741B62190DB80500BB1F91 /* first-init.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "first-init.command"; sourceTree = SOURCE_ROOT; };
 		01741B64190DB81400BB1F91 /* vagrant_up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_up.command; sourceTree = SOURCE_ROOT; };
 		01741B66190DB82100BB1F91 /* update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update.command; sourceTree = SOURCE_ROOT; };
+		017E2BF71A27B5E4007AEF23 /* sudoers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sudoers; sourceTree = SOURCE_ROOT; };
 		01AB706119D84622003B55EF /* Vagrantfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Vagrantfile; sourceTree = SOURCE_ROOT; };
 		01AD94B71A277708009A400B /* gsed */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gsed; sourceTree = SOURCE_ROOT; };
 		01AD94BA1A277719009A400B /* dockerui.service */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dockerui.service; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				01AB706119D84622003B55EF /* Vagrantfile */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
 				01741B60190DB7F900BB1F91 /* user-data */,
+				017E2BF71A27B5E4007AEF23 /* sudoers */,
 			);
 			path = "Installation Files";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				01AD94BC1A277719009A400B /* dockerui.service in Resources */,
 				01E2855618A6C4E300BC630D /* Images.xcassets in Resources */,
 				01AD94B81A277708009A400B /* gsed in Resources */,
+				017E2BF81A27B5E4007AEF23 /* sudoers in Resources */,
 				01741B5F190DB7E300BB1F91 /* vagrant_ssh.command in Resources */,
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */,
