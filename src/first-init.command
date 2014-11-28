@@ -34,7 +34,7 @@ do
             echo "Please double check /etc/sudoers file for it and delete all lines starting # Added by CoreOS GUI App - start' !!!"
             echo "inclusevely lines with # Added by CoreOS GUI App too "
             echo "and add the entry shown below !!!"
-            sudo cat ~/coreos-osx/tmp/sudoers
+            cat ~/coreos-osx/tmp/sudoers
         fi
         LOOP=0
     fi
