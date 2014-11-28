@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -691,28 +692,41 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="K0h-38-tYq"/>
-                <menuItem title="DockerUI" id="LkH-Oi-Kkr">
+                <menuItem title="Fleet-UI / DockerUI" id="LkH-Oi-Kkr">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="dockerUI:" target="494" id="f0M-1e-B5e"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="S6r-5F-jA0"/>
-                <menuItem title="Check for updates" id="KYE-xq-LpJ">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="updates:" target="494" id="UQD-lF-ATd"/>
+                        <action selector="fleetUI_dockerUI:" target="494" id="Fye-qy-TaG"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="lFG-hr-LPH"/>
-                <menuItem title="Setup" id="VT6-tu-oxP" userLabel="Menu Item - Setup">
+                <menuItem title="Updates" id="VT6-tu-oxP" userLabel="Menu Item - Updates">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Setup" id="DFA-8C-ne3">
+                    <menu key="submenu" title="Updates" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Initial setup of CoreOS-Vagrant" id="yJc-l8-9be">
+                            <menuItem title="Force CoreOS Update" id="KYE-xq-LpJ" userLabel="Force CoreOS update">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="initialInstall:" target="494" id="Aeh-zq-dDP"/>
+                                    <action selector="force_coreos_update:" target="494" id="0IT-Vl-bUB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Check for updates" id="sEE-aC-0Ob">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="updates:" target="494" id="3Va-Du-QFm"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="yw0-jk-TL8"/>
+                <menuItem title="Setup" id="CrJ-Z8-7Tt" userLabel="Menu Item - Setup">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Setup" id="8I2-mE-7PD">
+                        <items>
+                            <menuItem title="Initial setup of CoreOS-Vagrant" id="lI7-r8-M4c">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="initialInstall:" target="494" id="S5z-pE-5HF"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -733,6 +747,7 @@
                     </connections>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="-132.5" y="383.5"/>
         </menu>
     </objects>
 </document>

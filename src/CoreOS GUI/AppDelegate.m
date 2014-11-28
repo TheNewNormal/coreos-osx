@@ -120,6 +120,18 @@
 }
 
 
+- (IBAction)force_coreos_update:(id)sender {
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"CoreOS will be forced to be updated !!!";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    NSString *appName = [[NSString alloc] init];
+    NSString *arguments = [[NSString alloc] init];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"force_coreos_update.command"]];
+    //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
+}
+
 - (IBAction)initialInstall:(id)sender
 {
     NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
@@ -132,7 +144,7 @@
     }
     else
     {
-//        NSLog(@"Folder does not exists: '%@'", home_folder);
+//        NSLog(@"Folder does not exist: '%@'", home_folder);
         NSString *scriptName = [[NSString alloc] init];
         NSString *arguments = [[NSString alloc] init];
         [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
@@ -165,7 +177,8 @@
 }
 
 
-- (IBAction)dockerUI:(id)sender {
+- (IBAction)fleetUI_dockerUI:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.8.99:3000"]];
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.8.99:9000"]];
 }
 

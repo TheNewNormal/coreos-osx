@@ -19,8 +19,11 @@ export PATH=$PATH:${HOME}/coreos-osx/bin
 # set fleetctl tunnel
 vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
 export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
+export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
 #ssh-add ~/.vagrant.d/insecure_private_key
+
+cd ~/coreos-osx/share
 
 # open bash shell
 /bin/bash

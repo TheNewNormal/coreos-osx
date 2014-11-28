@@ -1,9 +1,7 @@
 
 ## Start - Inserted by CoreOS-Vagrant GUI App
 
-      # Expose dockerUI port
-      config.vm.network "forwarded_port", guest: 9000, host: 9000
-
-      # Add below any other forwarded ports you might need
+      # Enabling NFS for sharing the host machine into the coreos-vagrant VM.
+      config.vm.synced_folder "~/coreos-osx/share", "/home/core/share", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp']
 
 ## End - Inserted by CoreOS-Vagrant GUI App
