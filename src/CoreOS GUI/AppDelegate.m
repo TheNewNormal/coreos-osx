@@ -34,8 +34,23 @@
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"%@ ", @"CoreOS-Vagrant was not set, run from menu 'Setup' - 'Initial setup of CoreOS-Vagrant' to do that !!! "];
-        [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert setMessageText:@"CoreOS-Vagrant VM was not set."];
+        [alert setInformativeText:@"Do you want to set it up?"];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            // OK clicked
+            [self initialInstall:self];
+        }
+        else
+        {
+            // Cancel clicked
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant VM' at any time later one !!! "];
+            [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
+        }
     }
 }
 
@@ -50,7 +65,7 @@
     {
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"coreos-vagrant VM will be up shortly";
+        notification.title = @"CoreOS-Vagrant VM will be up shortly";
         notification.informativeText = @"and OS shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -60,16 +75,30 @@
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"%@ ", @"App was not installed, run from menu 'Setup/Update' - 'Initial setup of CoreOS-Vagrant VM' !!! "];
-        [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert setMessageText:@"CoreOS-Vagrant VM was not set."];
+        [alert setInformativeText:@"Do you want to set it up?"];
+        [alert setAlertStyle:NSWarningAlertStyle];
         
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            // OK clicked
+            [self initialInstall:self];
+        }
+        else
+        {
+            // Cancel clicked
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant VM' at any time later one !!! "];
+            [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
+        }
     }
 }
 
 - (IBAction)Pause:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant VM will be suspended";
+    notification.informativeText = @"CoreOS-Vagrant VM will be suspended";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -82,7 +111,7 @@
 - (IBAction)Stop:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant VM will be stopped";
+    notification.informativeText = @"CoreOS-Vagrant VM will be stopped";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -95,7 +124,7 @@
 - (IBAction)Restart:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant VM will be reloaded";
+    notification.informativeText = @"CoreOS-Vagrant VM will be reloaded";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -137,7 +166,7 @@
 - (IBAction)changeReleaseChannel:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant release channel change";
+    notification.informativeText = @"CoreOS-Vagrant release channel change";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -150,7 +179,7 @@
 - (IBAction)destroy:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant VM will be destroyed";
+    notification.informativeText = @"CoreOS-Vagrant VM will be destroyed";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];

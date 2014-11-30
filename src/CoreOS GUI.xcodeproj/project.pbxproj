@@ -183,9 +183,9 @@
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
 				01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */,
-				01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */,
 				01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */,
 				01741B64190DB81400BB1F91 /* vagrant_up.command */,
+				01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */,
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
 				01741B66190DB82100BB1F91 /* update.command */,
 			);
