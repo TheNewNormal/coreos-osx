@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 #  coreos-vagrant-install.command
 #  CoreOS GUI for OS X
@@ -15,10 +16,6 @@
     chmod -R 777 ~/coreos-osx/share
     mkdir ~/coreos-osx/fleet
 
-    # download latest coreos-vagrant
-    rm -rf ~/coreos-osx/github
-    git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/github
-
     # cd to App's Resources folder
     cd "$1"
 
@@ -28,28 +25,13 @@
     # copy gsed to ~/coreos-osx/bin
     cp "$1"/gsed ~/coreos-osx/bin
 
-    # Vagrantfile
-    cp ~/coreos-osx/github/Vagrantfile ~/coreos-osx/coreos-vagrant/Vagrantfile
-
-    # change IP to static
-    sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
-
-    # copy temporal files for first-init.command script use
+    # copy temporal files for first-init.command script use later one
     # shared folder
     cp "$1"/Vagrantfile ~/coreos-osx/tmp/Vagrantfile
     # copy sudoers file
     cp "$1"/sudoers ~/coreos-osx/tmp
-    #
-
-    # user-data file
-    cat ~/coreos-osx/github/user-data.sample user-data > ~/coreos-osx/coreos-vagrant/user-data
-    #
-
-    # config.rb file
-    cp ~/coreos-osx/github/config.rb.sample ~/coreos-osx/coreos-vagrant/config.rb
-    # expose docker port
-    sed -i "" 's/#$expose_docker_tcp/$expose_docker_tcp/' ~/coreos-osx/coreos-vagrant/config.rb
-    #
+    # copy user-data file
+    cp "$1"/user-data ~/coreos-osx/tmp
 
     # initial init
     open -a iTerm.app "$1"/first-init.command
