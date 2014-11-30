@@ -6,13 +6,39 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# getting files from github and setting them up
+    echo ""
+    echo "Downloading latest coreos-vagrant files from github: "
+    rm -rf ~/coreos-osx/github
+    git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/github
+    echo "Done downloading from github !!!"
+    echo ""
+
+    # Vagrantfile
+    cp ~/coreos-osx/github/Vagrantfile ~/coreos-osx/coreos-vagrant/Vagrantfile
+    # change IP to static
+    sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
+    #
+
+    # user-data file
+    cat ~/coreos-osx/github/user-data.sample ~/coreos-osx/tmp/user-data > ~/coreos-osx/coreos-vagrant/user-data
+    #
+
+    # config.rb file
+    cp ~/coreos-osx/github/config.rb.sample ~/coreos-osx/coreos-vagrant/config.rb
+    # expose docker port
+    sed -i "" 's/#$expose_docker_tcp/$expose_docker_tcp/' ~/coreos-osx/coreos-vagrant/config.rb
+    #
+#
+
+
 ### Insert shared folder to Vagrantfile
 LOOP=1
 while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
     echo "Do you want to enable NFS shared local folder '~/coreos-osx/share' to CoreOS VM '/home/coreos/share' one? [y/n]"
-    echo "(if you already had it enabled just answer (n) then.)"
+    echo "(if you already had it enabled just answer 'n' then.)"
 
     read RESPONSE
     XX=${RESPONSE:=Y}
@@ -63,7 +89,7 @@ while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
     echo " "
-    echo " CoreOS Release Channel:"
+    echo " Set CoreOS Release Channel:"
     echo " 1)  Alpha "
     echo " 2)  Beta "
     echo " 3)  Stable "
@@ -168,7 +194,7 @@ echo " "
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo "Enjoy CoreOS-Vagrant VM on your Mac !!!"
 echo ""
-echo "Run from menu 'Up & OS Shell' to open a terninal window pre-set with docker, fleetctl and etcdctl to cluster settings"
+echo "Run from menu 'Up & OS Shell' to open a terninal window with docker, fleetctl and etcdctl pre-set to cluster settings"
 echo ""
 pause 'Press [Enter] key to continue...'
 
