@@ -22,6 +22,9 @@
 		01AD94BC1A277719009A400B /* dockerui.service in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BA1A277719009A400B /* dockerui.service */; };
 		01AD94BD1A277719009A400B /* fleet-ui.service in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BB1A277719009A400B /* fleet-ui.service */; };
 		01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* force_coreos_update.command */; };
+		01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */; };
+		01CFC2DF1A2AA48300F251C2 /* vagrant_destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */; };
+		01CFC2E01A2AA48300F251C2 /* vagrant_reload.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */; };
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01E2854618A6C4E300BC630D /* InfoPlist.strings */; };
@@ -51,6 +54,9 @@
 		01AD94BA1A277719009A400B /* dockerui.service */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dockerui.service; sourceTree = "<group>"; };
 		01AD94BB1A277719009A400B /* fleet-ui.service */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fleet-ui.service"; sourceTree = "<group>"; };
 		01AD94BE1A278C94009A400B /* force_coreos_update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = force_coreos_update.command; sourceTree = "<group>"; };
+		01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_release_channel.command; sourceTree = "<group>"; };
+		01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_destroy.command; sourceTree = "<group>"; };
+		01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_reload.command; sourceTree = "<group>"; };
 		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		01E2853A18A6C4E300BC630D /* CoreOS GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS GUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E2853D18A6C4E300BC630D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -88,11 +94,11 @@
 			children = (
 				01AD94B91A277719009A400B /* fleet */,
 				01AD94B71A277708009A400B /* gsed */,
-				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
 				01AB706119D84622003B55EF /* Vagrantfile */,
-				01741B62190DB80500BB1F91 /* first-init.command */,
 				01741B60190DB7F900BB1F91 /* user-data */,
 				017E2BF71A27B5E4007AEF23 /* sudoers */,
+				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
+				01741B62190DB80500BB1F91 /* first-init.command */,
 			);
 			path = "Installation Files";
 			sourceTree = "<group>";
@@ -175,6 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
+				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
+				01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */,
+				01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */,
 				01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */,
 				01741B64190DB81400BB1F91 /* vagrant_up.command */,
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
@@ -265,8 +274,10 @@
 				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
 				013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */,
 				01AB706219D84622003B55EF /* Vagrantfile in Resources */,
+				01CFC2DF1A2AA48300F251C2 /* vagrant_destroy.command in Resources */,
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
 				01AD94BC1A277719009A400B /* dockerui.service in Resources */,
+				01CFC2E01A2AA48300F251C2 /* vagrant_reload.command in Resources */,
 				01E2855618A6C4E300BC630D /* Images.xcassets in Resources */,
 				01AD94B81A277708009A400B /* gsed in Resources */,
 				017E2BF81A27B5E4007AEF23 /* sudoers in Resources */,
@@ -274,6 +285,7 @@
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */,
 				01AD94BD1A277719009A400B /* fleet-ui.service in Resources */,
+				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update.command in Resources */,

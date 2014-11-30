@@ -111,13 +111,10 @@ function pause(){
 read -p "$*"
 }
 
-# Add vagrant ssh key to ssh-agent
-###ssh-add ~/.vagrant.d/insecure_private_key
-vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
-
 # first up to initialise VM
 echo "Setting up Vagrant VM for CoreOS on OS X"
 cd ~/coreos-osx/coreos-vagrant
+vagrant box update
 vagrant up
 
 # download etcdctl and fleetctl
@@ -150,18 +147,24 @@ chmod +x ~/coreos-osx/bin/docker
 # set fleetctl tunnel and install fleet units
 vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
 export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
+export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
+echo "fleetctl list-machines :"
+fleetctl list-machines
+echo ""
 # install fleet units
 echo "Installing fleet units from '~/coreos-osx/fleet' folder"
 cd ~/coreos-osx/fleet
 ~/coreos-osx/bin/fleetctl --strict-host-key-checking=false submit *.service
 ~/coreos-osx/bin/fleetctl --strict-host-key-checking=false start *.service
-
 echo "Finished installing fleet units"
+fleetctl list-units
 echo " "
 
 #
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo "Enjoy CoreOS-Vagrant VM on your Mac !!!"
+echo ""
+echo "Run from menu 'Up & OS Shell' to open a terninal window pre-set with docker, fleetctl and etcdctl to cluster settings"
 echo ""
 pause 'Press [Enter] key to continue...'
 
