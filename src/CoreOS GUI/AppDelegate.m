@@ -50,7 +50,7 @@
     {
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"coreos-vagrant will be up shortly";
+        notification.title = @"coreos-vagrant VM will be up shortly";
         notification.informativeText = @"and OS shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -60,7 +60,7 @@
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"%@ ", @"App was not installed, run from menu 'Setup/Update' - 'Initial setup of CoreOS-Vagrant' !!! "];
+        NSString *msg = [NSString stringWithFormat:@"%@ ", @"App was not installed, run from menu 'Setup/Update' - 'Initial setup of CoreOS-Vagrant VM' !!! "];
         [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
         
     }
@@ -69,7 +69,7 @@
 - (IBAction)Pause:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant will be suspended";
+    notification.informativeText = @"coreos-vagrant VM will be suspended";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -82,7 +82,7 @@
 - (IBAction)Stop:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant will be stopped";
+    notification.informativeText = @"coreos-vagrant VM will be stopped";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -95,22 +95,22 @@
 - (IBAction)Restart:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"coreos-vagrant will be reloaded";
+    notification.informativeText = @"coreos-vagrant VM will be reloaded";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
-    NSString *scriptName = [[NSString alloc] init];
+    NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"coreos-vagrant" arguments:arguments = @"reload"];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_reload.command"]];
     
     [self checkVMStatus];
 }
 
 
+// Updates menu
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"coreos-vagrant, docker, etcdclt and fleetctl will be updated";
-    notification.informativeText = @"coreos-vagrant git updates will be donwloaded to ~/coreos-osx/github";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -118,7 +118,6 @@
     [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]];
     //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
 }
-
 
 - (IBAction)force_coreos_update:(id)sender {
     // send a notification on to the screen
@@ -130,6 +129,35 @@
     NSString *arguments = [[NSString alloc] init];
     [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"force_coreos_update.command"]];
     //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
+}
+// Updates menu
+
+
+// Setup menu
+- (IBAction)changeReleaseChannel:(id)sender {
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.informativeText = @"coreos-vagrant release channel change";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    NSString *appName = [[NSString alloc] init];
+    NSString *arguments = [[NSString alloc] init];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"change_release_channel.command"]];
+    
+    [self checkVMStatus];
+}
+
+- (IBAction)destroy:(id)sender {
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.informativeText = @"coreos-vagrant VM will be destroyed";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    NSString *appName = [[NSString alloc] init];
+    NSString *arguments = [[NSString alloc] init];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_destroy.command"]];
+    
+    [self checkVMStatus];
 }
 
 - (IBAction)initialInstall:(id)sender
@@ -150,6 +178,7 @@
         [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
     }
 }
+// Setup menu
 
 
 - (IBAction)About:(id)sender {

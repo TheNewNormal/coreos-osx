@@ -28,7 +28,7 @@ echo "Downloading etcdctl $LATEST_RELEASE for OS X"
 curl -L -o etcd.zip "https://github.com/coreos/etcd/releases/download/v$LATEST_RELEASE/etcd-v$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "etcd.zip" "etcd-v$LATEST_RELEASE-darwin-amd64/etcdctl"
 rm -f etcd.zip
-echo " "
+echo "etcdctl was copied to ~/coreos-osx/bin "
 #
 cd ~/coreos-osx/coreos-vagrant
 LATEST_RELEASE=$(vagrant ssh -c 'fleetctl version' | cut -d " " -f 3- | tr -d '\r')
@@ -37,7 +37,7 @@ echo "Downloading fleetctl v$LATEST_RELEASE for OS X"
 curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST_RELEASE/fleet-v$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl"
 rm -f fleet.zip
-echo " "
+echo "fleetctl was copied to ~/coreos-osx/bin "
 # download docker file
 cd ~/coreos-osx/coreos-vagrant
 LATEST_RELEASE=$(vagrant ssh -c 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r')
@@ -45,6 +45,7 @@ echo "Downloading docker v$LATEST_RELEASE client for OS X"
 curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker-$LATEST_RELEASE
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
+echo "docker was copied to ~/coreos-osx/bin "
 #
 
 echo " "

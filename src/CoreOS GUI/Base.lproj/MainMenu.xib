@@ -723,10 +723,24 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Setup" id="8I2-mE-7PD">
                         <items>
-                            <menuItem title="Initial setup of CoreOS-Vagrant" id="lI7-r8-M4c">
+                            <menuItem title="Change Release Channel (in config.rb)" id="lI7-r8-M4c">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="initialInstall:" target="494" id="S5z-pE-5HF"/>
+                                    <action selector="changeReleaseChannel:" target="494" id="aSD-te-ATl"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="HZd-4l-v9B"/>
+                            <menuItem title="Destroy VM (vagrant destroy)" id="HWe-7a-OCV">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="destroy:" target="494" id="Zoa-03-hFF"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Gmq-7o-uXd"/>
+                            <menuItem title="Initial setup of CoreOS-Vagrant VM" id="Yrd-Gf-8zH">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="initialInstall:" target="494" id="hzw-re-ezb"/>
                                 </connections>
                             </menuItem>
                         </items>
