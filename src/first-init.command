@@ -12,6 +12,7 @@ while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
     echo "Do you want to enable NFS shared local folder '~/coreos-osx/share' to CoreOS VM '/home/coreos/share' one? [y/n]"
+    echo "(if you already had it enabled just answer (n) then.)"
 
     read RESPONSE
     XX=${RESPONSE:=Y}
@@ -117,6 +118,10 @@ cd ~/coreos-osx/coreos-vagrant
 vagrant box update
 vagrant up
 
+# Add vagrant ssh key to ssh-agent
+###vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
+ssh-add ~/.vagrant.d/insecure_private_key
+
 # download etcdctl and fleetctl
 #
 cd ~/coreos-osx/coreos-vagrant
@@ -145,7 +150,6 @@ chmod +x ~/coreos-osx/bin/docker
 #
 
 # set fleetctl tunnel and install fleet units
-vagrant ssh-config | sed -n "s/IdentityFile//gp" | xargs ssh-add
 export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines :"
