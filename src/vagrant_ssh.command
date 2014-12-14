@@ -7,5 +7,5 @@
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
 cd ~/coreos-osx/coreos-vagrant
-vagrant ssh
+vagrant ssh -- -A
 

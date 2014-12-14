@@ -23,8 +23,17 @@ ssh-add ~/.vagrant.d/insecure_private_key
 
 export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
-echo "fleetctl list-machines :"
+echo "fleetctl list-machines:"
 fleetctl list-machines
+echo ""
+# install fleet units
+echo "Installing fleet units from '~/coreos-osx/fleet' folder"
+cd ~/coreos-osx/fleet
+~/coreos-osx/bin/fleetctl --strict-host-key-checking=false submit *.service
+~/coreos-osx/bin/fleetctl --strict-host-key-checking=false start *.service
+echo "Finished installing fleet units:"
+fleetctl list-units
+echo " "
 
 cd ~/coreos-osx/coreos-vagrant
 
