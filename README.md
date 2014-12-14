@@ -55,6 +55,7 @@ ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work proper
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc (it might take a bit of a time after install for it to work as it needs to download it's image
 * [DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)
 * Also user-data file enables with the flag `--insecure-registry` as per [CoreOS Blog](https://coreos.com/blog/docker-1-3-2-security-update/) Docker access to insecure private registries.
+* On each `Up` and `Reload` fleet unit files placed into `~/coreos-osx/fleet` folder will be reloaded and restarted, it is very handy when you used `Destroy VM` and want your fleet units to be used again.
 
 
 Other links
