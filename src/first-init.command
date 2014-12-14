@@ -178,7 +178,7 @@ chmod +x ~/coreos-osx/bin/docker
 # set fleetctl tunnel and install fleet units
 export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
-echo "fleetctl list-machines :"
+echo "fleetctl list-machines:"
 fleetctl list-machines
 echo ""
 # install fleet units
