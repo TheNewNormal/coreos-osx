@@ -145,8 +145,8 @@ vagrant box update
 vagrant up
 
 # Add vagrant ssh key to ssh-agent
-###vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
-ssh-add ~/.vagrant.d/insecure_private_key
+vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
+###ssh-add ~/.vagrant.d/insecure_private_key
 
 # download etcdctl and fleetctl
 #
