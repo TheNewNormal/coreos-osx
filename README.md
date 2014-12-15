@@ -18,7 +18,7 @@ How to install
 
 Required software
 * [VirtualBox for Mac OS X hosts](https://www.virtualbox.org/wiki/Downloads), [Vagrant for Mac OS X](http://www.vagrantup.com/downloads.html) and [iTerm 2](http://www.iterm2.com/#/section/downloads)
-
+* It works very well with Vagrant 1.6.x, but on 1.7.x it might have problems with fleetctl as of v1.7, Vagrant splats a random SSH key on each VM.
 * Download `CoreOS Vagrant OSX GUI latest.zip` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases) and unzip it.
 * Start the `CoreOS Vagrant OSX GUI` and from menu `Setup` choose `Initial setup of CoreOS-Vagrant` 
 * The install will do the following:
