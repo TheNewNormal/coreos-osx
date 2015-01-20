@@ -60,5 +60,5 @@ ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work proper
 Other links
 -----------
 * Cluster one CoreOS VM App can be found here [CoreOS-Vagrant Cluster GUI](https://github.com/rimusz/coreos-osx-gui-cluster).
-* Also you might like my other [boot2docker GUI for OS X](https://github.com/rimusz/boot2docker-gui-osx) project for [boot2docker](https://github.com/boot2docker/boot2docker).
+
 
