@@ -18,7 +18,7 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.17.8.99:4001
-echo "etcd cluster:"
+echo "etcd ls /:"
 etcdctl --no-sync ls /
 echo ""
 
@@ -29,12 +29,8 @@ echo "fleetctl list-machines:"
 fleetctl list-machines
 echo ""
 
-# install fleet units
-echo "Installing fleet units from '~/coreos-osx/fleet' folder"
-cd ~/coreos-osx/fleet
-~/coreos-osx/bin/fleetctl destroy *.service
-~/coreos-osx/bin/fleetctl start *.service
-echo "Finished installing fleet units:"
+# list fleet units
+echo "fleet list-units:"
 fleetctl list-units
 echo " "
 
