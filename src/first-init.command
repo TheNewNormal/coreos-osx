@@ -38,7 +38,6 @@ while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
     echo "Do you want to enable NFS shared local folder '~/coreos-osx/share' to CoreOS VM '/home/coreos/share' one? [y/n]"
-    echo "(if you already had it enabled just answer 'n' then.)"
 
     read RESPONSE
     XX=${RESPONSE:=Y}
@@ -175,8 +174,8 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 chmod +x ~/coreos-osx/bin/docker
 #
 
-# set fleetctl tunnel and install fleet units
-export FLEETCTL_TUNNEL="$(vagrant ssh-config | sed -n "s/[ ]*HostName[ ]*//gp"):$(vagrant ssh-config | sed -n "s/[ ]*Port[ ]*//gp")"
+# set fleetctl endpoint and install fleet units
+export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines
@@ -184,8 +183,8 @@ echo ""
 # install fleet units
 echo "Installing fleet units from '~/coreos-osx/fleet' folder"
 cd ~/coreos-osx/fleet
-~/coreos-osx/bin/fleetctl --strict-host-key-checking=false submit *.service
-~/coreos-osx/bin/fleetctl --strict-host-key-checking=false start *.service
+~/coreos-osx/bin/fleetctl submit *.service
+~/coreos-osx/bin/fleetctl start *.service
 echo "Finished installing fleet units:"
 fleetctl list-units
 echo " "
@@ -194,7 +193,7 @@ echo " "
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo "Enjoy CoreOS-Vagrant VM on your Mac !!!"
 echo ""
-echo "Run from menu 'Up & OS Shell' to open a terninal window with docker, fleetctl and etcdctl pre-set to cluster settings"
+echo "Run from menu 'OS Shell' to open a terninal window with docker, fleetctl and etcdctl pre-set !!!"
 echo ""
 pause 'Press [Enter] key to continue...'
 

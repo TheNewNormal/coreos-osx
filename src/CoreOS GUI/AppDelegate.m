@@ -222,6 +222,17 @@
     [self displayWithMessage:mText infoText:infoText];
 }
 
+//
+- (IBAction)runShell:(id)sender {
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.informativeText = @"OS X shell will be opened";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    NSString *appName = [[NSString alloc] init];
+    NSString *arguments = [[NSString alloc] init];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"os_shell.command"]];
+}
 
 - (IBAction)runSsh:(id)sender {
     // send a notification on to the screen

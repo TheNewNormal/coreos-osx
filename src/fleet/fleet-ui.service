@@ -7,9 +7,9 @@ Requires=docker.service
 User=core
 TimeoutStartSec=0
 EnvironmentFile=/etc/environment
-ExecStartPre=/usr/bin/docker pull  purpleworks/fleet-ui
+ExecStartPre=/usr/bin/docker pull  purpleworks/fleet-ui:latest
 ExecStartPre=-/usr/bin/docker rm fleet_ui
-ExecStart=/usr/bin/docker run --rm --name fleet_ui --memory="128m" --cpu-shares=1 -p 3000:3000 -e ETCD_PEER=10.1.42.1 -v /home/core/.ssh/id_rsa:/root/id_rsa purpleworks/fleet-ui
+ExecStart=/usr/bin/docker run --rm --name fleet_ui --memory="128m" --cpu-shares=1 -p 3000:3000 -e ETCD_PEER=172.17.15.8.99 -v /home/core/.ssh/id_rsa:/root/id_rsa purpleworks/fleet-ui
 ExecStop=/usr/bin/docker stop fleet_ui
 ExecStopPost=-/usr/bin/docker rm fleet_ui
 

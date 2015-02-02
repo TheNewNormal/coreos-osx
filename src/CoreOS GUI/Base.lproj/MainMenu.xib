@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -657,7 +657,7 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu id="aYv-Zh-0j1">
             <items>
-                <menuItem title="Up &amp; OS shell" id="YiP-H1-GtD">
+                <menuItem title="Up" id="YiP-H1-GtD">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="Start:" target="494" id="bm1-PN-GK2"/>
@@ -685,13 +685,18 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="jV7-Ne-Ped"/>
-                <menuItem title="SSH" id="dvF-TI-XNx">
+                <menuItem title="OS Shell" id="dvF-TI-XNx">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="runSsh:" target="494" id="wqL-gr-E0t"/>
+                        <action selector="runShell:" target="494" id="dpS-4v-YJb"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="K0h-38-tYq"/>
+                <menuItem title="SSH" id="Khg-WF-X5I">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="runSsh:" target="494" id="41e-Q4-LMK"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Fleet-UI / DockerUI" id="LkH-Oi-Kkr">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -761,7 +766,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-132.5" y="383.5"/>
+            <point key="canvasLocation" x="-409.5" y="332.5"/>
         </menu>
     </objects>
 </document>
