@@ -41,13 +41,14 @@ Just start `CoreOS Vagrant OSX GUI` application and you will find a small icon w
 For now it only supports a standalone CoreOS VM, cluster support might come at some stage later one.
 
 * There you can `Up`, `Suspend`, `Halt`, `Reload` CoreOS vagrant VM
-* Under `Up & OS shell` OS Shell will be opened when `vagrant up` finishes and it will have such environment set:
+* Under `Up` OS Shell will be opened when `vagrant up` finishes and it will have such environment set:
 ````
 DOCKER_HOST=tcp://127.0.0.1:2375
-FLEETCTL_TUNNEL=127.0.0.1:2222
+ETCDCTL_PEERS=http://172.17.8.99:4001
+FLEETCTL_ENDPOINT=http://172.17.8.99:4001
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries are stored
-ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work properly
 ```` 
+* `OS Shell` opens OS Shell with the same enviroment preset as `Up`
 * `Updates/Force CoreOS update` will run `sudo update_engine_client -update` on CoreOS VM.
 * `Updates/Check for updates` will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. It will store downloads from github `coreos-vagrant` in `~/coreos-osx/github` folder, it will not overwrite user's `Vagrantfile, config.rb and users-data` files.
 * `SSH` will open VM shell
@@ -60,5 +61,5 @@ ssh-add ~/.vagrant.d/insecure_private_key for the fleetctl tunnel to work proper
 Other links
 -----------
 * Cluster one CoreOS VM App can be found here [CoreOS-Vagrant Cluster GUI](https://github.com/rimusz/coreos-osx-gui-cluster).
-
+* Kubernetes Cluster one CoreOS VM App can be found here [CoreOS-Vagrant Kubernetes Cluster GUI ](https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster).
 
