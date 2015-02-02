@@ -21,12 +21,8 @@ export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
 echo "fleetctl list-machines:"
 fleetctl list-machines
 echo ""
-# install fleet units
-echo "Installing fleet units from '~/coreos-osx/fleet' folder"
-cd ~/coreos-osx/fleet
-~/coreos-osx/bin/fleetctl --strict-host-key-checking=false submit *.service
-~/coreos-osx/bin/fleetctl --strict-host-key-checking=false start *.service
-echo "Finished installing fleet units:"
+# 
+echo "fleet list-units:"
 fleetctl list-units
 #
 echo ""

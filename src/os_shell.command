@@ -14,7 +14,7 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.17.8.99:4001
-echo "etcd cluster:"
+echo "etcdctl ls /:"
 etcdctl --no-sync ls /
 echo ""
 
