@@ -30,6 +30,8 @@ fleetctl list-machines
 echo ""
 
 # list fleet units
+cd ~/coreos-osx/fleet
+fleetctl start *.service
 echo "fleet list-units:"
 fleetctl list-units
 echo " "
