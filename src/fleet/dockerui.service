@@ -1,0 +1,17 @@
+[Unit]
+Description=DockerUI Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+User=core
+TimeoutStartSec=0
+EnvironmentFile=/etc/environment
+ExecStartPre=/usr/bin/docker pull davivcgarcia/dockerui:latest
+ExecStartPre=-/usr/bin/docker rm dockerui
+ExecStart=/usr/bin/docker run --rm --name dockerui --memory="128m" -p 9000:9000 -v /var/run/docker.sock:/docker.sock davivcgarcia/dockerui -e /docker.sock
+ExecStop=/usr/bin/docker stop dockerui
+ExecStopPost=-/usr/bin/docker rm dockerui
+
+Restart=always
+RestartSec=10s
