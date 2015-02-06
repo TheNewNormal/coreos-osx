@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0111FADB1A7FA2A20021F258 /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 0111FADA1A7FA2A10021F258 /* os_shell.command */; };
+		0133612B1A852A9A007585D3 /* rkt in Resources */ = {isa = PBXBuildFile; fileRef = 0133612A1A852A9A007585D3 /* rkt */; };
 		013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */; };
 		013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */; };
 		0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* coreos-vagrant.command */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		0111FADA1A7FA2A10021F258 /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
 		0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS GUI.entitlements"; sourceTree = "<group>"; };
+		0133612A1A852A9A007585D3 /* rkt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rkt; sourceTree = SOURCE_ROOT; };
 		013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-vert-color.png"; sourceTree = "<group>"; };
 		013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-horiz-color.png"; sourceTree = "<group>"; };
 		0145318318FF209D007F9C95 /* coreos-vagrant.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant.command"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				01AD94B91A277719009A400B /* fleet */,
 				01AD94B71A277708009A400B /* gsed */,
+				0133612A1A852A9A007585D3 /* rkt */,
 				01AB706119D84622003B55EF /* Vagrantfile */,
 				01741B60190DB7F900BB1F91 /* user-data */,
 				017E2BF71A27B5E4007AEF23 /* sudoers */,
@@ -269,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0133612B1A852A9A007585D3 /* rkt in Resources */,
 				013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */,
 				01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
@@ -411,12 +415,13 @@
 		01E2856C18A6C4E300BC630D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "CoreOS GUI";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -426,12 +431,13 @@
 		01E2856D18A6C4E300BC630D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "CoreOS GUI";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

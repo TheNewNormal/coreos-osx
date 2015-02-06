@@ -20,6 +20,16 @@ git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/github
 echo "Downloads from github/coreos-vagrant are stored in ~/coreos-osx/github folder"
 echo " "
 
+# download latest Rocket on VM
+ROCKET_RELEASE=$(curl 'https://api.github.com/repos/coreos/rocket/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )
+echo "Downloading Rocket $ROCKET_RELEASE"
+
+vagrant ssh -c 'sudo mkdir -p /opt/bin && sudo chmod -R 777 /opt/bin && cd /home/core && \
+curl -L -o rocket.tar.gz "https://github.com/coreos/rocket/releases/download/'$ROCKET_RELEASE'/rocket-'$ROCKET_RELEASE'.tar.gz" && \
+tar xzvf rocket.tar.gz && cp -f rocket-'$ROCKET_RELEASE'/* /opt/bin && sudo chmod 777 /opt/bin/rkt && rkt version && \
+rm -fr rocket-'$ROCKET_RELEASE' && rm -f rocket.tar.gz'
+echo " "
+
 # download latest versions of etcdctl and fleetctl
 cd ~/coreos-osx/coreos-vagrant
 LATEST_RELEASE=$(vagrant ssh -c "etcdctl --version" | cut -d " " -f 3- | tr -d '\r' )

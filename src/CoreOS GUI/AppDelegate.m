@@ -139,7 +139,8 @@
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant, docker, etcdclt and fleetctl will be updated";
+    notification.title = @"coreos-vagrant vbox";
+    notification.informativeText = @"and OS X clients be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];

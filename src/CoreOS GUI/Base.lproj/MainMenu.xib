@@ -708,16 +708,16 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Updates" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Force CoreOS Update" id="KYE-xq-LpJ" userLabel="Force CoreOS update">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="force_coreos_update:" target="494" id="0IT-Vl-bUB"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Check for updates" id="sEE-aC-0Ob">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="updates:" target="494" id="3Va-Du-QFm"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Force CoreOS Update" id="KYE-xq-LpJ" userLabel="Force CoreOS update">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="force_coreos_update:" target="494" id="0IT-Vl-bUB"/>
                                 </connections>
                             </menuItem>
                         </items>

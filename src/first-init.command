@@ -147,6 +147,15 @@ vagrant up
 vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
 ###ssh-add ~/.vagrant.d/insecure_private_key
 
+# download and install latest Rocket on VM
+ROCKET_RELEASE=$(curl 'https://api.github.com/repos/coreos/rocket/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )
+echo "Downloading Rocket $ROCKET_RELEASE"
+vagrant ssh -c 'sudo mkdir -p /opt/bin && sudo chmod -R 777 /opt/bin && cd /home/core && \
+curl -L -o rocket.tar.gz "https://github.com/coreos/rocket/releases/download/'$ROCKET_RELEASE'/rocket-'$ROCKET_RELEASE'.tar.gz" && \
+tar xzvf rocket.tar.gz && cp -f rocket-'$ROCKET_RELEASE'/* /opt/bin && sudo chmod 777 /opt/bin/rkt && rkt version && \
+rm -fr rocket-'$ROCKET_RELEASE' && rm -f rocket.tar.gz'
+echo " "
+
 # download etcdctl and fleetctl
 #
 cd ~/coreos-osx/coreos-vagrant
@@ -193,7 +202,7 @@ echo " "
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo "Enjoy CoreOS-Vagrant VM on your Mac !!!"
 echo ""
-echo "Run from menu 'OS Shell' to open a terninal window with docker, fleetctl and etcdctl pre-set !!!"
+echo "Run from menu 'OS Shell' to open a terninal window with docker, fleetctl, etcdctl and rkt pre-set !!!"
 echo ""
 pause 'Press [Enter] key to continue...'
 

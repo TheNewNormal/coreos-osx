@@ -25,6 +25,9 @@ set -e
     # copy gsed to ~/coreos-osx/bin
     cp "$1"/gsed ~/coreos-osx/bin
 
+   # copy rkt to ~/coreos-osx/bin
+    cp "$1"/rkt ~/coreos-osx/bin
+
     # copy temporal files for first-init.command script use later one
     # shared folder
     cp "$1"/Vagrantfile ~/coreos-osx/tmp/Vagrantfile
