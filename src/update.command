@@ -10,6 +10,16 @@ function pause(){
 read -p "$*"
 }
 
+# cd to App's Resources folder and copy some files
+cd "$1"
+# copy fleet units
+cp -fr "$1"/*.service ~/coreos-osx/fleet/
+# copy gsed to ~/coreos-osx/bin
+cp -f "$1"/gsed ~/coreos-osx/bin
+# copy rkt to ~/coreos-osx/bin
+cp -f "$1"/rkt ~/coreos-osx/bin
+
+#
 cd ~/coreos-osx/coreos-vagrant
 vagrant box update
 vagrant up
@@ -26,7 +36,7 @@ echo "Downloading Rocket $ROCKET_RELEASE"
 
 vagrant ssh -c 'sudo mkdir -p /opt/bin && sudo chmod -R 777 /opt/bin && cd /home/core && \
 curl -L -o rocket.tar.gz "https://github.com/coreos/rocket/releases/download/'$ROCKET_RELEASE'/rocket-'$ROCKET_RELEASE'.tar.gz" && \
-tar xzvf rocket.tar.gz && cp -f rocket-'$ROCKET_RELEASE'/* /opt/bin && sudo chmod 777 /opt/bin/rkt && rkt version && \
+tar xzvf rocket.tar.gz && cp -f rocket-'$ROCKET_RELEASE'/* /opt/bin && sudo chmod 777 /opt/bin/rkt && /opt/bin/rkt version && \
 rm -fr rocket-'$ROCKET_RELEASE' && rm -f rocket.tar.gz'
 echo " "
 

@@ -18,7 +18,7 @@ How to install
 
 Required software
 * [VirtualBox for Mac OS X hosts](https://www.virtualbox.org/wiki/Downloads), [Vagrant for Mac OS X](http://www.vagrantup.com/downloads.html) and [iTerm 2](http://www.iterm2.com/#/section/downloads)
-* Download `CoreOS Vagrant OSX GUI latest.zip` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases) and unzip it.
+* Download `CoreOS Vagrant OSX GUI latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases) and open it and drag the App e.g to your Desktop.
 * Start the `CoreOS Vagrant OSX GUI` and from menu `Setup` choose `Initial setup of CoreOS-Vagrant` 
 * The install will do the following:
 ````
