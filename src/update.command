@@ -10,14 +10,15 @@ function pause(){
 read -p "$*"
 }
 
-# cd to App's Resources folder and copy some files
-cd "$1"
-# copy fleet units
-cp -fr "$1"/*.service ~/coreos-osx/fleet/
+# get App's Resources folder
+res_folder=$(cat ~/coreos-osx/.env/resouces_path)
+
 # copy gsed to ~/coreos-osx/bin
-cp -f "$1"/gsed ~/coreos-osx/bin
+cp -f "$res_folder"/gsed ~/coreos-osx/bin
+chmod 755 ~/coreos-osx/bin/gsed
 # copy rkt to ~/coreos-osx/bin
-cp -f "$1"/rkt ~/coreos-osx/bin
+cp -f "$res_folder"/rkt ~/coreos-osx/bin
+chmod 755 ~/coreos-osx/bin/rkt
 
 #
 cd ~/coreos-osx/coreos-vagrant
@@ -67,6 +68,30 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 chmod +x ~/coreos-osx/bin/docker
 echo "docker was copied to ~/coreos-osx/bin "
 #
+
+#
+echo "Reinstalling updated fleet units to '~/coreos-osx/fleet' folder:"
+# set fleetctl tunnel
+export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
+cd ~/coreos-k8s-cluster/fleet
+#
+if [ "$(diff "$res_folder"/fleet/fleet-ui.service ~/coreos-osx/fleet/fleet-ui.service | tr -d '\n' | cut -c1-4 )" != "" ]
+then
+  echo "updating fleet-ui.service!"
+  cp -fr "$res_folder"/fleet/fleet-ui.service ~/coreos-osx/fleet/fleet-ui.service
+  ~/coreos-osx/bin/fleetctl destroy fleet-ui.service
+  ~/coreos-osx/bin/fleetctl start fleet-ui.service
+fi
+#
+if [ "$(diff "$res_folder"/fleet/dockerui.service ~/coreos-osx/fleet/dockerui.service | tr -d '\n' | cut -c1-4 )" != "" ]
+then
+  echo "updating dockerui.service!"
+  cp -fr "$res_folder"/fleet/dockerui.service ~/coreos-osx/fleet/dockerui.service
+  ~/coreos-osx/bin/fleetctl destroy dockerui.service
+  ~/coreos-osx/bin/fleetctl start dockerui.service
+fi
+
 
 echo " "
 echo "Update has finished !!!"

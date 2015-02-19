@@ -9,6 +9,7 @@ set -e
 
     # create "coreos-osx" and other required folders and files at user's home folder where all the data will be stored
     mkdir ~/coreos-osx
+    mkdir ~/coreos-osx/.env
     mkdir ~/coreos-osx/coreos-vagrant
     mkdir ~/coreos-osx/tmp
     mkdir ~/coreos-osx/bin
