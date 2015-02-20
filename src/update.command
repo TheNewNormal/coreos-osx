@@ -14,11 +14,13 @@ read -p "$*"
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # copy gsed to ~/coreos-osx/bin
-cp -f "$res_folder"/gsed ~/coreos-osx/bin
+cp -f "${res_folder}"/gsed ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/gsed
 # copy rkt to ~/coreos-osx/bin
-cp -f "$res_folder"/rkt ~/coreos-osx/bin
+cp -f "${res_folder}"/rkt ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/rkt
+# copy fleet units
+###cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
 
 #
 cd ~/coreos-osx/coreos-vagrant
@@ -70,28 +72,24 @@ echo "docker was copied to ~/coreos-osx/bin "
 #
 
 #
-echo "Reinstalling updated fleet units to '~/coreos-osx/fleet' folder:"
+###echo " "
 # set fleetctl tunnel
-export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
-export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
-cd ~/coreos-k8s-cluster/fleet
-#
-if [ "$(diff "$res_folder"/fleet/fleet-ui.service ~/coreos-osx/fleet/fleet-ui.service | tr -d '\n' | cut -c1-4 )" != "" ]
-then
-  echo "updating fleet-ui.service!"
-  cp -fr "$res_folder"/fleet/fleet-ui.service ~/coreos-osx/fleet/fleet-ui.service
-  ~/coreos-osx/bin/fleetctl destroy fleet-ui.service
-  ~/coreos-osx/bin/fleetctl start fleet-ui.service
-fi
-#
-if [ "$(diff "$res_folder"/fleet/dockerui.service ~/coreos-osx/fleet/dockerui.service | tr -d '\n' | cut -c1-4 )" != "" ]
-then
-  echo "updating dockerui.service!"
-  cp -fr "$res_folder"/fleet/dockerui.service ~/coreos-osx/fleet/dockerui.service
-  ~/coreos-osx/bin/fleetctl destroy dockerui.service
-  ~/coreos-osx/bin/fleetctl start dockerui.service
-fi
+###export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+###export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
+###cd ~/coreos-k8s-cluster/fleet
+
+#
+###  echo "Reinstalling fleet-ui.service "
+###  ~/coreos-osx/bin/fleetctl destroy fleet-ui.service
+###  ~/coreos-osx/bin/fleetctl submit fleet-ui.service
+###  ~/coreos-osx/bin/fleetctl start fleet-ui.service
+#
+###  echo "Reinstalling dockerui.service "
+###  ~/coreos-osx/bin/fleetctl destroy dockerui.service
+###  ~/coreos-osx/bin/fleetctl submit dockerui.service
+###  ~/coreos-osx/bin/fleetctl start dockerui.service
+#
 
 echo " "
 echo "Update has finished !!!"
