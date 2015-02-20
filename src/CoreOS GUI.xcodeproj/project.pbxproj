@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0111FADB1A7FA2A20021F258 /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 0111FADA1A7FA2A10021F258 /* os_shell.command */; };
+		01120CF21A96989500B1A6A3 /* set_env.command in Resources */ = {isa = PBXBuildFile; fileRef = 01120CF11A96989500B1A6A3 /* set_env.command */; };
 		0133612B1A852A9A007585D3 /* rkt in Resources */ = {isa = PBXBuildFile; fileRef = 0133612A1A852A9A007585D3 /* rkt */; };
 		013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */; };
 		013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		0111FADA1A7FA2A10021F258 /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
+		01120CF11A96989500B1A6A3 /* set_env.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_env.command; sourceTree = "<group>"; };
 		0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS GUI.entitlements"; sourceTree = "<group>"; };
 		0133612A1A852A9A007585D3 /* rkt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rkt; sourceTree = SOURCE_ROOT; };
 		013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-vert-color.png"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				0111FADA1A7FA2A10021F258 /* os_shell.command */,
 				01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */,
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
+				01120CF11A96989500B1A6A3 /* set_env.command */,
 				01741B66190DB82100BB1F91 /* update.command */,
 			);
 			name = Scripts;
@@ -276,6 +279,7 @@
 				013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */,
 				01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
+				01120CF21A96989500B1A6A3 /* set_env.command in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
 				01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */,
 				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,

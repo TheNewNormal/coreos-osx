@@ -10,14 +10,17 @@ function pause(){
 read -p "$*"
 }
 
-# cd to App's Resources folder and copy some files
-cd "$1"
-# copy fleet units
-cp -fr "$1"/*.service ~/coreos-osx/fleet/
+# get App's Resources folder
+res_folder=$(cat ~/coreos-osx/.env/resouces_path)
+
 # copy gsed to ~/coreos-osx/bin
-cp -f "$1"/gsed ~/coreos-osx/bin
+cp -f "${res_folder}"/gsed ~/coreos-osx/bin
+chmod 755 ~/coreos-osx/bin/gsed
 # copy rkt to ~/coreos-osx/bin
-cp -f "$1"/rkt ~/coreos-osx/bin
+cp -f "${res_folder}"/rkt ~/coreos-osx/bin
+chmod 755 ~/coreos-osx/bin/rkt
+# copy fleet units
+###cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
 
 #
 cd ~/coreos-osx/coreos-vagrant
@@ -66,6 +69,26 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
 echo "docker was copied to ~/coreos-osx/bin "
+#
+
+#
+###echo " "
+# set fleetctl tunnel
+###export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+###export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
+
+###cd ~/coreos-k8s-cluster/fleet
+
+#
+###  echo "Reinstalling fleet-ui.service "
+###  ~/coreos-osx/bin/fleetctl destroy fleet-ui.service
+###  ~/coreos-osx/bin/fleetctl submit fleet-ui.service
+###  ~/coreos-osx/bin/fleetctl start fleet-ui.service
+#
+###  echo "Reinstalling dockerui.service "
+###  ~/coreos-osx/bin/fleetctl destroy dockerui.service
+###  ~/coreos-osx/bin/fleetctl submit dockerui.service
+###  ~/coreos-osx/bin/fleetctl start dockerui.service
 #
 
 echo " "

@@ -30,6 +30,10 @@
     if([[NSFileManager defaultManager]
         fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
     {
+        // run set_env
+        NSString *scriptName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runScript:scriptName = @"set_env" arguments:arguments = _resoucesPathFromApp ];
         [self checkVMStatus];
     }
     else
