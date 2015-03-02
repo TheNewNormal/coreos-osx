@@ -17,7 +17,7 @@ vagrant reload
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 echo "fleetctl list-machines:"
 fleetctl list-machines
 echo ""
