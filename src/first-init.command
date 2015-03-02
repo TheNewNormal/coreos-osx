@@ -10,14 +10,14 @@
     echo ""
     echo "Downloading latest coreos-vagrant files from github: "
     rm -rf ~/coreos-osx/github
-    git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/github
+    git clone https://github.com/coreos/coreos-vagrant.git ~/coreos-osx/github
     echo "Done downloading from github !!!"
     echo ""
 
     # Vagrantfile
     cp ~/coreos-osx/github/Vagrantfile ~/coreos-osx/coreos-vagrant/Vagrantfile
     # change IP to static
-    sed -i "" 's/172.17.8.#{i+100}/172.17.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
+    sed -i "" 's/172.17.8.#{i+100}/172.19.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
     #
 
     # user-data file
@@ -184,7 +184,7 @@ chmod +x ~/coreos-osx/bin/docker
 #
 
 # set fleetctl endpoint and install fleet units
-export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines

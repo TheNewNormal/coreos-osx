@@ -17,13 +17,13 @@ export DOCKER_HOST=tcp://127.0.0.1:2375
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # set etcd endpoint
-export ETCDCTL_PEERS=http://172.17.8.99:4001
+export ETCDCTL_PEERS=http://172.19.8.99:4001
 echo "etcd ls /:"
 etcdctl --no-sync ls /
 echo ""
 
 # set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines

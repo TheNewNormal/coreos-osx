@@ -685,16 +685,17 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="jV7-Ne-Ped"/>
-                <menuItem title="OS Shell" id="dvF-TI-XNx">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="runShell:" target="494" id="dpS-4v-YJb"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="SSH" id="Khg-WF-X5I">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh:" target="494" id="41e-Q4-LMK"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="lIy-88-Fmd"/>
+                <menuItem title="OS Shell" id="dvF-TI-XNx">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="runShell:" target="494" id="dpS-4v-YJb"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Fleet-UI / DockerUI" id="LkH-Oi-Kkr">
