@@ -1,1 +1,1 @@
-ssh core@172.17.9.99 sudo /opt/bin/rkt $1 $2 $3 $4
+ssh core@172.19.8.99 sudo /opt/bin/rkt $1 $2 $3 $4

@@ -20,7 +20,7 @@ chmod 755 ~/coreos-osx/bin/gsed
 cp -f "${res_folder}"/rkt ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/rkt
 # copy fleet units
-###cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
+cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
 
 #
 cd ~/coreos-osx/coreos-vagrant
@@ -72,23 +72,21 @@ echo "docker was copied to ~/coreos-osx/bin "
 #
 
 #
-###echo " "
+echo " "
 # set fleetctl tunnel
-###export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
-###export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
+export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
-###cd ~/coreos-k8s-cluster/fleet
+cd ~/coreos-osx/fleet
 
 #
-###  echo "Reinstalling fleet-ui.service "
-###  ~/coreos-osx/bin/fleetctl destroy fleet-ui.service
-###  ~/coreos-osx/bin/fleetctl submit fleet-ui.service
-###  ~/coreos-osx/bin/fleetctl start fleet-ui.service
+  echo "Reinstalling fleet-ui.service "
+  ~/coreos-osx/bin/fleetctl destroy fleet-ui.service
+  ~/coreos-osx/bin/fleetctl start fleet-ui.service
 #
-###  echo "Reinstalling dockerui.service "
-###  ~/coreos-osx/bin/fleetctl destroy dockerui.service
-###  ~/coreos-osx/bin/fleetctl submit dockerui.service
-###  ~/coreos-osx/bin/fleetctl start dockerui.service
+  echo "Reinstalling dockerui.service "
+  ~/coreos-osx/bin/fleetctl destroy dockerui.service
+  ~/coreos-osx/bin/fleetctl start dockerui.service
 #
 
 echo " "
