@@ -21,18 +21,24 @@ Required software
 * Download `CoreOS Vagrant OSX GUI latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases) and open it and drag the App e.g to your Desktop.
 * Start the `CoreOS Vagrant OSX GUI` and from menu `Setup` choose `Initial setup of CoreOS-Vagrant` 
 * The install will do the following:
+
 ````
-1) All dependent files/folders will be put under "coreos-osx" folder in the user's home folder e.g /Users/someuser/coreos-osx
+1) All dependent files/folders will be put under "coreos-osx" folder in the user's home 
+ folder e.g /Users/someuser/coreos-osx
 2) Will clone latest coreos-vagrant from git
 3) user-data file will have fleet, etcd, and Docker Socket for the API enabled
 4) docker 2375 port will be set for docker OS X client to work properly
 5) Will set VM to static IP '172.19.8.99' 
 6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
-7) A small shell script "rkt" will be installed to ~/coreos-osx/bin/ which allows to call remote rkt binary with e.g rkt help
+7) A small shell script "rkt" will be installed to ~/coreos-osx/bin/ which allows to call
+ remote rkt binary with e.g rkt help
 8) Will download latest vagrant VBox and run vagrant up to initialise VM
 9) Will forward 2375 (docker) from localhost to vagrant VM.
 10) Will install DockerUI and Fleet-UI via fleet unit files from ~/coreos-osx/fleet folder.
-11) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put port forwards to Vagrantfile.
+11) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put any port forwards 
+ to Vagrantfile.
+12) user-data file enables with the flag `--insecure-registry` docker access to insecure
+ private registries.
 ````
 
 How it works
@@ -42,6 +48,7 @@ Just start `CoreOS Vagrant OSX GUI` application and you will find a small icon w
 For now it only supports a standalone CoreOS VM, cluster support might come at some stage later one.
 
 * There you can `Up`, `Suspend`, `Halt`, `Reload` CoreOS vagrant VM
+* `SSH to core-01` will open VM shell
 * Under `Up` OS Shell will be opened when `vagrant up` finishes and it will have such environment set:
 ````
 DOCKER_HOST=tcp://127.0.0.1:2375
@@ -50,13 +57,12 @@ FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries and rkt shell script are stored
 ```` 
 * `OS Shell` opens OS Shell with the same enviroment preset as `Up`
+* `Upload docker images` will upload docker images from `~/coreos-osx/docker_images`, it saves time from downloading them again from Internet.
 * `Updates/Force CoreOS update` will run `sudo update_engine_client -update` on CoreOS VM.
 * `Updates/Check for updates` will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. It will store downloads from github `coreos-vagrant` in `~/coreos-osx/github` folder, it will not overwrite user's `Vagrantfile, config.rb and users-data` files.
-* `SSH` will open VM shell
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc (it might take a bit of a time after install for it to work as it needs to download it's image
 * [DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc (it might take a bit of a time after install for it to work as it needs to download it's image)
-* Also user-data file enables with the flag `--insecure-registry` as per [CoreOS Blog](https://coreos.com/blog/docker-1-3-2-security-update/) Docker access to insecure private registries.
-* On each `Up` and `Reload` fleet unit files placed into `~/coreos-osx/fleet` folder will be reloaded and restarted, it is very handy when you used `Destroy VM` and want your fleet units to be used again.
+
 
 
 Other links

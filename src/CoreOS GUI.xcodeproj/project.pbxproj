@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010B02251AA4D9A900D9E892 /* load_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 010B02231AA4D9A900D9E892 /* load_docker_images.command */; };
+		010B02261AA4D9A900D9E892 /* load_rocket_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 010B02241AA4D9A900D9E892 /* load_rocket_images.command */; };
 		0111FADB1A7FA2A20021F258 /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 0111FADA1A7FA2A10021F258 /* os_shell.command */; };
 		01120CF21A96989500B1A6A3 /* set_env.command in Resources */ = {isa = PBXBuildFile; fileRef = 01120CF11A96989500B1A6A3 /* set_env.command */; };
 		0133612B1A852A9A007585D3 /* rkt in Resources */ = {isa = PBXBuildFile; fileRef = 0133612A1A852A9A007585D3 /* rkt */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010B02231AA4D9A900D9E892 /* load_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = load_docker_images.command; sourceTree = "<group>"; };
+		010B02241AA4D9A900D9E892 /* load_rocket_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = load_rocket_images.command; sourceTree = "<group>"; };
 		0111FADA1A7FA2A10021F258 /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
 		01120CF11A96989500B1A6A3 /* set_env.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_env.command; sourceTree = "<group>"; };
 		0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS GUI.entitlements"; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				010B02231AA4D9A900D9E892 /* load_docker_images.command */,
+				010B02241AA4D9A900D9E892 /* load_rocket_images.command */,
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
 				01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */,
@@ -287,6 +293,7 @@
 				01AB706219D84622003B55EF /* Vagrantfile in Resources */,
 				01CFC2DF1A2AA48300F251C2 /* vagrant_destroy.command in Resources */,
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
+				010B02251AA4D9A900D9E892 /* load_docker_images.command in Resources */,
 				01AD94BC1A277719009A400B /* dockerui.service in Resources */,
 				01CFC2E01A2AA48300F251C2 /* vagrant_reload.command in Resources */,
 				0111FADB1A7FA2A20021F258 /* os_shell.command in Resources */,
@@ -299,6 +306,7 @@
 				01AD94BD1A277719009A400B /* fleet-ui.service in Resources */,
 				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
+				010B02261AA4D9A900D9E892 /* load_rocket_images.command in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update.command in Resources */,
 				01741B61190DB7F900BB1F91 /* user-data in Resources */,

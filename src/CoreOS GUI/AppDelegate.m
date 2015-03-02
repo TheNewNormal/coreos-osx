@@ -138,6 +138,17 @@
     [self checkVMStatus];
 }
 
+- (IBAction)upload_docker_images:(id)sender {
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"docker images";
+    notification.informativeText = @"will be loaded";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    NSString *appName = [[NSString alloc] init];
+    NSString *arguments = [[NSString alloc] init];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"load_docker_images.command"]];
+}
 
 // Updates menu
 - (IBAction)updates:(id)sender {
@@ -251,11 +262,13 @@
 }
 
 
-- (IBAction)fleetUI_dockerUI:(id)sender {
+- (IBAction)fleetUI:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.19.8.99:3000"]];
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.19.8.99:9000"]];
 }
 
+- (IBAction)dockerUI:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.19.8.99:9000"]];
+}
 
 - (void)runScript:(NSString*)scriptName arguments:(NSString*)arguments
 {

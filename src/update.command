@@ -27,12 +27,6 @@ cd ~/coreos-osx/coreos-vagrant
 vagrant box update
 vagrant up
 
-# download latest coreos-vagrant
-rm -rf ~/coreos-osx/github
-git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-osx/github
-echo "Downloads from github/coreos-vagrant are stored in ~/coreos-osx/github folder"
-echo " "
-
 # download latest Rocket on VM
 ROCKET_RELEASE=$(curl 'https://api.github.com/repos/coreos/rocket/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )
 echo "Downloading Rocket $ROCKET_RELEASE"

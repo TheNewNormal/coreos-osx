@@ -16,6 +16,9 @@ set -e
     mkdir ~/coreos-osx/share
     chmod -R 777 ~/coreos-osx/share
     mkdir ~/coreos-osx/fleet
+    mkdir ~/coreos-osx/my_fleet
+    mkdir ~/coreos-osx/docker_images
+    mkdir ~/coreos-osx/rocket_images
 
     # cd to App's Resources folder
     cd "$1"
