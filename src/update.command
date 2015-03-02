@@ -74,7 +74,7 @@ echo "docker was copied to ~/coreos-osx/bin "
 #
 ###echo " "
 # set fleetctl tunnel
-###export FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+###export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 ###export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
 ###cd ~/coreos-k8s-cluster/fleet
