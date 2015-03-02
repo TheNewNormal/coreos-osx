@@ -26,13 +26,13 @@ Required software
 2) Will clone latest coreos-vagrant from git
 3) user-data file will have fleet, etcd, and Docker Socket for the API enabled
 4) docker 2375 port will be set for docker OS X client to work properly
-5) Will set VM to static IP '172.17.8.99' 
+5) Will set VM to static IP '172.19.8.99' 
 6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
 7) A small shell script "rkt" will be installed to ~/coreos-osx/bin/ which allows to call remote rkt binary with e.g rkt help
 8) Will download latest vagrant VBox and run vagrant up to initialise VM
 9) Will forward 2375 (docker) from localhost to vagrant VM.
 10) Will install DockerUI and Fleet-UI via fleet unit files from ~/coreos-osx/fleet folder.
-11) Via IP 172.17.8.99 you can access any port on CoreOS VM, no needs to put port forwards to Vagrantfile.
+11) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put port forwards to Vagrantfile.
 ````
 
 How it works
@@ -45,8 +45,8 @@ For now it only supports a standalone CoreOS VM, cluster support might come at s
 * Under `Up` OS Shell will be opened when `vagrant up` finishes and it will have such environment set:
 ````
 DOCKER_HOST=tcp://127.0.0.1:2375
-ETCDCTL_PEERS=http://172.17.8.99:4001
-FLEETCTL_ENDPOINT=http://172.17.8.99:4001
+ETCDCTL_PEERS=http://172.19.8.99:4001
+FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries and rkt shell script are stored
 ```` 
 * `OS Shell` opens OS Shell with the same enviroment preset as `Up`
