@@ -21,11 +21,10 @@ cd ~/coreos-osx/docker_images
 
 for file in *.tar
 do
-    echo "Loading docker image $file"
+    echo "Loading docker image: $file"
     docker load < $file
 done
 
-echo " "
 echo "Done !!!"
 echo " "
 pause 'Press [Enter] key to continue...'
