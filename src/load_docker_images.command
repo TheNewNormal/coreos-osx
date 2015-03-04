@@ -10,7 +10,7 @@ machine_status=$(vagrant status | grep -o -m 1 'running')
 export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # path to the bin folder where we store our binary files
-export PATH=${HOME}/coreos-osx/bin:$PAT,H
+export PATH=${HOME}/coreos-osx/bin:$PATH
 
 function pause(){
 read -p "$*"
