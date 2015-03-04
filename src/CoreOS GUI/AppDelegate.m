@@ -288,7 +288,7 @@
 
 
 - (void)checkVMStatus {
-    // check vm status and and return the shell script output
+    // check vm status and return the shell script output
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"coreos-vagrant" ofType:@"command"]];
     task.arguments  = @[@"status"];

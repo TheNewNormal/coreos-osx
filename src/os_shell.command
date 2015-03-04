@@ -28,5 +28,7 @@ echo "fleetctl list-units:"
 fleetctl list-units
 echo " "
 
+cd ~/coreos-osx
+
 # open bash shell
 /bin/bash

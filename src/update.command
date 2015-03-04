@@ -86,3 +86,4 @@ cd ~/coreos-osx/fleet
 echo " "
 echo "Update has finished !!!"
 pause 'Press [Enter] key to continue...'
+
