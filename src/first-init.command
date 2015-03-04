@@ -183,12 +183,39 @@ curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker
 chmod +x ~/coreos-osx/bin/docker
 #
 
+## Load docker images if there any
+# Set the environment variable for the docker daemon
+export DOCKER_HOST=tcp://127.0.0.1:2375
+
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PAT,H
+
+function pause(){
+read -p "$*"
+}
+
+echo " "
+echo "# It can upload your docker images to CoreOS VM # "
+echo "If you want copy your docker images in *.tar format to ~/coreos-osx/docker_images folder !!!"
+pause 'Press [Enter] key to continue...'
+
+cd ~/coreos-osx/docker_images
+
+for file in *.tar
+do
+echo "Loading docker image: $file"
+docker load < $file
+done
+echo "Done with docker images !!!"
+echo " "
+##
+
 # set fleetctl endpoint and install fleet units
 export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines
-echo ""
+echo " "
 # install fleet units
 echo "Installing fleet units from '~/coreos-osx/fleet' folder"
 cd ~/coreos-osx/fleet
