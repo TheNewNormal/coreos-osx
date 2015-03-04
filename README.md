@@ -27,18 +27,16 @@ Required software
  folder e.g /Users/someuser/coreos-osx
 2) Will clone latest coreos-vagrant from git
 3) user-data file will have fleet, etcd, and Docker Socket for the API enabled
-4) docker 2375 port will be set for docker OS X client to work properly
+4) Will download latest vagrant VBox and run "vagrant up" to initialise VM with docker 2375 port pre-set for docker OS X client
 5) Will set VM to static IP '172.19.8.99' 
 6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
 7) A small shell script "rkt" will be installed to ~/coreos-osx/bin/ which allows to call
- remote rkt binary with e.g rkt help
-8) Will download latest vagrant VBox and run vagrant up to initialise VM
-9) Will forward 2375 (docker) from localhost to vagrant VM.
-10) Will install DockerUI and Fleet-UI via fleet unit files from ~/coreos-osx/fleet folder.
-11) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put any port forwards 
+ remote rkt binary on CoreOS VM with e.g rkt help
+8) Will upload any saved docker images from ~/coreos-osx/docker_images folder
+9) Will install DockerUI and Fleet-UI via fleet unit files from ~/coreos-osx/fleet folder.
+10) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put any port forwards 
  to Vagrantfile.
-12) user-data file enables with the flag `--insecure-registry` docker access to insecure
- private registries.
+11) user-data file enables docker flag `--insecure-registry` to access insecure registries.
 ````
 
 How it works
@@ -47,15 +45,17 @@ How it works
 Just start `CoreOS Vagrant OSX GUI` application and you will find a small icon with the CoreOS logo in the Status Bar.
 For now it only supports a standalone CoreOS VM, cluster support might come at some stage later one.
 
-* There you can `Up`, `Suspend`, `Halt`, `Reload` CoreOS vagrant VM
-* `SSH to core-01` will open VM shell
-* Under `Up` OS Shell will be opened when `vagrant up` finishes and it will have such environment set:
+* There you can `Up`, `Suspend`, `Halt`, `Reload` (usual vagrant commands) CoreOS vagrant VM
+* `SSH to core-01` (vagrant ssh) will open VM shell
+* Under `Up` OS Shell will be opened when `vagrant up` finishes and it will have such environment pre-set:
 ````
 DOCKER_HOST=tcp://127.0.0.1:2375
 ETCDCTL_PEERS=http://172.19.8.99:4001
 FLEETCTL_ENDPOINT=http://172.19.8.99:4001
-Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries and rkt shell script are stored
+Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries and rkt shell 
+script are stored
 ```` 
+
 * `OS Shell` opens OS Shell with the same enviroment preset as `Up`
 * `Upload docker images` will upload docker images from `~/coreos-osx/docker_images`, it saves time from downloading them again from Internet.
 * `Updates/Force CoreOS update` will run `sudo update_engine_client -update` on CoreOS VM.
