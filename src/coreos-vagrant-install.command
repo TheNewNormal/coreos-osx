@@ -29,8 +29,13 @@ set -e
     # copy gsed to ~/coreos-osx/bin
     cp "$1"/gsed ~/coreos-osx/bin
 
-   # copy rkt to ~/coreos-osx/bin
+    # copy rkt to ~/coreos-osx/bin
     cp "$1"/rkt ~/coreos-osx/bin
+
+    # copy docker-exec to ~/coreos-osx/bin
+    cp "$1"/docker-exec ~/coreos-osx/bin
+    #
+    chmod 755 ~/coreos-osx/bin/*
 
     # copy temporal files for first-init.command script use later one
     # shared folder
