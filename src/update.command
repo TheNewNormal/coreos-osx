@@ -15,10 +15,15 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # copy gsed to ~/coreos-osx/bin
 cp -f "${res_folder}"/gsed ~/coreos-osx/bin
-chmod 755 ~/coreos-osx/bin/gsed
+
 # copy rkt to ~/coreos-osx/bin
 cp -f "${res_folder}"/rkt ~/coreos-osx/bin
-chmod 755 ~/coreos-osx/bin/rkt
+
+# copy docker-exec to ~/coreos-osx/bin
+cp -f "${res_folder}"/docker-exec ~/coreos-osx/bin
+#
+chmod 755 ~/coreos-osx/bin/*
+
 # copy fleet units
 cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
 

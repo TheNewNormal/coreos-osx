@@ -32,11 +32,14 @@ Required software
 6) Will download and install fleet, etcd and docker OS X clients to ~/coreos-osx/bin/
 7) A small shell script "rkt" will be installed to ~/coreos-osx/bin/ which allows to call
  remote rkt binary on CoreOS VM with e.g rkt help
-8) Will upload any saved docker images from ~/coreos-osx/docker_images folder
-9) Will install DockerUI and Fleet-UI via fleet unit files from ~/coreos-osx/fleet folder.
-10) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put any port forwards 
+8) docker-exec script (docker exec -it $1 bash -c 'export TERM=xterm && bash') is installed 
+ into ~/coreos-osx/bin/ too, which allows to enter container with just a simple command:
+ docker-exec container_name 
+9) Will upload any saved docker images from ~/coreos-osx/docker_images folder
+10) Will install DockerUI and Fleet-UI via fleet unit files from ~/coreos-osx/fleet folder.
+11) Via IP 172.19.8.99 you can access any port on CoreOS VM, no needs to put any port forwards 
  to Vagrantfile.
-11) user-data file enables docker flag `--insecure-registry` to access insecure registries.
+12) user-data file enables docker flag `--insecure-registry` to access insecure registries.
 ````
 
 How it works

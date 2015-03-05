@@ -27,6 +27,7 @@
 		01AD94BC1A277719009A400B /* dockerui.service in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BA1A277719009A400B /* dockerui.service */; };
 		01AD94BD1A277719009A400B /* fleet-ui.service in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BB1A277719009A400B /* fleet-ui.service */; };
 		01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* force_coreos_update.command */; };
+		01C6E3A71AA8B38D008C36D6 /* docker-exec in Resources */ = {isa = PBXBuildFile; fileRef = 01C6E3A61AA8B38D008C36D6 /* docker-exec */; };
 		01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */; };
 		01CFC2DF1A2AA48300F251C2 /* vagrant_destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */; };
 		01CFC2E01A2AA48300F251C2 /* vagrant_reload.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */; };
@@ -64,6 +65,7 @@
 		01AD94BA1A277719009A400B /* dockerui.service */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dockerui.service; sourceTree = "<group>"; };
 		01AD94BB1A277719009A400B /* fleet-ui.service */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fleet-ui.service"; sourceTree = "<group>"; };
 		01AD94BE1A278C94009A400B /* force_coreos_update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = force_coreos_update.command; sourceTree = "<group>"; };
+		01C6E3A61AA8B38D008C36D6 /* docker-exec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "docker-exec"; sourceTree = "<group>"; };
 		01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_release_channel.command; sourceTree = "<group>"; };
 		01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_destroy.command; sourceTree = "<group>"; };
 		01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_reload.command; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				01C6E3A61AA8B38D008C36D6 /* docker-exec */,
 				010B02231AA4D9A900D9E892 /* load_docker_images.command */,
 				010B02241AA4D9A900D9E892 /* load_rocket_images.command */,
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
@@ -304,6 +307,7 @@
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */,
 				01AD94BD1A277719009A400B /* fleet-ui.service in Resources */,
+				01C6E3A71AA8B38D008C36D6 /* docker-exec in Resources */,
 				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				010B02261AA4D9A900D9E892 /* load_rocket_images.command in Resources */,
