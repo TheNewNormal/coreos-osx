@@ -40,20 +40,6 @@ then
     fi
 fi
 
-# install rocket
-if [ "$machine_status" = "not created" ]
-then
-    cd ~/coreos-osx/coreos-vagrant
-    # download and install latest Rocket on VM
-    ROCKET_RELEASE=$(curl 'https://api.github.com/repos/coreos/rocket/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )
-    echo "Downloading Rocket $ROCKET_RELEASE"
-    vagrant ssh -c 'sudo mkdir -p /opt/bin && sudo chmod -R 777 /opt/bin && cd /home/core && \
-    curl -L -o rocket.tar.gz "https://github.com/coreos/rocket/releases/download/'$ROCKET_RELEASE'/rocket-'$ROCKET_RELEASE'.tar.gz" && \
-    tar xzvf rocket.tar.gz && cp -f rocket-'$ROCKET_RELEASE'/* /opt/bin && sudo chmod 777 /opt/bin/rkt && /opt/bin/rkt version && \
-    rm -fr rocket-'$ROCKET_RELEASE' && rm -f rocket.tar.gz'
-    echo " "
-fi
-
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.19.8.99:4001
