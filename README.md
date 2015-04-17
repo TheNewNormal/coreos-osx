@@ -55,6 +55,7 @@ For now it only supports a standalone CoreOS VM, cluster support might come at s
 DOCKER_HOST=tcp://127.0.0.1:2375
 ETCDCTL_PEERS=http://172.19.8.99:4001
 FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+FLEETCTL_DRIVER=etcd
 Path to ~/coreos-osx/bin where docker, etcdclt and fleetctl binaries and rkt shell 
 script are stored
 ```` 
