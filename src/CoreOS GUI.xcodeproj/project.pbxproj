@@ -14,6 +14,7 @@
 		0133612B1A852A9A007585D3 /* rkt in Resources */ = {isa = PBXBuildFile; fileRef = 0133612A1A852A9A007585D3 /* rkt */; };
 		013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */; };
 		013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */; };
+		013B09671AE1597100F3DFD2 /* update_vbox.command in Resources */ = {isa = PBXBuildFile; fileRef = 013B09661AE1597100F3DFD2 /* update_vbox.command */; };
 		0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* coreos-vagrant.command */; };
 		01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */; };
 		01741B5F190DB7E300BB1F91 /* vagrant_ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */; };
@@ -52,6 +53,7 @@
 		0133612A1A852A9A007585D3 /* rkt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rkt; sourceTree = SOURCE_ROOT; };
 		013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-vert-color.png"; sourceTree = "<group>"; };
 		013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-horiz-color.png"; sourceTree = "<group>"; };
+		013B09661AE1597100F3DFD2 /* update_vbox.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_vbox.command; sourceTree = "<group>"; };
 		0145318318FF209D007F9C95 /* coreos-vagrant.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant.command"; sourceTree = "<group>"; };
 		01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant-install.command"; sourceTree = SOURCE_ROOT; };
 		01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_ssh.command; sourceTree = SOURCE_ROOT; };
@@ -206,6 +208,7 @@
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
 				01120CF11A96989500B1A6A3 /* set_env.command */,
 				01741B66190DB82100BB1F91 /* update.command */,
+				013B09661AE1597100F3DFD2 /* update_vbox.command */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0133612B1A852A9A007585D3 /* rkt in Resources */,
+				013B09671AE1597100F3DFD2 /* update_vbox.command in Resources */,
 				013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */,
 				01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,

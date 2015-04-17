@@ -27,11 +27,6 @@ chmod 755 ~/coreos-osx/bin/*
 # copy fleet units
 cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
 
-#
-cd ~/coreos-osx/coreos-vagrant
-vagrant box update
-vagrant up
-
 # download latest versions of etcdctl and fleetctl
 cd ~/coreos-osx/coreos-vagrant
 LATEST_RELEASE=$(vagrant ssh -c "etcdctl --version" | cut -d " " -f 3- | tr -d '\r' )
