@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
@@ -722,7 +722,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Updates" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Check updates for vbox, fleetctl, etcdctl and docker" id="sEE-aC-0Ob">
+                            <menuItem title="Check updates for fleetctl, etcdctl and docker" id="sEE-aC-0Ob" userLabel="Check updates for fleetctl, etcdctl and docker">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="updates:" target="494" id="3Va-Du-QFm"/>
@@ -732,6 +732,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="force_coreos_update:" target="494" id="0IT-Vl-bUB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Check updates for CoreOS vbox" id="ozW-cb-XTh">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="updateVbox:" target="494" id="8AE-Z8-lJy"/>
                                 </connections>
                             </menuItem>
                         </items>

@@ -104,6 +104,7 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/etcd:/etcd2:/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -113,6 +114,7 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/etcd2:/etcd:/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -122,6 +124,7 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
+        sed -i "" "s/etcd2:/etcd:/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -188,7 +191,7 @@ chmod +x ~/coreos-osx/bin/docker
 export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # path to the bin folder where we store our binary files
-export PATH=${HOME}/coreos-osx/bin:$PAT,H
+export PATH=${HOME}/coreos-osx/bin:$PATH
 
 function pause(){
 read -p "$*"
@@ -212,6 +215,7 @@ echo " "
 
 # set fleetctl endpoint and install fleet units
 export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines
