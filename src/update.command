@@ -13,19 +13,13 @@ read -p "$*"
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
-# copy gsed to ~/coreos-osx/bin
-cp -f "${res_folder}"/gsed ~/coreos-osx/bin
-
-# copy rkt to ~/coreos-osx/bin
-cp -f "${res_folder}"/rkt ~/coreos-osx/bin
-
-# copy docker-exec to ~/coreos-osx/bin
-cp -f "${res_folder}"/docker-exec ~/coreos-osx/bin
+# copy files to ~/coreos-osx/bin
+cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
 #
 chmod 755 ~/coreos-osx/bin/*
 
 # copy fleet units
-cp -f "${res_folder}"/*.service ~/coreos-osx/fleet
+cp -f "${res_folder}"/fleet/*.service ~/coreos-osx/fleet
 
 # download latest versions of etcdctl and fleetctl
 cd ~/coreos-osx/coreos-vagrant
@@ -45,14 +39,35 @@ curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST
 unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl"
 rm -f fleet.zip
 echo "fleetctl was copied to ~/coreos-osx/bin "
+#
+
 # download docker file
 cd ~/coreos-osx/coreos-vagrant
-LATEST_RELEASE=$(vagrant ssh -c 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r')
-echo "Downloading docker v$LATEST_RELEASE client for OS X"
-curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker-$LATEST_RELEASE
+DOCKER_VERSION=$(vagrant ssh -c 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r')
+
+CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
+if [ -n "$CHECK_DOCKER_RC" ]
+then
+    # docker RC release
+    if [ -n "curl -s --head https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION | head -n 1 | grep "HTTP/1.[01] [23].." | grep 200" ]
+    then
+        # we check if RC is still available
+        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        curl -o ~/coreos-osx/bin/docker http://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+    else
+        # RC is not available anymore, so we download stable release
+        DOCKER_VERSION_STABLE=$(echo $DOCKER_VERSION | cut -d"-" -f1)
+        echo "Downloading docker $DOCKER_VERSION_STABLE client for OS X"
+        curl -o ~/coreos-osx/bin/docker http://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION_STABLE
+    fi
+else
+    # docker stable release
+    echo "Downloading docker $DOCKER_VERSION client for OS X"
+    curl -o ~/coreos-osx/bin/docker http://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+fi
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
-echo "docker was copied to ~/coreos-osx/bin "
+echo "docker was copied to ~/coreos-osx/bin"
 #
 
 #

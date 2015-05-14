@@ -1,9 +1,0 @@
-
-# Added by CoreOS GUI App - start
-
-Cmnd_Alias VAGRANT_EXPORTS_ADD_COREOSX = /usr/bin/tee -a /etc/exports
-Cmnd_Alias VAGRANT_NFSD_COREOSX = /sbin/nfsd restart
-Cmnd_Alias VAGRANT_EXPORTS_REMOVE_COREOSX = /usr/bin/sed -E -e /*/ d -ibak /etc/exports
-%admin ALL=(root) NOPASSWD: VAGRANT_EXPORTS_ADD_COREOSX, VAGRANT_NFSD_COREOSX, VAGRANT_EXPORTS_REMOVE_COREOSX
-
-# Added by CoreOS GUI App - end
