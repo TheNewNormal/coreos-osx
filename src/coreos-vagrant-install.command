@@ -7,9 +7,7 @@ set -e
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
-    # create "coreos-osx" and other required folders and files at user's home folder where all the data will be stored
-    mkdir ~/coreos-osx
-    mkdir ~/coreos-osx/.env
+    # create in "coreos-osx" all required folders and files at user's home folder where all the data will be stored
     mkdir ~/coreos-osx/coreos-vagrant
     mkdir ~/coreos-osx/tmp
     mkdir ~/coreos-osx/bin
@@ -18,32 +16,25 @@ set -e
     mkdir ~/coreos-osx/fleet
     mkdir ~/coreos-osx/my_fleet
     mkdir ~/coreos-osx/docker_images
-    mkdir ~/coreos-osx/rocket_images
+    ###mkdir ~/coreos-osx/rkt_images
 
     # cd to App's Resources folder
     cd "$1"
 
     # copy fleet units
-    cp "$1"/*.service ~/coreos-osx/fleet/
+    cp -f "$1"/fleet/*.service ~/coreos-osx/fleet/
 
-    # copy gsed to ~/coreos-osx/bin
-    cp "$1"/gsed ~/coreos-osx/bin
-
-    # copy rkt to ~/coreos-osx/bin
-    cp "$1"/rkt ~/coreos-osx/bin
-
-    # copy docker-exec to ~/coreos-osx/bin
-    cp "$1"/docker-exec ~/coreos-osx/bin
+    # copy files to ~/coreos-osx/bin
+    cp -f "$1"/bin/* ~/coreos-osx/bin
     #
     chmod 755 ~/coreos-osx/bin/*
 
-    # copy temporal files for first-init.command script use later one
-    # shared folder
-    cp "$1"/Vagrantfile ~/coreos-osx/tmp/Vagrantfile
+    # copy vagrant files
+    cp -f "$1"/Vagrant/* ~/coreos-osx/coreos-vagrant
+
+    # copy temporal files for first-init.command script to be used at later time
     # copy sudoers file
-    cp "$1"/sudoers ~/coreos-osx/tmp
-    # copy user-data file
-    cp "$1"/user-data ~/coreos-osx/tmp
+    cp "$1"/files/sudoers ~/coreos-osx/tmp
 
     # initial init
     open -a iTerm.app "$1"/first-init.command

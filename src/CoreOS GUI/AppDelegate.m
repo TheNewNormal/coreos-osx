@@ -22,7 +22,7 @@
     
     // get the App's main bundle path
     _resoucesPathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
-//    NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
+    NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
 
     NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
     
@@ -30,10 +30,20 @@
     if([[NSFileManager defaultManager]
         fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
     {
-        // run set_env
-        NSString *scriptName = [[NSString alloc] init];
-        NSString *arguments = [[NSString alloc] init];
-        [self runScript:scriptName = @"set_env" arguments:arguments = _resoucesPathFromApp ];
+        // set resouces_path
+        NSString *resources_content = _resoucesPathFromApp;
+        NSData *fileContents1 = [resources_content dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/resouces_path"]
+                                                contents:fileContents1
+                                              attributes:nil];
+        
+        // write to file App version
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSData *app_version = [version dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/version"]
+                                                contents:app_version
+                                              attributes:nil];
+        
         [self checkVMStatus];
     }
     else
@@ -231,7 +241,29 @@
     }
     else
     {
-//        NSLog(@"Folder does not exist: '%@'", home_folder);
+        NSLog(@"Folder does not exist: '%@'", home_folder);
+        // create home folder and .env subfolder
+        NSString *env_folder = [home_folder stringByAppendingPathComponent:@".env"];
+        NSError * error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:env_folder
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:&error];
+        // write to file App version
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSData *app_version = [version dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/version"]
+                                                contents:app_version
+                                              attributes:nil];
+        // set resouces_path
+        NSString *resources_content = _resoucesPathFromApp;
+        NSData *fileContents1 = [resources_content dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/resouces_path"]
+                                                contents:fileContents1
+                                              attributes:nil];
+        
+        // run install script
+
         NSString *scriptName = [[NSString alloc] init];
         NSString *arguments = [[NSString alloc] init];
         [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];

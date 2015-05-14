@@ -13,12 +13,11 @@ machine_status=$(vagrant status | grep -o -m 1 'not created')
 vagrant up
 
 # Add vagrant ssh key to ssh-agent
-vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
-###ssh-add ~/.vagrant.d/insecure_private_key
+###vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
+ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 
 # Set the environment variable for the docker daemon
 export DOCKER_HOST=tcp://127.0.0.1:2375
-###export DOCKER_HOST="tcp://$(vagrant ssh-config | grep 'HostName' | cut -d " " -f 4- | tr -d '\r'):2375"
 
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH

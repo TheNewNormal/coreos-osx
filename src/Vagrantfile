@@ -1,7 +1,0 @@
-
-## Start - Inserted by CoreOS-Vagrant GUI App
-
-      # Enabling NFS for sharing the host machine into the coreos-vagrant VM.
-      config.vm.synced_folder "~/coreos-osx/share", "/home/core/share", id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp']
-
-## End - Inserted by CoreOS-Vagrant GUI App

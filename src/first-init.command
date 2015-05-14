@@ -6,33 +6,7 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
-# getting files from github and setting them up
-    echo ""
-    echo "Downloading latest coreos-vagrant files from github: "
-    rm -rf ~/coreos-osx/github
-    git clone https://github.com/coreos/coreos-vagrant.git ~/coreos-osx/github
-    echo "Done downloading from github !!!"
-    echo ""
-
-    # Vagrantfile
-    cp ~/coreos-osx/github/Vagrantfile ~/coreos-osx/coreos-vagrant/Vagrantfile
-    # change IP to static
-    sed -i "" 's/172.17.8.#{i+100}/172.19.8.99/g' ~/coreos-osx/coreos-vagrant/Vagrantfile
-    #
-
-    # user-data file
-    cat ~/coreos-osx/github/user-data.sample ~/coreos-osx/tmp/user-data > ~/coreos-osx/coreos-vagrant/user-data
-    #
-
-    # config.rb file
-    cp ~/coreos-osx/github/config.rb.sample ~/coreos-osx/coreos-vagrant/config.rb
-    # expose docker port
-    sed -i "" 's/#$expose_docker_tcp/$expose_docker_tcp/' ~/coreos-osx/coreos-vagrant/config.rb
-    #
-#
-
-
-### Insert shared folder to Vagrantfile
+### Enable shared folder
 LOOP=1
 while [ $LOOP -gt 0 ]
 do
@@ -45,8 +19,8 @@ do
     if [ $RESPONSE = y ]
     then
         VALID_MAIN=1
-        # shared folder
-        ~/coreos-osx/bin/gsed -i "/#config.vm.synced_folder/r $HOME/coreos-osx/tmp/Vagrantfile" ~/coreos-osx/coreos-vagrant/Vagrantfile
+        # enable shared folder
+        sed -i "" 's/##$shared_folders/$shared_folders/' ~/coreos-osx/coreos-vagrant/config.rb
 
         # update /etc/sudoers file
         echo "(You will be asked for your OS X user password !!!)"
@@ -80,7 +54,7 @@ done
 # remove temporal files
 rm -f ~/coreos-osx/tmp/*
 
-### Insert shared folder to Vagrantfile
+### Enable shared folder
 
 ### Set release channel
 LOOP=1
@@ -104,7 +78,8 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
-        sed -i "" "s/etcd:/etcd2:/" ~/coreos-osx/coreos-vagrant/user-data
+        # enable etcd2
+        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -114,7 +89,8 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
-        sed -i "" "s/etcd2:/etcd:/" ~/coreos-osx/coreos-vagrant/user-data
+        # enable etcd2
+        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -124,7 +100,8 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
-        sed -i "" "s/etcd2:/etcd:/" ~/coreos-osx/coreos-vagrant/user-data
+        # enable etcd
+        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -147,17 +124,8 @@ vagrant box update
 vagrant up
 
 # Add vagrant ssh key to ssh-agent
-vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
-###ssh-add ~/.vagrant.d/insecure_private_key
-
-# download and install latest Rocket on VM
-ROCKET_RELEASE=$(curl 'https://api.github.com/repos/coreos/rocket/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )
-echo "Downloading Rocket $ROCKET_RELEASE"
-vagrant ssh -c 'sudo mkdir -p /opt/bin && sudo chmod -R 777 /opt/bin && cd /home/core && \
-curl -L -o rocket.tar.gz "https://github.com/coreos/rocket/releases/download/'$ROCKET_RELEASE'/rocket-'$ROCKET_RELEASE'.tar.gz" && \
-tar xzvf rocket.tar.gz && cp -f rocket-'$ROCKET_RELEASE'/* /opt/bin && sudo chmod 777 /opt/bin/rkt && /opt/bin/rkt version && \
-rm -fr rocket-'$ROCKET_RELEASE' && rm -f rocket.tar.gz'
-echo " "
+##vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
+ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 
 # download etcdctl and fleetctl
 #
@@ -179,9 +147,28 @@ rm -f fleet.zip
 
 # download docker client
 cd ~/coreos-osx/coreos-vagrant
-LATEST_RELEASE=$(vagrant ssh -c 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r')
-echo "Downloading docker v$LATEST_RELEASE client for OS X"
-curl -o ~/coreos-osx/bin/docker http://get.docker.io/builds/Darwin/x86_64/docker-$LATEST_RELEASE
+DOCKER_VERSION=$(vagrant ssh -c 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r')
+
+CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
+if [ -n "$CHECK_DOCKER_RC" ]
+then
+    # docker RC release
+    if [ -n "curl -s --head https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION | head -n 1 | grep "HTTP/1.[01] [23].." | grep 200" ]
+    then
+        # we check if RC is still available
+        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        curl -o ~/coreos-osx/bin/docker http://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+    else
+        # RC is not available anymore, so we download stable release
+        DOCKER_VERSION=$($DOCKER_VERSION)
+        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        curl -o ~/coreos-osx/bin/docker http://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+    fi
+else
+    # docker stable release
+    echo "Downloading docker $DOCKER_VERSION client for OS X"
+    curl -o ~/coreos-osx/bin/docker http://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+fi
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
 #
