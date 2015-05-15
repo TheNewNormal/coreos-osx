@@ -121,7 +121,7 @@ read -p "$*"
 echo "Setting up Vagrant VM for CoreOS on OS X"
 cd ~/coreos-osx/coreos-vagrant
 vagrant box update
-vagrant up
+vagrant up --provider virtualbox
 
 # Add vagrant ssh key to ssh-agent
 ##vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
@@ -153,7 +153,7 @@ CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
 if [ -n "$CHECK_DOCKER_RC" ]
 then
     # docker RC release
-    if [ -n "curl -s --head https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION | head -n 1 | grep "HTTP/1.[01] [23].." | grep 200" ]
+    if [ -n "$(curl -s --head https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION | head -n 1 | grep "HTTP/1.[01] [23].." | grep 200)" ]
     then
         # we check if RC is still available
         echo "Downloading docker $DOCKER_VERSION client for OS X"
@@ -191,12 +191,17 @@ pause 'Press [Enter] key to continue...'
 
 cd ~/coreos-osx/docker_images
 
-for file in *.tar
-do
-echo "Loading docker image: $file"
-docker load < $file
-done
-echo "Done with docker images !!!"
+if [ "$(ls | grep -o -m 1 tar)" = "tar" ]
+then
+    for file in *.tar
+    do
+        echo "Loading docker image: $file"
+        docker load < $file
+    done
+    echo "Done with docker images !!!"
+else
+    echo "Nothing to upload !!!"
+fi
 echo " "
 ##
 
