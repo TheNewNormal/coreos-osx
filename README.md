@@ -69,7 +69,7 @@ script are stored
 * [Fleet-UI](http://fleetui.com) dashboard will show running `fleet` units and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)
 * [DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)
 * Put your fleet units into `~/coreos-osx/my_fleet` and manually start them. If you destroy the VM and use `Up`, your fleet units will be automaticly deployed by `fleetctl`.
-* This App has much automation as possible to make easier to destroy VM, change CoreOS release channel and get back to your previous setup in a fresh built VM with your saved docker images and fleet units.
+* This App has as much automation as possible to make easier to destroy VM, change CoreOS release channel and get back to your previous setup in a fresh built VM with your saved docker images and fleet units.
 
 
 
