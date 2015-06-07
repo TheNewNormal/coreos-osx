@@ -53,17 +53,17 @@ then
     then
         # we check if RC is still available
         echo "Downloading docker $DOCKER_VERSION client for OS X"
-        curl -o ~/coreos-osx/bin/docker http://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+        curl -o ~/coreos-osx/bin/docker https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
     else
         # RC is not available anymore, so we download stable release
         DOCKER_VERSION_STABLE=$(echo $DOCKER_VERSION | cut -d"-" -f1)
         echo "Downloading docker $DOCKER_VERSION_STABLE client for OS X"
-        curl -o ~/coreos-osx/bin/docker http://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION_STABLE
+        curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION_STABLE
     fi
 else
     # docker stable release
     echo "Downloading docker $DOCKER_VERSION client for OS X"
-    curl -o ~/coreos-osx/bin/docker http://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+    curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
 fi
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
