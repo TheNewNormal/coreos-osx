@@ -78,8 +78,6 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-osx/coreos-vagrant/config.rb
-        # enable etcd2
-        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -89,8 +87,6 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-osx/coreos-vagrant/config.rb
-        # enable etcd2
-        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 
@@ -100,8 +96,6 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-osx/coreos-vagrant/config.rb
-        # enable etcd
-        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-osx/coreos-vagrant/user-data
         LOOP=0
     fi
 

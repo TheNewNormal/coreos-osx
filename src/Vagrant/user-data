@@ -1,9 +1,6 @@
 #cloud-config
 
 coreos:
-  etcd:
-    addr: $public_ipv4:4001
-    peer-addr: $public_ipv4:7001
   etcd2:
     name: core-01
     initial-advertise-peer-urls: http://$private_ipv4:2380
