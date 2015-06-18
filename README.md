@@ -3,11 +3,7 @@ CoreOS-Vagrant GUI for OS X
 
 CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool. It supports only a standalone CoreOS VM, cluster one is at [CoreOS-Vagrant Cluster GUI](https://github.com/rimusz/coreos-osx-gui-cluster).
 
-<<<<<<< HEAD
-Note: Alpha and beta channels use etcd2, stable is still on etcd 0.4.
-=======
 Note: Fully supports etcd2 in all CoresOS channels.
->>>>>>> dev
 
 [CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
 [CoreOS-Vagrant](https://github.com/coreos/coreos-vagrant) is made to run on VirtualBox and VMWare VMs.
@@ -69,11 +65,10 @@ script are stored
 * `OS Shell` opens OS Shell with the same enviroment preset as `Up`
 * `Upload docker images` will upload docker images from `~/coreos-osx/docker_images`, it saves time from downloading them again from Internet. If you destroy the VM and use `Up`, docker images will be automaticly uploaded to VM again.
 * `Updates/Force CoreOS update` will run `sudo update_engine_client -update` on CoreOS VM.
-* `Updates/Check for updates` will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. 
-* [Fleet-UI](http://fleetui.com) dashboard will show running `fleet` units and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)
+* `Updates/Check for updates` will update docker, etcdclt and fleetctl OS X clients to the same versions as CoreOS VM runs. * [Fleet-UI](http://fleetui.com) dasboard will show running `fleet` units and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)
 * [DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc (it might take a bit of a time after install for it to work, as it needs to download it's image)
 * Put your fleet units into `~/coreos-osx/my_fleet` and manually start them. If you destroy the VM and use `Up`, your fleet units will be automaticly deployed by `fleetctl`.
-* This App has as much automation as possible to make easier to destroy VM, change CoreOS release channel and get back to your previous setup in a freshly built VM with your saved docker images and fleet units.
+* This App has much automation as possible to make easier to destroy VM, change CoreOS release channel and get back to your previous setup in a fresh built VM with your saved docker images and fleet units.
 
 
 
