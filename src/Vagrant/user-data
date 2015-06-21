@@ -1,15 +1,17 @@
 #cloud-config
 
 coreos:
+  update:
+    reboot-strategy: off
   etcd2:
     name: core-01
     initial-advertise-peer-urls: http://$private_ipv4:2380
-    listen-peer-urls: http://$private_ipv4:2380,http://$private_ipv4:7001
     initial-cluster-token: core-01_etcd
     initial-cluster: core-01=http://$private_ipv4:2380
     initial-cluster-state: new
-    advertise-client-urls: http://$public_ipv4:2379,http://$public_ipv4:4001
+    listen-peer-urls: http://$private_ipv4:2380,http://$private_ipv4:7001
     listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
+    advertise-client-urls: http://$public_ipv4:2379,http://$public_ipv4:4001
   fleet:
     public-ip: $public_ipv4
   flannel:
@@ -33,15 +35,16 @@ coreos:
 
         [Install]
         WantedBy=sockets.target
-  update:
-    reboot-strategy: off
+    - name: docker.service
+      command: start
+      drop-ins:
+        - name: 50-insecure-registry.conf
+          content: |
+            [Unit]
+            [Service]
+            Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
 # Custom scripts
 write_files:
-
- - path: /etc/systemd/system/docker.service.d/50-insecure-registry.conf
-   content: |
-      [Service]
-      Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
  - path: /home/core/.ssh/id_rsa
    permissions: '0600'
    owner: core:core

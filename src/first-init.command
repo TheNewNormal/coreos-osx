@@ -200,7 +200,7 @@ echo " "
 ##
 
 # set fleetctl endpoint and install fleet units
-export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+export FLEETCTL_ENDPOINT=http://172.19.8.99:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"

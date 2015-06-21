@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 #  update.command
 #  CoreOS GUI for OS X
@@ -73,7 +73,7 @@ echo "docker was copied to ~/coreos-osx/bin"
 #
 echo " "
 # set fleetctl tunnel
-export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+export FLEETCTL_ENDPOINT=http://172.19.8.99:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
