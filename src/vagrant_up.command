@@ -41,13 +41,13 @@ fi
 
 
 # set etcd endpoint
-export ETCDCTL_PEERS=http://172.19.8.99:4001
+export ETCDCTL_PEERS=http://172.19.8.99:2379
 echo "etcdctl ls /:"
 etcdctl --no-sync ls /
 echo " "
 
 # set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://172.19.8.99:4001
+export FLEETCTL_ENDPOINT=http://172.19.8.99:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
