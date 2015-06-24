@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 
 #  coreos-vagrant-install.command
 #  CoreOS GUI for OS X
