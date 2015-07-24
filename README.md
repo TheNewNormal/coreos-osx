@@ -55,7 +55,6 @@ How it works
 ------------
 
 Just start `CoreOS Vagrant OSX GUI` application and you will find a small icon with the CoreOS logo in the Status Bar.
-For now it only supports a standalone CoreOS VM, cluster support might come at some stage later one.
 
 * There you can `Up`, `Suspend`, `Halt`, `Reload` (usual vagrant commands) CoreOS vagrant VM
 * `SSH to core-01` (vagrant ssh) will open VM shell
