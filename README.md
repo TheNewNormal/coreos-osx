@@ -3,6 +3,8 @@ CoreOS-Vagrant GUI for OS X
 
 CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapper around the [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool. It supports only a standalone CoreOS VM, cluster one is at [CoreOS-Vagrant Cluster GUI](https://github.com/rimusz/coreos-osx-gui-cluster).
 
+Also I have release similar [App](https://github.com/rimusz/coreos-xhyve-ui) for [coreos-xhyve](https://github.com/coreos/coreos-xhyve)
+
 Fully supports etcd2 in all CoresOS channels.
 
 ####Note: OS X El Capitan:
