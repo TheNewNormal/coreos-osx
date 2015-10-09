@@ -5,11 +5,6 @@ CoreOS-Vagrant GUI for Mac OS X is a Mac Status bar App which works like a wrapp
 
 Fully supports etcd2 in all CoresOS channels.
 
-####Note: OS X El Capitan:
-
-* If you do a fresh install OS X El Capitan support will be enabled
-
-* Otherwise run: `ln -s /opt/vagrant/bin/vagrant /usr/local/bin/vagrant >/dev/null 2>&1`
 
 
 [CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
