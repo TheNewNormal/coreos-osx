@@ -1,0 +1,57 @@
+
+/* Class = "NSMenu"; title = "Setup"; ObjectID = "8I2-mE-7PD"; */
+"8I2-mE-7PD.title" = "Setup";
+
+/* Class = "NSMenuItem"; title = "Setup"; ObjectID = "CrJ-Z8-7Tt"; */
+"CrJ-Z8-7Tt.title" = "Setup";
+
+/* Class = "NSMenu"; title = "Updates"; ObjectID = "DFA-8C-ne3"; */
+"DFA-8C-ne3.title" = "Updates";
+
+/* Class = "NSMenuItem"; title = "Recreate extra disk"; ObjectID = "HWe-7a-OCV"; */
+"HWe-7a-OCV.title" = "Destroy VM";
+
+/* Class = "NSMenuItem"; title = "SSH to VM"; ObjectID = "Khg-WF-X5I"; */
+"Khg-WF-X5I.title" = "SSH to VM";
+
+/* Class = "NSMenuItem"; title = "Halt"; ObjectID = "LI8-og-yJl"; */
+"LI8-og-yJl.title" = "Halt";
+
+/* Class = "NSMenuItem"; title = "Fleet-UI"; ObjectID = "LkH-Oi-Kkr"; */
+"LkH-Oi-Kkr.title" = "Fleet-UI";
+
+/* Class = "NSMenuItem"; title = "Attach to VM's console"; ObjectID = "NVQ-p7-0FG"; */
+"NVQ-p7-0FG.title" = "Attach to VM's console";
+
+/* Class = "NSMenuItem"; title = "Reload"; ObjectID = "UTs-as-EKD"; */
+"UTs-as-EKD.title" = "Reload";
+
+/* Class = "NSMenuItem"; title = "About CoreOS GUI for OS X"; ObjectID = "UjW-Zi-qqY"; */
+"UjW-Zi-qqY.title" = "About CoreOS GUI for OS X";
+
+/* Class = "NSMenuItem"; title = "Updates"; ObjectID = "VT6-tu-oxP"; */
+"VT6-tu-oxP.title" = "Updates";
+
+/* Class = "NSMenuItem"; title = "Up"; ObjectID = "YiP-H1-GtD"; */
+"YiP-H1-GtD.title" = "Up";
+
+/* Class = "NSMenuItem"; title = "Initial setup of CoreOS VM"; ObjectID = "Yrd-Gf-8zH"; */
+"Yrd-Gf-8zH.title" = "Initial setup of CoreOS VM";
+
+/* Class = "NSMenuItem"; title = "OS Shell"; ObjectID = "dvF-TI-XNx"; */
+"dvF-TI-XNx.title" = "OS Shell";
+
+/* Class = "NSMenuItem"; title = "Change Release Channel (needs reload of VM)"; ObjectID = "lI7-r8-M4c"; */
+"lI7-r8-M4c.title" = "Change Release Channel";
+
+/* Class = "NSMenuItem"; title = "Fetch latest CoreOS ISO"; ObjectID = "ozW-cb-XTh"; */
+"ozW-cb-XTh.title" = "Fetch latest CoreOS ISO";
+
+/* Class = "NSMenuItem"; title = "DockerUI"; ObjectID = "sCD-se-Vah"; */
+"sCD-se-Vah.title" = "DockerUI";
+
+/* Class = "NSMenuItem"; title = "Check updates for OS X fleetctl and docker clients"; ObjectID = "sEE-aC-0Ob"; */
+"sEE-aC-0Ob.title" = "Check updates for OS X fleetctl and docker clients";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "zsR-Hu-nBe"; */
+"zsR-Hu-nBe.title" = "Quit";

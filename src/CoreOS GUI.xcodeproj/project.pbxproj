@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		010B02251AA4D9A900D9E892 /* load_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 010B02231AA4D9A900D9E892 /* load_docker_images.command */; };
-		010B02261AA4D9A900D9E892 /* load_rkt_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 010B02241AA4D9A900D9E892 /* load_rkt_images.command */; };
+		0106B34A1B65277F001709E0 /* functions.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0106B3491B65277F001709E0 /* functions.sh */; };
 		0111FADB1A7FA2A20021F258 /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 0111FADA1A7FA2A10021F258 /* os_shell.command */; };
-		013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */; };
-		013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */; };
-		013B09671AE1597100F3DFD2 /* update_vbox.command in Resources */ = {isa = PBXBuildFile; fileRef = 013B09661AE1597100F3DFD2 /* update_vbox.command */; };
-		0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* coreos-vagrant.command */; };
-		01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */; };
-		01741B5F190DB7E300BB1F91 /* vagrant_ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */; };
+		0145318418FF209D007F9C95 /* ssh.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* ssh.command */; };
+		01663CC01B667E13008D5D9F /* docker2aci in Resources */ = {isa = PBXBuildFile; fileRef = 01663CBF1B667E13008D5D9F /* docker2aci */; };
+		01741B57190DB7B800BB1F91 /* coreos-osx-install.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B56190DB7B800BB1F91 /* coreos-osx-install.command */; };
 		01741B63190DB80500BB1F91 /* first-init.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B62190DB80500BB1F91 /* first-init.command */; };
-		01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B64190DB81400BB1F91 /* vagrant_up.command */; };
-		01741B67190DB82100BB1F91 /* update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* update.command */; };
+		01741B65190DB81400BB1F91 /* up.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B64190DB81400BB1F91 /* up.command */; };
+		01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* update_osx_clients_files.command */; };
 		019662121B04C562005FA955 /* bin in Resources */ = {isa = PBXBuildFile; fileRef = 019662111B04C562005FA955 /* bin */; };
-		019662141B04C598005FA955 /* Vagrant in Resources */ = {isa = PBXBuildFile; fileRef = 019662131B04C598005FA955 /* Vagrant */; };
+		019662141B04C598005FA955 /* settings in Resources */ = {isa = PBXBuildFile; fileRef = 019662131B04C598005FA955 /* settings */; };
 		019662181B04C6EA005FA955 /* files in Resources */ = {isa = PBXBuildFile; fileRef = 019662171B04C6EA005FA955 /* files */; };
-		0196621B1B04C758005FA955 /* fleet in Resources */ = {isa = PBXBuildFile; fileRef = 0196621A1B04C758005FA955 /* fleet */; };
-		01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* force_coreos_update.command */; };
+		01993A4F1B63DD730096E2E1 /* halt.command in Resources */ = {isa = PBXBuildFile; fileRef = 01993A4E1B63DD730096E2E1 /* halt.command */; };
+		01AD94BF1A278C94009A400B /* fetch_latest_iso.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* fetch_latest_iso.command */; };
+		01B675D61B602FC2004349CC /* check_vm_status.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B675D51B602FC2004349CC /* check_vm_status.command */; };
+		01C7F8F41B63B3B600CF2E26 /* console.command in Resources */ = {isa = PBXBuildFile; fileRef = 01C7F8F31B63B3B600CF2E26 /* console.command */; };
 		01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */; };
-		01CFC2DF1A2AA48300F251C2 /* vagrant_destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */; };
-		01CFC2E01A2AA48300F251C2 /* vagrant_reload.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */; };
+		01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DC1A2AA48300F251C2 /* destroy.command */; };
+		01CFC2E01A2AA48300F251C2 /* reload.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DD1A2AA48300F251C2 /* reload.command */; };
+		01D1B9871B60D9A70059B73E /* start_VM.command in Resources */ = {isa = PBXBuildFile; fileRef = 01D1B9861B60D9A70059B73E /* start_VM.command */; };
+		01D1B9891B60F2AD0059B73E /* xhyve in Resources */ = {isa = PBXBuildFile; fileRef = 01D1B9881B60F2AD0059B73E /* xhyve */; };
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01E2854618A6C4E300BC630D /* InfoPlist.strings */; };
@@ -36,30 +36,34 @@
 		01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855218A6C4E300BC630D /* MainMenu.xib */; };
 		01E2855618A6C4E300BC630D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855518A6C4E300BC630D /* Images.xcassets */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		131C2B7F1BD686CB002FF9BE /* fleet in Resources */ = {isa = PBXBuildFile; fileRef = 131C2B7E1BD686CB002FF9BE /* fleet */; };
+		134AB3351BD7D11400D55BC4 /* registry in Resources */ = {isa = PBXBuildFile; fileRef = 134AB3341BD7D11400D55BC4 /* registry */; };
+		134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		010B02231AA4D9A900D9E892 /* load_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = load_docker_images.command; sourceTree = "<group>"; };
-		010B02241AA4D9A900D9E892 /* load_rkt_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = load_rkt_images.command; sourceTree = "<group>"; };
+		0106B3491B65277F001709E0 /* functions.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = functions.sh; sourceTree = "<group>"; };
+		0106B34C1B656E70001709E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		0111FADA1A7FA2A10021F258 /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
 		0133608F18A70E0C0024B1CB /* CoreOS GUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS GUI.entitlements"; sourceTree = "<group>"; };
-		013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-vert-color.png"; sourceTree = "<group>"; };
-		013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-horiz-color.png"; sourceTree = "<group>"; };
-		013B09661AE1597100F3DFD2 /* update_vbox.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_vbox.command; sourceTree = "<group>"; };
-		0145318318FF209D007F9C95 /* coreos-vagrant.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant.command"; sourceTree = "<group>"; };
-		01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant-install.command"; sourceTree = SOURCE_ROOT; };
-		01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_ssh.command; sourceTree = SOURCE_ROOT; };
+		0145318318FF209D007F9C95 /* ssh.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ssh.command; sourceTree = "<group>"; };
+		01663CBF1B667E13008D5D9F /* docker2aci */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docker2aci; sourceTree = "<group>"; };
+		01741B56190DB7B800BB1F91 /* coreos-osx-install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-osx-install.command"; sourceTree = SOURCE_ROOT; };
 		01741B62190DB80500BB1F91 /* first-init.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "first-init.command"; sourceTree = SOURCE_ROOT; };
-		01741B64190DB81400BB1F91 /* vagrant_up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_up.command; sourceTree = SOURCE_ROOT; };
-		01741B66190DB82100BB1F91 /* update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update.command; sourceTree = SOURCE_ROOT; };
+		01741B64190DB81400BB1F91 /* up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = up.command; sourceTree = SOURCE_ROOT; };
+		01741B66190DB82100BB1F91 /* update_osx_clients_files.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_osx_clients_files.command; sourceTree = SOURCE_ROOT; };
 		019662111B04C562005FA955 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = SOURCE_ROOT; };
-		019662131B04C598005FA955 /* Vagrant */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Vagrant; sourceTree = SOURCE_ROOT; };
+		019662131B04C598005FA955 /* settings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings; sourceTree = SOURCE_ROOT; };
 		019662171B04C6EA005FA955 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = SOURCE_ROOT; };
-		0196621A1B04C758005FA955 /* fleet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fleet; sourceTree = SOURCE_ROOT; };
-		01AD94BE1A278C94009A400B /* force_coreos_update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = force_coreos_update.command; sourceTree = "<group>"; };
+		01993A4E1B63DD730096E2E1 /* halt.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = halt.command; sourceTree = "<group>"; };
+		01AD94BE1A278C94009A400B /* fetch_latest_iso.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fetch_latest_iso.command; sourceTree = "<group>"; };
+		01B675D51B602FC2004349CC /* check_vm_status.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_vm_status.command; sourceTree = "<group>"; };
+		01C7F8F31B63B3B600CF2E26 /* console.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = console.command; sourceTree = "<group>"; };
 		01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_release_channel.command; sourceTree = "<group>"; };
-		01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_destroy.command; sourceTree = "<group>"; };
-		01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_reload.command; sourceTree = "<group>"; };
+		01CFC2DC1A2AA48300F251C2 /* destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = destroy.command; sourceTree = "<group>"; };
+		01CFC2DD1A2AA48300F251C2 /* reload.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = reload.command; sourceTree = "<group>"; };
+		01D1B9861B60D9A70059B73E /* start_VM.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = start_VM.command; sourceTree = "<group>"; };
+		01D1B9881B60F2AD0059B73E /* xhyve */ = {isa = PBXFileReference; lastKnownFileType = folder; path = xhyve; sourceTree = "<group>"; };
 		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		01E2853A18A6C4E300BC630D /* CoreOS GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS GUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E2853D18A6C4E300BC630D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -77,6 +81,9 @@
 		01E2855518A6C4E300BC630D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		131C2B7E1BD686CB002FF9BE /* fleet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fleet; sourceTree = SOURCE_ROOT; };
+		134AB3341BD7D11400D55BC4 /* registry */ = {isa = PBXFileReference; lastKnownFileType = folder; path = registry; sourceTree = "<group>"; };
+		134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = upload_docker_images.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +101,10 @@
 		014E6F8B18B63AF700E697C0 /* Installation Files */ = {
 			isa = PBXGroup;
 			children = (
-				019662111B04C562005FA955 /* bin */,
-				0196621A1B04C758005FA955 /* fleet */,
 				019662171B04C6EA005FA955 /* files */,
-				019662131B04C598005FA955 /* Vagrant */,
-				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
+				019662131B04C598005FA955 /* settings */,
+				131C2B7E1BD686CB002FF9BE /* fleet */,
+				01741B56190DB7B800BB1F91 /* coreos-osx-install.command */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
 			);
 			path = "Installation Files";
@@ -172,18 +178,24 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				010B02231AA4D9A900D9E892 /* load_docker_images.command */,
-				010B02241AA4D9A900D9E892 /* load_rkt_images.command */,
-				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
+				01663CBF1B667E13008D5D9F /* docker2aci */,
+				134AB3341BD7D11400D55BC4 /* registry */,
+				01D1B9881B60F2AD0059B73E /* xhyve */,
+				019662111B04C562005FA955 /* bin */,
+				01D1B9861B60D9A70059B73E /* start_VM.command */,
+				0106B3491B65277F001709E0 /* functions.sh */,
+				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
-				01CFC2DC1A2AA48300F251C2 /* vagrant_destroy.command */,
-				01741B5E190DB7E300BB1F91 /* vagrant_ssh.command */,
-				01741B64190DB81400BB1F91 /* vagrant_up.command */,
-				01CFC2DD1A2AA48300F251C2 /* vagrant_reload.command */,
+				01CFC2DC1A2AA48300F251C2 /* destroy.command */,
+				01741B64190DB81400BB1F91 /* up.command */,
+				0145318318FF209D007F9C95 /* ssh.command */,
 				0111FADA1A7FA2A10021F258 /* os_shell.command */,
-				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
-				01741B66190DB82100BB1F91 /* update.command */,
-				013B09661AE1597100F3DFD2 /* update_vbox.command */,
+				01C7F8F31B63B3B600CF2E26 /* console.command */,
+				01993A4E1B63DD730096E2E1 /* halt.command */,
+				01CFC2DD1A2AA48300F251C2 /* reload.command */,
+				01AD94BE1A278C94009A400B /* fetch_latest_iso.command */,
+				01741B66190DB82100BB1F91 /* update_osx_clients_files.command */,
+				134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -191,8 +203,6 @@
 		01E285D018A6F79800BC630D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				013A5C1F190E518400325EDF /* coreos-wordmark-vert-color.png */,
-				013A5C21190E519000325EDF /* coreos-wordmark-horiz-color.png */,
 				01E285B718A6D7F400BC630D /* icon.png */,
 				01D3685818E5C184006510B5 /* icon.icns */,
 			);
@@ -225,7 +235,7 @@
 		01E2853218A6C4E300BC630D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Rimantas Mocevicius";
 				TargetAttributes = {
 					01E2853918A6C4E300BC630D = {
@@ -261,32 +271,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				013B09671AE1597100F3DFD2 /* update_vbox.command in Resources */,
-				013A5C20190E518400325EDF /* coreos-wordmark-vert-color.png in Resources */,
 				019662121B04C562005FA955 /* bin in Resources */,
+				134AB3351BD7D11400D55BC4 /* registry in Resources */,
 				01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
-				01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */,
-				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
-				013A5C22190E519000325EDF /* coreos-wordmark-horiz-color.png in Resources */,
-				01CFC2DF1A2AA48300F251C2 /* vagrant_destroy.command in Resources */,
-				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
-				010B02251AA4D9A900D9E892 /* load_docker_images.command in Resources */,
-				01CFC2E01A2AA48300F251C2 /* vagrant_reload.command in Resources */,
+				01AD94BF1A278C94009A400B /* fetch_latest_iso.command in Resources */,
+				0145318418FF209D007F9C95 /* ssh.command in Resources */,
+				01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */,
+				01741B65190DB81400BB1F91 /* up.command in Resources */,
+				01C7F8F41B63B3B600CF2E26 /* console.command in Resources */,
+				01D1B9891B60F2AD0059B73E /* xhyve in Resources */,
+				01993A4F1B63DD730096E2E1 /* halt.command in Resources */,
+				01CFC2E01A2AA48300F251C2 /* reload.command in Resources */,
 				0111FADB1A7FA2A20021F258 /* os_shell.command in Resources */,
-				019662141B04C598005FA955 /* Vagrant in Resources */,
+				019662141B04C598005FA955 /* settings in Resources */,
 				01E2855618A6C4E300BC630D /* Images.xcassets in Resources */,
+				134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */,
+				01D1B9871B60D9A70059B73E /* start_VM.command in Resources */,
 				019662181B04C6EA005FA955 /* files in Resources */,
-				01741B5F190DB7E300BB1F91 /* vagrant_ssh.command in Resources */,
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
-				01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */,
-				0196621B1B04C758005FA955 /* fleet in Resources */,
+				01B675D61B602FC2004349CC /* check_vm_status.command in Resources */,
+				0106B34A1B65277F001709E0 /* functions.sh in Resources */,
+				01741B57190DB7B800BB1F91 /* coreos-osx-install.command in Resources */,
+				131C2B7F1BD686CB002FF9BE /* fleet in Resources */,
 				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
-				010B02261AA4D9A900D9E892 /* load_rkt_images.command in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
-				01741B67190DB82100BB1F91 /* update.command in Resources */,
+				01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */,
+				01663CC01B667E13008D5D9F /* docker2aci in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +338,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				01E2855318A6C4E300BC630D /* Base */,
+				0106B34C1B656E70001709E0 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -348,6 +362,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -363,9 +378,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.10;
 			};
 			name = Debug;
 		};
@@ -395,8 +410,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.10;
 			};
 			name = Release;
 		};
@@ -404,14 +420,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx10.11]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CoreOS GUI";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.11;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -420,14 +438,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx10.11]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS GUI/CoreOS GUI-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS GUI/CoreOS GUI-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CoreOS GUI";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.11;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

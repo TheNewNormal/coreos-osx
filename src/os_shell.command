@@ -1,28 +1,32 @@
 #!/bin/bash
 
-#  os_shell.command
-#  CoreOS Vagrant GUI for OS X
+#  Pre-set OS shell
 #
-#  Created by Rimantas on 01/12/2014.
-#  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "${DIR}"/functions.sh
 
-# Add vagrant ssh key to ssh-agent
-ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
+# get App's Resources folder
+res_folder=$(cat ~/coreos-osx/.env/resouces_path)
+
+# get VM IP
+#vm_ip=$(cat ~/coreos-osx/.env/ip_address)
+vm_ip=$(<~/coreos-osx/.env/ip_address)
 
 # Set the environment variable for the docker daemon
-export DOCKER_HOST=tcp://127.0.0.1:2375
+export DOCKER_HOST=tcp://$vm_ip:2375
 
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # set etcd endpoint
-export ETCDCTL_PEERS=http://172.19.8.99:2379
+export ETCDCTL_PEERS=http://$vm_ip:2379
+echo " "
 echo "etcdctl ls /:"
 etcdctl --no-sync ls /
-echo ""
+echo " "
 
 # set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://172.19.8.99:2379
+export FLEETCTL_ENDPOINT=http://$vm_ip:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"

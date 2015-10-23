@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  CoreOS GUI for OS X
+//  CoreOS GUI
 //
 //  Created by Rimantas on 01/04/2014.
 //  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
@@ -44,14 +44,14 @@
                                                 contents:app_version
                                               attributes:nil];
         
-        [self checkVMStatus];
+        [self showVMStatus];
     }
     else
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"CoreOS-Vagrant VM was not set."];
+        [alert setMessageText:@"CoreOS-OSX VM was not set."];
         [alert setInformativeText:@"Do you want to set it up?"];
         [alert setAlertStyle:NSWarningAlertStyle];
         
@@ -62,7 +62,7 @@
         else
         {
             // Cancel clicked
-            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant VM' at any time later one !!! "];
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-OSX VM' at any time later one !!! "];
             [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
         }
     }
@@ -70,134 +70,171 @@
 
 
 - (IBAction)Start:(id)sender {
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
     
-    NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        ////
+        NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
     
-    BOOL isDir;
-    if([[NSFileManager defaultManager]
-        fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
-    {
-        // send a notification on to the screen
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS-Vagrant VM will be up shortly";
-        notification.informativeText = @"and OS shell will be opened";
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        BOOL isDir;
+        if([[NSFileManager defaultManager]
+            fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
+        {
+            // send a notification on to the screen
+            NSUserNotification *notification = [[NSUserNotification alloc] init];
+            notification.title = @"CoreOS-OSX VM will be up shortly";
+            notification.informativeText = @"and OS shell will be opened";
+            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
-        NSString *appName = [[NSString alloc] init];
-        NSString *arguments = [[NSString alloc] init];
-        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_up.command"]];
-    }
-    else
-    {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"OK"];
-        [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"CoreOS-Vagrant VM was not set."];
-        [alert setInformativeText:@"Do you want to set it up?"];
-        [alert setAlertStyle:NSWarningAlertStyle];
-        
-        if ([alert runModal] == NSAlertFirstButtonReturn) {
-            // OK clicked
-            [self initialInstall:self];
+            NSString *appName = [[NSString alloc] init];
+            NSString *arguments = [[NSString alloc] init];
+            [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"up.command"]];
         }
         else
         {
-            // Cancel clicked
-            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant VM' at any time later one !!! "];
-            [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert addButtonWithTitle:@"Cancel"];
+            [alert setMessageText:@"CoreOS-OSX VM was not set."];
+            [alert setInformativeText:@"Do you want to set it up?"];
+            [alert setAlertStyle:NSWarningAlertStyle];
+        
+            if ([alert runModal] == NSAlertFirstButtonReturn) {
+                // OK clicked
+                [self initialInstall:self];
+            }
+            else
+            {
+                // Cancel clicked
+                NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-OSX VM' at any time later one !!! "];
+                [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
+            }
+        }
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is already running !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+
+}
+
+
+- (IBAction)Stop:(id)sender {
+    int vm_status = [self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
+    
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is already Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM will be stopped";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+        NSString *scriptName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runScript:scriptName = @"halt" arguments:arguments = @""];
+    
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is stopping !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        
+        int vm_status_check = 1;
+        while (vm_status_check == 1 ) {
+            vm_status_check = [self checkVMStatus];
+            if (vm_status_check == 0) {
+                notification.title = @"CoreOS GUI";
+                notification.informativeText = @"VM is OFF !!!";
+                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                break;
+            }
         }
     }
 }
 
-- (IBAction)Pause:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant VM will be suspended";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *scriptName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"coreos-vagrant" arguments:arguments = @"suspend"];
-    
-    [self checkVMStatus];
-}
-
-- (IBAction)Stop:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant VM will be stopped";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *scriptName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runScript:scriptName = @"coreos-vagrant" arguments:arguments = @"halt"];
-    
-    [self checkVMStatus];
-}
-
 - (IBAction)Restart:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant VM will be reloaded";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
     
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_reload.command"]];
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM will be reloaded";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
-    [self checkVMStatus];
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"reload.command"]];
+    }
 }
 
-- (IBAction)upload_docker_images:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"docker images";
-    notification.informativeText = @"will be loaded";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"load_docker_images.command"]];
-}
 
 // Updates menu
 - (IBAction)updates:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"OS X clients will be updated";
-//    notification.informativeText = @"and OS X clients will be updated";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
     
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]];
-    //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"OS X clients will be updated";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update_osx_clients_files.command"]];
+    }
 }
 
 
-- (IBAction)updateVbox:(id)sender {
+- (IBAction)fetchLatestISO:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant vbox";
-    notification.informativeText = @"will be updated";
+    notification.title = @"CoreOS GUI";
+    notification.informativeText = @"CoreOS ISO image will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update_vbox.command"]];
-    //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
-}
-
-- (IBAction)force_coreos_update:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"CoreOS will be forced to be updated !!!";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"force_coreos_update.command"]];
-    //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"fetch_latest_iso.command"]];
 }
 // Updates menu
 
@@ -206,27 +243,27 @@
 - (IBAction)changeReleaseChannel:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant release channel change";
+    notification.title = @"CoreOS GUI";
+    notification.informativeText = @"CoreOS release channel change";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
     [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"change_release_channel.command"]];
-    
-    [self checkVMStatus];
 }
 
 - (IBAction)destroy:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant VM will be destroyed";
+    notification.title = @"CoreOS GUI";
+    notification.informativeText = @"VM will be destroyed";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_destroy.command"]];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"destroy.command"]];
     
-    [self checkVMStatus];
+    [self showVMStatus];
 }
 
 - (IBAction)initialInstall:(id)sender
@@ -237,7 +274,7 @@
     if([[NSFileManager defaultManager]
         fileExistsAtPath:home_folder isDirectory:&isDir] && isDir){
         NSString *msg = [NSString stringWithFormat:@"%@ %@ %@", @"Folder", home_folder, @"exists, please delete or rename that folder !!!"];
-        [self displayWithMessage:@"CoreOS-Vagrant" infoText:msg];
+        [self displayWithMessage:@"coreos-osx" infoText:msg];
     }
     else
     {
@@ -266,7 +303,7 @@
 
         NSString *scriptName = [[NSString alloc] init];
         NSString *arguments = [[NSString alloc] init];
-        [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
+        [self runScript:scriptName = @"coreos-osx-install" arguments:arguments = _resoucesPathFromApp ];
     }
 }
 // Setup menu
@@ -276,46 +313,222 @@
     
     NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 //    NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-//    NSString *app_version = [NSString stringWithFormat:@"%@.%@", version, build];
-    NSString *app_version = [NSString stringWithFormat:@"%@", version];
+//    NSString *app_version = [NSString stringWithFormat:@"%@%@.%@", @"v", version, build];
+    NSString *app_version = [NSString stringWithFormat:@"%@%@", @"v", version];
     
-    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS-Vagrant GUI for OS X", app_version];
-    NSString *infoText = @"It is a simple wrapper around the CoreOS-Vagrant, which allows to control CoreOS-Vagrant via the Status Bar !!!";
+    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS GUI for OS X", app_version];
+    NSString *infoText = @"It is a simple wrapper around the xhyve + CoreOS VM, which allows to control VM via the Status Bar App !!!";
     [self displayWithMessage:mText infoText:infoText];
 }
 
 //
-- (IBAction)runShell:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"OS X shell will be opened";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+
+- (IBAction)attachConsole:(id)sender {
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
     
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"os_shell.command"]];
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM's console will be opened";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"console.command"]];
+    }
+}
+
+
+- (IBAction)runShell:(id)sender {
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
+    
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"OS X shell will be opened";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"os_shell.command"]];
+    }
 }
 
 - (IBAction)runSsh:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"vagrant ssh shell will be opened";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
     
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_ssh.command"]];
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM ssh shell will be opened";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"ssh.command"]];
+    }
 }
 
 
 - (IBAction)fleetUI:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.19.8.99:3000"]];
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
+    
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        NSString *file_path = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/ip_address"];
+        // read IP from file
+        NSString *vm_ip = [NSString stringWithContentsOfFile:file_path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+        NSString *url = [@[@"http://",vm_ip,@":3000"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+    }
 }
 
 - (IBAction)dockerUI:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.19.8.99:9000"]];
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
+    
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        NSString *file_path = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/ip_address"];
+        // read IP from file
+        NSString *vm_ip = [NSString stringWithContentsOfFile:file_path
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:NULL];
+        NSString *url = [@[@"http://",vm_ip,@":9000"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+    }
 }
 
+
+- (IBAction)uploadDockerImages:(id)sender {
+    int vm_status=[self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
+    
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is Off !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
+    else
+    {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"Docker images upload window will be opened ...";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        
+        NSString *appName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"upload_docker_images.command"]];
+    }
+}
+
+
+- (IBAction)quit:(id)sender {
+    int vm_status = [self checkVMStatus];
+    //NSLog (@"VM status:\n%d", vm_status);
+    
+    if (vm_status == 0) {
+        NSLog (@"VM is Off");
+    }
+    else
+    {
+        NSLog (@"VM is On");
+        // send a notification on to the screen
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM will be stopped";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        
+        NSString *scriptName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runScript:scriptName = @"halt" arguments:arguments = @""];
+        
+        notification.title = @"CoreOS GUI";
+        notification.informativeText = @"VM is stopping !!!";
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+        
+        int vm_status_check = 1;
+        while (vm_status_check == 1 ) {
+            vm_status_check = [self checkVMStatus];
+            if (vm_status_check == 0) {
+                notification.title = @"CoreOS GUI";
+                notification.informativeText = @"VM is OFF !!!";
+                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                break;
+            }
+        }
+    }
+    
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Quitting CoreOS GUI App";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    exit(0);
+}
+
+
+// helping functions
 - (void)runScript:(NSString*)scriptName arguments:(NSString*)arguments
 {
     NSTask *task = [[NSTask alloc] init];
@@ -333,11 +546,11 @@
 }
 
 
-- (void)checkVMStatus {
-    // check vm status and return the shell script output
+- (int)checkVMStatus {
+    // check VM status and return the shell script output
     NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"coreos-vagrant" ofType:@"command"]];
-    task.arguments  = @[@"status"];
+    task.launchPath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"check_vm_status" ofType:@"command"]];
+//    task.arguments  = @[@"status"];
     
     NSPipe *pipe;
     pipe = [NSPipe pipe];
@@ -354,7 +567,38 @@
     
     NSString *string;
     string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    //    NSLog (@"Returned:\n%@", string);
+    NSLog (@"Show VM status:\n%@", string);
+    
+    if ( [string  isEqual: @"VM is stopped"] ) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+
+- (void)showVMStatus {
+    // check vm status and return the shell script output
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"check_vm_status" ofType:@"command"]];
+    //    task.arguments  = @[@"status"];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    
+    [task launch];
+    [task waitUntilExit];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *string;
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    //NSLog (@"Returned:\n%@", string);
     
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];

@@ -1,0 +1,31 @@
+#!/bin/bash
+# docker registry for coreos-osx vm
+
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
+start() {
+    echo "Starting docker registry on 192.168.64.1:5000 ..."
+    nohup registry config.yml >/dev/null 2>&1 &
+}
+
+stop() {
+    kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
+}
+
+usage() {
+    echo "Usage: docker_registry start|stop"
+}
+
+case "$1" in
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        *)
+                usage
+                ;;
+esac
+
