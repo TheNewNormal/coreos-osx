@@ -36,5 +36,10 @@
     cp -R "$1"/fleet/ ~/coreos-osx/fleet
     #
 
+    # copy registry files
+    cp -f "$1"/registry/config.yml ~/coreos-osx/registry
+    cp -f "$1"/bin/registry ~/coreos-osx/bin
+    chmod 755 ~/coreos-osx/bin/registry
+
     # initial init
     open -a iTerm.app "$1"/first-init.command

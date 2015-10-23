@@ -52,12 +52,8 @@ echo " "
 # create ROOT disk
 create_root_disk
 
-# Start docker registry
-cd ~/coreos-osx
-# stop first just in case it was running
-"${res_folder}"/bin/docker_registry stop
-# start
-"${res_folder}"/bin/docker_registry start
+# Stop docker registry first just in case it was running
+kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
 #
 
 echo " "
