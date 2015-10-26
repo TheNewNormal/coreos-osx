@@ -225,3 +225,32 @@ chmod 600 ~/coreos-osx/.env/password
 echo " "
 }
 
+
+function clean_up_after_vm {
+sleep 3
+
+# get App's Resources folder
+res_folder=$(cat ~/coreos-osx/.env/resouces_path)
+
+# Get password
+my_password=$(cat ~/coreos-osx/.env/password | base64 --decode )
+
+# Stop webserver
+kill $(ps aux | grep "[p]ython -m SimpleHTTPServer 18000" | awk {'print $2'})
+
+# Stop docker registry
+kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
+
+# kill all coreos-osx/bin/xhyve instances
+# ps aux | grep "[c]oreos-osx/bin/xhyve" | awk '{print $2}' | sudo -S xargs kill | echo -e "$my_password\n"
+echo -e "$my_password\n" | sudo -S pkill -f [c]oreos-osx/bin/xhyve
+
+echo -e "$my_password\n" | sudo -S pkill -f "${res_folder}"/bin/uuid2mac
+
+# kill all other scripts
+pkill -f [C]oreOS GUI.app/Contents/Resources/start_VM.command
+pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_ip
+pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_mac
+pkill -f [C]oreOS GUI.app/Contents/Resources/bin/mac2ip
+
+}

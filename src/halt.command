@@ -13,3 +13,6 @@ vm_ip=$(cat ~/coreos-osx/.env/ip_address)
 # send halt to VM
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no core@$vm_ip sudo halt
 
+# just in case run
+clean_up_after_vm
+
