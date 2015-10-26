@@ -252,5 +252,9 @@ pkill -f [C]oreOS GUI.app/Contents/Resources/start_VM.command
 pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_ip
 pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_mac
 pkill -f [C]oreOS GUI.app/Contents/Resources/bin/mac2ip
+pkill -f [C]oreOS GUI/Contents/Resources/fetch_latest_iso.command
+pkill -f [C]oreOS GUI/Contents/Resources/update_k8s.command
+pkill -f [C]oreOS GUI/Contents/Resources/update_osx_clients_files.command
+pkill -f [C]oreOS GUI/Contents/Resources/change_release_channel.command
 
 }
