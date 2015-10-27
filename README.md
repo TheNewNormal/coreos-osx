@@ -93,6 +93,6 @@ Credits
 Other CoreOS VM based Apps
 -----------
 * Cluster one CoreOS VM App can be found here [CoreOS Cluster GUI for OSX](https://github.com/rimusz/coreos-osx-gui-cluster).
-* A Kubernetes Solo Cluster VM App can be found here [Kube Solo](https://github.com/rimusz/kube-solo-osx).
-* A Kubernetes Solo Vagrant based Cluster VM App can be found here [CoreOS-Vagrant Kubernetes Solo GUI](https://github.com/rimusz/coreos-osx-gui-kubernetes-solo)
+* Kubernetes Solo Cluster VM App can be found here [Kube Solo](https://github.com/rimusz/kube-solo-osx).
+* Kubernetes Solo Vagrant based Cluster VM App can be found here [CoreOS-Vagrant Kubernetes Solo GUI](https://github.com/rimusz/coreos-osx-gui-kubernetes-solo)
 * Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster GUI for OSX ](https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster).
