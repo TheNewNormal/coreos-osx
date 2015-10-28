@@ -33,7 +33,7 @@ echo "$file found, updating custom.conf..."
 echo "SSHKEY='$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/custom.conf
 #
 
-# save user password to file
+# save user password to Keychain
 save_password
 #
 
@@ -114,9 +114,11 @@ echo "Enjoy CoreOS VM on your Mac !!!"
 echo " "
 echo "Run from menu 'OS Shell' to open a terninal window with rkt, docker, fleetctl and etcdctl pre-set !!!"
 echo " "
+echo 'You can close this window/tab with CMD + W'
+echo " "
 
-echo 'This window will close itself in 50 sec ...'
+sleep 9000
 
-sleep 50
+
 
 

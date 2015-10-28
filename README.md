@@ -5,7 +5,9 @@ CoreOS VM GUI for OS X
 
 It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster GUI for OS X](https://github.com/rimusz/coreos-osx-gui-cluster).
 
-**New:** from v1.0.0 it is now based on [coreos-xhyve](https://github.com/coreos/coreos-xhyve), that allows to have no dependencies on VirtualBox and Vagrant anymore and runs VM with just a single binary of [xhyve](https://github.com/mist64/xhyve).
+**NEW:** from v1.0.0 it is now based on [coreos-xhyve](https://github.com/coreos/coreos-xhyve), that allows to have no dependencies on VirtualBox and Vagrant anymore and runs VM with just a single binary of [xhyve](https://github.com/mist64/xhyve).
+
+**NEW:** Mac user password is not stored to the file system anymore (used to run sudo), `OS X Keychain` is now used to store it !!!
 
 ![CoreOS-OSX-GUI](coreos-osx-gui.png "CoreOS-OSX-GUI")
 

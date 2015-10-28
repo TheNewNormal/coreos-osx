@@ -97,7 +97,7 @@ cd ~/coreos-osx/cloud-init
 "${res_folder}"/bin/webserver start
 
 # Get password
-my_password=$(cat ~/coreos-osx/.env/password | base64 --decode )
+my_password=$(security find-generic-password -wa coreos-osx-app)
 echo -e "$my_password\n" | sudo -S ls > /dev/null 2>&1
 
 # Start VM
@@ -120,7 +120,7 @@ sed -i "" "s/#ROOT_HDD=/ROOT_HDD=/" ~/coreos-osx/custom.conf
 
 echo " "
 echo "ROOT disk got created and formated... "
-echo " "
+echo "---"
 
 # Stop webserver
 "${res_folder}"/bin/webserver stop
@@ -213,15 +213,16 @@ fi
 
 
 function save_password {
-# save user password to file
+# save user's password to Keychain
 echo "  "
-echo "Your Mac user's password will be saved to '~/coreos-osx/.env/password' file "
-echo "and later one will be used for 'sudo' command to start VM !!!"
-echo "This is not the password for the VM access via ssh or console !!!"
+echo "Your Mac user's password will be saved in to 'Keychain' "
+echo "and later one used for 'sudo' command to start VM !!!"
+echo " "
+echo "This is not the password to access VM via ssh or console !!!"
+echo " "
 echo "Please type your Mac user's password followed by [ENTER]:"
 read -s password
-echo -n ${password} | base64 > ~/coreos-osx/.env/password
-chmod 600 ~/coreos-osx/.env/password
+security add-generic-password -a coreos-osx-app -s coreos-osx-app -w $password -U
 echo " "
 }
 
@@ -233,10 +234,10 @@ sleep 3
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # Get password
-my_password=$(cat ~/coreos-osx/.env/password | base64 --decode )
+my_password=$(security find-generic-password -wa coreos-osx-app)
 
 # Stop webserver
-kill $(ps aux | grep "[p]ython -m SimpleHTTPServer 18000" | awk {'print $2'})
+kill $(ps aux | grep "[c]oreos-osx-web" | awk {'print $2'})
 
 # Stop docker registry
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
@@ -244,7 +245,7 @@ kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
 # kill all coreos-osx/bin/xhyve instances
 # ps aux | grep "[c]oreos-osx/bin/xhyve" | awk '{print $2}' | sudo -S xargs kill | echo -e "$my_password\n"
 echo -e "$my_password\n" | sudo -S pkill -f [c]oreos-osx/bin/xhyve
-
+#
 echo -e "$my_password\n" | sudo -S pkill -f "${res_folder}"/bin/uuid2mac
 
 # kill all other scripts
@@ -252,9 +253,24 @@ pkill -f [C]oreOS GUI.app/Contents/Resources/start_VM.command
 pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_ip
 pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_mac
 pkill -f [C]oreOS GUI.app/Contents/Resources/bin/mac2ip
-pkill -f [C]oreOS GUI/Contents/Resources/fetch_latest_iso.command
-pkill -f [C]oreOS GUI/Contents/Resources/update_k8s.command
-pkill -f [C]oreOS GUI/Contents/Resources/update_osx_clients_files.command
-pkill -f [C]oreOS GUI/Contents/Resources/change_release_channel.command
+pkill -f [C]oreOS GUI.app/Contents/Resources/fetch_latest_iso.command
+pkill -f [C]oreOS GUI.app/Contents/Resources/update_k8s.command
+pkill -f [C]oreOS GUI.app/Contents/Resources/update_osx_clients_files.command
+pkill -f [C]oreOS GUI.app/Contents/Resources/change_release_channel.command
+
+}
+
+
+function kill_xhyve {
+sleep 3
+
+# get App's Resources folder
+res_folder=$(cat ~/coreos-osx/.env/resouces_path)
+
+# Get password
+my_password=$(security find-generic-password -wa coreos-osx-app)
+
+# kill all coreos-osx/bin/xhyve instances
+echo -e "$my_password\n" | sudo -S pkill -f [c]oreos-osx/bin/xhyve
 
 }

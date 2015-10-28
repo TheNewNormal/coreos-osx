@@ -3,6 +3,9 @@
 # up.command
 #
 
+# tidy up after old version
+rm -f ~/coreos-osx/.env/password 2>&1 >/dev/null
+
 #
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "${DIR}"/functions.sh
@@ -19,16 +22,13 @@ cp -f "${res_folder}"/registry/config.yml ~/coreos-osx/registry
 cp -f "${res_folder}"/bin/registry ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/registry
 
-# Stop docker registry just in case it was left running
-kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
-
-# Stop webserver just in case it was left running
-"${res_folder}"/bin/webserver stop
-
-# check for password file
-if [ ! -f ~/coreos-osx/.env/password ]
+# check for password in Keychain
+my_password=$(security 2>&1 >/dev/null find-generic-password -wa coreos-osx-app)
+if [ "$my_password" = "security: SecKeychainSearchCopyNext: The specified item could not be found in the keychain." ]
 then
-    echo "File with saved password is not found: "
+    echo " "
+    echo "Saved password in 'Keychain' is not found: "
+    # save user password to Keychain
     save_password
 fi
 
@@ -48,12 +48,14 @@ fi
 rm -f ~/coreos-osx/.env/.console
 echo " "
 echo "Starting VM ..."
+echo " "
 "${res_folder}"/bin/dtach -n ~/coreos-osx/.env/.console -z "${res_folder}"/start_VM.command
 #
 
 # wait till VM is booted up
 echo "You can connect to VM console from menu 'Attach to VM's console' "
 echo "When you done with console just close it's window/tab with CMD+W "
+echo " "
 echo "Waiting for VM to boot up..."
 spin='-\|/'
 i=0
