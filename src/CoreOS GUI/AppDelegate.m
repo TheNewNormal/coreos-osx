@@ -164,6 +164,12 @@
                 [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
                 break;
             }
+            else
+            {
+                NSString *scriptName = [[NSString alloc] init];
+                NSString *arguments = [[NSString alloc] init];
+                [self runScript:scriptName = @"kill_VM" arguments:arguments = @""];
+            }
         }
     }
 }
@@ -515,6 +521,12 @@
                 notification.informativeText = @"VM is OFF !!!";
                 [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
                 break;
+            }
+            else
+            {
+                NSString *scriptName = [[NSString alloc] init];
+                NSString *arguments = [[NSString alloc] init];
+                [self runScript:scriptName = @"kill_VM" arguments:arguments = @""];
             }
         }
     }

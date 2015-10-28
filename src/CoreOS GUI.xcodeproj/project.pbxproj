@@ -15,6 +15,8 @@
 		01741B63190DB80500BB1F91 /* first-init.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B62190DB80500BB1F91 /* first-init.command */; };
 		01741B65190DB81400BB1F91 /* up.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B64190DB81400BB1F91 /* up.command */; };
 		01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* update_osx_clients_files.command */; };
+		019410621BE0D8B200723E19 /* go_webserver in Resources */ = {isa = PBXBuildFile; fileRef = 019410611BE0D8B200723E19 /* go_webserver */; };
+		019410641BE0E5F200723E19 /* kill_VM.command in Resources */ = {isa = PBXBuildFile; fileRef = 019410631BE0E5F200723E19 /* kill_VM.command */; };
 		019662121B04C562005FA955 /* bin in Resources */ = {isa = PBXBuildFile; fileRef = 019662111B04C562005FA955 /* bin */; };
 		019662141B04C598005FA955 /* settings in Resources */ = {isa = PBXBuildFile; fileRef = 019662131B04C598005FA955 /* settings */; };
 		019662181B04C6EA005FA955 /* files in Resources */ = {isa = PBXBuildFile; fileRef = 019662171B04C6EA005FA955 /* files */; };
@@ -52,6 +54,8 @@
 		01741B62190DB80500BB1F91 /* first-init.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "first-init.command"; sourceTree = SOURCE_ROOT; };
 		01741B64190DB81400BB1F91 /* up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = up.command; sourceTree = SOURCE_ROOT; };
 		01741B66190DB82100BB1F91 /* update_osx_clients_files.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_osx_clients_files.command; sourceTree = SOURCE_ROOT; };
+		019410611BE0D8B200723E19 /* go_webserver */ = {isa = PBXFileReference; lastKnownFileType = folder; path = go_webserver; sourceTree = "<group>"; };
+		019410631BE0E5F200723E19 /* kill_VM.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kill_VM.command; sourceTree = "<group>"; };
 		019662111B04C562005FA955 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = SOURCE_ROOT; };
 		019662131B04C598005FA955 /* settings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings; sourceTree = SOURCE_ROOT; };
 		019662171B04C6EA005FA955 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = SOURCE_ROOT; };
@@ -178,20 +182,22 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				019410611BE0D8B200723E19 /* go_webserver */,
 				01663CBF1B667E13008D5D9F /* docker2aci */,
 				134AB3341BD7D11400D55BC4 /* registry */,
 				01D1B9881B60F2AD0059B73E /* xhyve */,
 				019662111B04C562005FA955 /* bin */,
 				01D1B9861B60D9A70059B73E /* start_VM.command */,
+				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
 				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
 				01CFC2DC1A2AA48300F251C2 /* destroy.command */,
-				01741B64190DB81400BB1F91 /* up.command */,
 				0145318318FF209D007F9C95 /* ssh.command */,
 				0111FADA1A7FA2A10021F258 /* os_shell.command */,
 				01C7F8F31B63B3B600CF2E26 /* console.command */,
 				01993A4E1B63DD730096E2E1 /* halt.command */,
+				019410631BE0E5F200723E19 /* kill_VM.command */,
 				01CFC2DD1A2AA48300F251C2 /* reload.command */,
 				01AD94BE1A278C94009A400B /* fetch_latest_iso.command */,
 				01741B66190DB82100BB1F91 /* update_osx_clients_files.command */,
@@ -295,10 +301,12 @@
 				0106B34A1B65277F001709E0 /* functions.sh in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-osx-install.command in Resources */,
 				131C2B7F1BD686CB002FF9BE /* fleet in Resources */,
+				019410641BE0E5F200723E19 /* kill_VM.command in Resources */,
 				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */,
+				019410621BE0D8B200723E19 /* go_webserver in Resources */,
 				01663CC01B667E13008D5D9F /* docker2aci in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
