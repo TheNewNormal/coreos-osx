@@ -4,7 +4,7 @@
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 start() {
-    nohup "${res_folder}"/bin/coreos-osx-web >/dev/null 2>&1 &
+    nohup "${res_folder}"/bin/coreos-osx-web -port 18000 >/dev/null 2>&1 &
 }
 
 stop() {
