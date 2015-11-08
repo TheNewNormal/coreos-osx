@@ -1,7 +1,7 @@
-CoreOS VM GUI for OS X
+CoreOS VM for OS X
 ========================
 
-**CoreOS VM GUI for OS X** is a Mac Status bar App which works like a wrapper around the [coreos-xhyve](https://github.com/coreos/coreos-xhyve) command line tool. It includes Go based local [Docker Registry](https://github.com/docker/distribution) v2 which is based on Kelsey Hightower [Docker Registry OS X Setup Guide](https://github.com/kelseyhightower/docker-registry-osx-setup-guide).
+**CoreOS VM for OS X** is a Mac Status bar App which works like a wrapper around the [coreos-xhyve](https://github.com/coreos/coreos-xhyve) command line tool. It includes Go based local [Docker Registry](https://github.com/docker/distribution) v2 which is based on Kelsey Hightower [Docker Registry OS X Setup Guide](https://github.com/kelseyhightower/docker-registry-osx-setup-guide).
 
 It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster GUI for OS X](https://github.com/rimusz/coreos-osx-gui-cluster).
 
@@ -9,10 +9,10 @@ It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [Core
 
 **NEW:** Mac user password is not stored to the file system anymore (used to run sudo), `OS X Keychain` is now used to store it !!!
 
-![CoreOS-OSX-GUI](coreos-osx-gui.png "CoreOS-OSX-GUI")
+![CoreOS-OSX](coreos-osx-gui.png "CoreOS-OSX-GUI")
 
 
-How to install CoreOS VM GUI for OS X
+How to install CoreOS VM for OS X
 ----------
 
 **Requirements**
@@ -25,11 +25,11 @@ How to install CoreOS VM GUI for OS X
 * [iTerm 2](http://www.iterm2.com/#/section/downloads) must be installed on the OS X for the App to be able to work.
 
 ####Download:
-* Download `CoreOS OSX GUI  latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases), open it and drag the App e.g. to your Desktop.
+* Download `CoreOS OSX  latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases), open it and drag the App e.g. to your Desktop.
 
 ###Install:
 
-Start the `CoreOS OSX GUI ` and from menu `Setup` choose `Initial setup of CoreOS OSX GUI ` 
+Start the `CoreOS OSX` and from menu `Setup` choose `Initial setup of CoreOS OSX` 
 and the install will do the following:
 
 
