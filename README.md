@@ -1,6 +1,5 @@
 CoreOS VM for OS X 
 ========================
-![](https://travis-ci.org/rimusz/coreos-osx.svg?branch=master)
 
 
 **CoreOS VM for OS X** is a Mac Status bar App which works like a wrapper around the [coreos-xhyve](https://github.com/coreos/coreos-xhyve) command line tool. It includes Go based local [Docker Registry](https://github.com/docker/distribution) v2 which is based on Kelsey Hightower [Docker Registry OS X Setup Guide](https://github.com/kelseyhightower/docker-registry-osx-setup-guide).
