@@ -112,7 +112,7 @@ echo "Assigned static VM's IP: $vm_ip"
 echo " "
 echo "Enjoy CoreOS VM on your Mac !!!"
 echo " "
-echo "Run from menu 'OS Shell' to open a terninal window with rkt, docker, fleetctl and etcdctl pre-set !!!"
+echo "Run from menu 'OS Shell' to open a terminal window with rkt, docker, fleetctl and etcdctl pre-set !!!"
 echo " "
 echo 'You can close this window/tab with CMD + W'
 echo " "
