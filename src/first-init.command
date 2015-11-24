@@ -95,6 +95,7 @@ download_osx_clients
 export DOCKER_HOST=tcp://$vm_ip:2375
 
 # set fleetctl endpoint and install fleet units
+export FLEETCTL_TUNNEL=
 export FLEETCTL_ENDPOINT=http://$vm_ip:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
