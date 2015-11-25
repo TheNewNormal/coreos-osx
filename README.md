@@ -4,11 +4,9 @@ CoreOS VM for OS X
 
 **CoreOS VM for OS X** is a Mac Status bar App which works like a wrapper around the [coreos-xhyve](https://github.com/coreos/coreos-xhyve) command line tool. It includes Go based local [Docker Registry](https://github.com/docker/distribution) v2 which is based on Kelsey Hightower [Docker Registry OS X Setup Guide](https://github.com/kelseyhightower/docker-registry-osx-setup-guide).
 
-It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster GUI for OS X](https://github.com/rimusz/coreos-osx-gui-cluster).
+It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
 
-**NEW:** from v1.0.0 it is now based on [coreos-xhyve](https://github.com/coreos/coreos-xhyve), that allows to have no dependencies on VirtualBox and Vagrant anymore and runs VM with just a single binary of [xhyve](https://github.com/mist64/xhyve).
-
-**NEW:** Mac user password is not stored to the file system anymore (used to run sudo), `OS X Keychain` is now used to store it !!!
+**NEW:** Mac user password (used to run sudo) is now stored in `OS X Keychain` !!!
 
 ![CoreOS-OSX](coreos-osx-gui.png "CoreOS-OSX-GUI")
 
@@ -18,15 +16,13 @@ How to install CoreOS VM for OS X
 
 **Requirements**
  -----------
-  - OS X 10.10.3 Yosemite or later 
+  - **OS X 10.10.3** Yosemite or later 
   - Mac 2010 or later for this to work.
   - If you want to use this App with any other VirtualBox based VM, you need to use newest versions of VirtualBox 4.3.x or 5.0.x.
 
-####Required software:
-* [iTerm 2](http://www.iterm2.com/#/section/downloads) must be installed on the OS X for the App to be able to work.
 
 ####Download:
-* Download `CoreOS OSX  latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui/releases), open it and drag the App e.g. to your Desktop.
+* Download `CoreOS OSX latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx/releases), open it and drag the App e.g. to your Desktop.
 
 ###Install:
 
@@ -91,7 +87,7 @@ Credits
 -----------
 * To [Michael Steil](https://github.com/mist64) for the awesome [xhyve](https://github.com/mist64/xhyve) lightweight OS X virtualization solution
 * To CoreOS team for [coreos-xhyve](https://github.com/coreos/coreos-xhyve) version
-* To [Antonio Meireles](https://github.com/AntonioMeireles) for his awesome tweaks spree to improve coreos-xhyve
+* To [Antonio Meireles](https://github.com/AntonioMeireles) for his awesome tweaks spree to improve `coreos-xhyve`
 
 Other CoreOS VM based Apps
 -----------

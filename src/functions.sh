@@ -98,7 +98,7 @@ cd ~/coreos-osx/cloud-init
 
 # Get password
 my_password=$(security find-generic-password -wa coreos-osx-app)
-echo -e "$my_password\n" | sudo -S ls > /dev/null 2>&1
+echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
 # Start VM
 echo "Waiting for VM to boot up for ROOT disk to be formated ... "

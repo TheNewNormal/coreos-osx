@@ -21,6 +21,8 @@
 
     # copy files to ~/coreos-osx/bin
     cp -f "$1"/files/* ~/coreos-osx/bin
+    rm -f ~/coreos-osx/bin/iTerm2.zip
+
     # copy xhyve to bin folder
     cp -f "$1"/bin/xhyve ~/coreos-osx/bin
     chmod 755 ~/coreos-osx/bin/*
@@ -40,6 +42,13 @@
     cp -f "$1"/registry/config.yml ~/coreos-osx/registry
     cp -f "$1"/bin/registry ~/coreos-osx/bin
     chmod 755 ~/coreos-osx/bin/registry
+
+    # check if iTerm.app exists
+    App="/Applications/iTerm.app"
+    if [ ! -d "$App" ]
+    then
+        unzip "$1"/files/iTerm2.zip -d /Applications/
+    fi
 
     # initial init
     open -a iTerm.app "$1"/first-init.command

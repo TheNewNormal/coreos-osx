@@ -13,6 +13,13 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# check if iTerm.app exists
+App="/Applications/iTerm.app"
+if [ ! -d "$App" ]
+then
+    unzip "${res_folder}"/files/iTerm2.zip -d /Applications/
+fi
+
 # copy xhyve to bin folder
 cp -f "${res_folder}"/bin/xhyve ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/xhyve
