@@ -31,7 +31,7 @@ and the install will do the following:
 
 
 - All dependent files/folders will be put under "coreos-osx" folder in the user's home folder e.g /Users/someuser/coreos-osx
-- User's Mac password will be stored in `/Users/someuser/coreos-osx/.env/password` and encoded with `base64` and set to `600`, it will be used to pass to `sudo` command which needs to be used starting VM with xhyve, this allows to avoid using `sudo` for `xhyve` to start a VM. 
+- User's Mac password will be stored in `OS X Keychain`, it will be used to pass to `sudo` command which needs to be used starting the VM, this allows to avoid using `sudo` for `corectl` to start a VM. 
 - ISO images are stored under `~/.coreos-xhyve/imgs` and symlinked to it from `~/coreos-osx/imgs`
 That allows to share the same images between different coreos-xhyve Apps and also speeds up this App's reinstall
 - user-data file will have fleet, etcd, and Docker Socket for the API enabled
@@ -92,6 +92,6 @@ Credits
 Other CoreOS VM based Apps
 -----------
 * Cluster one CoreOS VM App can be found here [CoreOS Cluster for OSX](https://github.com/rimusz/coreos-osx-cluster).
-* Kubernetes Solo Cluster VM App can be found here [Kube Solo](https://github.com/rimusz/kube-solo-osx).
+* Kubernetes Solo Cluster VM App can be found here [Kube Solo](https://github.com/TheNewNormal/kube-solo-osx).
 * Kubernetes Solo Vagrant based Cluster VM App can be found here [CoreOS-Vagrant Kubernetes Solo](https://github.com/rimusz/coreos-osx-kubernetes-solo)
 * Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster for OSX ](https://github.com/rimusz/coreos-osx-kubernetes-cluster).
