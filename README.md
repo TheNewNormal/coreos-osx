@@ -1,6 +1,7 @@
 CoreOS VM for OS X 
 ========================
 
+***CoreOS VM for OS X App has a new home, it is now under https://github.com/TheNewNormal organisation***
 
 **CoreOS VM for OS X** is a Mac Status bar App which works like a wrapper around the [coreos-xhyve](https://github.com/coreos/coreos-xhyve) command line tool. It includes Go based local [Docker Registry](https://github.com/docker/distribution) v2 which is based on Kelsey Hightower [Docker Registry OS X Setup Guide](https://github.com/kelseyhightower/docker-registry-osx-setup-guide).
 
@@ -22,7 +23,7 @@ How to install CoreOS VM for OS X
 
 
 ####Download:
-* Download `CoreOS OSX latest.dmg` from the [Releases Page](https://github.com/rimusz/coreos-osx/releases), open it and drag the App e.g. to your Desktop.
+* Download `CoreOS OSX latest.dmg` from the [Releases Page](https://github.com/TheNewNormal/coreos-osx/releases), open it and drag the App e.g. to your Desktop.
 
 ###Install:
 
