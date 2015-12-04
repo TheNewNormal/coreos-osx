@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <development version="6300" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -45,12 +45,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh:" target="494" id="41e-Q4-LMK"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Attach to VM's console" id="NVQ-p7-0FG">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="attachConsole:" target="494" id="mYh-Wf-8sv"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="lIy-88-Fmd"/>
@@ -129,7 +123,7 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="amp-XY-DBJ"/>
-                <menuItem title="About CoreOS GUI for OS X" id="UjW-Zi-qqY">
+                <menuItem title="About CoreOS for OS X" id="UjW-Zi-qqY">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="About:" target="494" id="W2K-DS-RDk"/>

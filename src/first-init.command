@@ -16,7 +16,7 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 echo " "
 echo "Setting up CoreOS VM on OS X"
 
-# add ssh key to custom.conf
+# add ssh key to *.toml files
 echo " "
 echo "Reading ssh key from $HOME/.ssh/id_rsa.pub ..."
 file="$HOME/.ssh/id_rsa.pub"
@@ -29,8 +29,9 @@ do
 done
 
 echo " "
-echo "$file found, updating custom.conf..."
-echo "SSHKEY='$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/custom.conf
+echo "$file found, updating setting files ..."
+echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-01.toml
+echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/format-root.toml
 #
 
 # save user password to Keychain
@@ -40,49 +41,36 @@ save_password
 # Set release channel
 release_channel
 
-# now let's fetch ISO file
-echo " "
-echo "Fetching lastest CoreOS $channel channel ISO ..."
-echo " "
-cd ~/coreos-osx/
-"${res_folder}"/bin/coreos-xhyve-fetch -f custom.conf
-echo " "
-#
-
 # create ROOT disk
 create_root_disk
 
 # Stop docker registry first just in case it was running
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
 #
+sleep 1
 
+# Start docker registry
+cd ~/coreos-osx/registry
 echo " "
-# Start VM
-echo "Starting VM ..."
-"${res_folder}"/bin/dtach -n ~/coreos-osx/.env/.console -z "${res_folder}"/start_VM.command
-#
+"${res_folder}"/docker_registry.sh start
 
-# wait till VM is booted up
-echo "You can connect to VM console from menu 'Attach to VM's console' "
-echo "When you done with console just close it's window/tab with CMD+W "
-echo "Waiting for VM to boot up..."
-spin='-\|/'
-i=0
-until [ -e ~/coreos-osx/.env/.console ] >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+# get password for sudo
+my_password=$(security find-generic-password -wa coreos-osx-app)
+# reset sudo
+sudo -k > /dev/null 2>&1
+
+# Start VM
+cd ~/coreos-osx
+echo " "
+echo "Starting VM ..."
+echo " "
+echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
-sleep 3
+sudo "${res_folder}"/bin/corectl load settings/core-01.toml
 
 # get VM IP
-echo "Waiting for VM to be ready..."
-spin='-\|/'
-i=0
-until cat ~/coreos-osx/.env/ip_address | grep 192.168.64 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-vm_ip=$(cat ~/coreos-osx/.env/ip_address)
-#
-# waiting for VM's response to ping
-spin='-\|/'
-i=0
-while ! ping -c1 $vm_ip >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+#vm_ip=$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
+vm_ip=$(cat ~/coreos-osx/.env/ip_address);
 #
 
 echo " "
@@ -94,6 +82,23 @@ download_osx_clients
 # docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
 
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
+# set etcd endpoint
+export ETCDCTL_PEERS=http://$vm_ip:2379
+# wait till VM is ready
+echo " "
+echo "Waiting for VM to be ready..."
+spin='-\|/'
+i=0
+until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+#
+echo " "
+echo "etcdctl ls /:"
+etcdctl --no-sync ls /
+#
+
 # set fleetctl endpoint and install fleet units
 export FLEETCTL_TUNNEL=
 export FLEETCTL_ENDPOINT=http://$vm_ip:2379
@@ -104,13 +109,14 @@ echo "fleetctl list-machines:"
 fleetctl list-machines
 echo " "
 #
-deploy_fleet_units
-echo " "
+deploy_fleet_unitsenv
 #
 
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo " "
 echo "Assigned static VM's IP: $vm_ip"
+echo " "
+echo "Docker Registry is on $vm_ip:5000 "
 echo " "
 echo "Enjoy CoreOS VM on your Mac !!!"
 echo " "

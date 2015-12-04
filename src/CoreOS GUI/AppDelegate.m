@@ -51,7 +51,7 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"CoreOS-OSX VM was not set."];
+        [alert setMessageText:@"CoreOS VM was not set."];
         [alert setInformativeText:@"Do you want to set it up?"];
         [alert setAlertStyle:NSWarningAlertStyle];
         
@@ -62,7 +62,7 @@
         else
         {
             // Cancel clicked
-            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-OSX VM' at any time later one !!! "];
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS VM' at any time later one !!! "];
             [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
         }
     }
@@ -84,7 +84,7 @@
         {
             // send a notification on to the screen
             NSUserNotification *notification = [[NSUserNotification alloc] init];
-            notification.title = @"CoreOS-OSX VM will be up shortly";
+            notification.title = @"CoreOS VM will be up shortly";
             notification.informativeText = @"and OS shell will be opened";
             [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -97,7 +97,7 @@
             NSAlert *alert = [[NSAlert alloc] init];
             [alert addButtonWithTitle:@"OK"];
             [alert addButtonWithTitle:@"Cancel"];
-            [alert setMessageText:@"CoreOS-OSX VM was not set."];
+            [alert setMessageText:@"CoreOS VM was not set."];
             [alert setInformativeText:@"Do you want to set it up?"];
             [alert setAlertStyle:NSWarningAlertStyle];
         
@@ -108,7 +108,7 @@
             else
             {
                 // Cancel clicked
-                NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-OSX VM' at any time later one !!! "];
+                NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS VM' at any time later one !!! "];
                 [self displayWithMessage:@"You can set VM from menu 'Setup':" infoText:msg];
             }
         }
@@ -118,7 +118,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is already running !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -134,7 +134,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is already Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -143,7 +143,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM will be stopped";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -151,7 +151,7 @@
         NSString *arguments = [[NSString alloc] init];
         [self runScript:scriptName = @"halt" arguments:arguments = @""];
     
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is stopping !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -159,7 +159,7 @@
         while (vm_status_check == 1 ) {
             vm_status_check = [self checkVMStatus];
             if (vm_status_check == 0) {
-                notification.title = @"CoreOS GUI";
+                notification.title = @"CoreOS";
                 notification.informativeText = @"VM is OFF !!!";
                 [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
                 break;
@@ -182,7 +182,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -191,7 +191,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM will be reloaded";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -211,7 +211,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -220,7 +220,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"OS X clients will be updated";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -234,7 +234,7 @@
 - (IBAction)fetchLatestISO:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"CoreOS GUI";
+    notification.title = @"CoreOS";
     notification.informativeText = @"CoreOS ISO image will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -249,7 +249,7 @@
 - (IBAction)changeReleaseChannel:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"CoreOS GUI";
+    notification.title = @"CoreOS";
     notification.informativeText = @"CoreOS release channel change";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -261,7 +261,7 @@
 - (IBAction)destroy:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"CoreOS GUI";
+    notification.title = @"CoreOS";
     notification.informativeText = @"VM will be destroyed";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -322,39 +322,12 @@
 //    NSString *app_version = [NSString stringWithFormat:@"%@%@.%@", @"v", version, build];
     NSString *app_version = [NSString stringWithFormat:@"%@%@", @"v", version];
     
-    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS GUI for OS X", app_version];
+    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for OS X", app_version];
     NSString *infoText = @"It is a simple wrapper around the xhyve + CoreOS VM, which allows to control VM via the Status Bar App !!!";
     [self displayWithMessage:mText infoText:infoText];
 }
 
 //
-
-- (IBAction)attachConsole:(id)sender {
-    int vm_status=[self checkVMStatus];
-    //NSLog (@"VM status:\n%d", vm_status);
-    
-    if (vm_status == 0) {
-        NSLog (@"VM is Off");
-        // send a notification on to the screen
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
-        notification.informativeText = @"VM is Off !!!";
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    }
-    else
-    {
-        NSLog (@"VM is On");
-        // send a notification on to the screen
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
-        notification.informativeText = @"VM's console will be opened";
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-        NSString *appName = [[NSString alloc] init];
-        NSString *arguments = [[NSString alloc] init];
-        [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"console.command"]];
-    }
-}
 
 
 - (IBAction)runShell:(id)sender {
@@ -365,7 +338,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -374,7 +347,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"OS X shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -392,7 +365,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -401,7 +374,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM ssh shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -420,7 +393,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -445,7 +418,7 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
@@ -471,14 +444,14 @@
         NSLog (@"VM is Off");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is Off !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
     else
     {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"Docker images upload window will be opened ...";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -501,7 +474,7 @@
         NSLog (@"VM is On");
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM will be stopped";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -509,7 +482,7 @@
         NSString *arguments = [[NSString alloc] init];
         [self runScript:scriptName = @"halt" arguments:arguments = @""];
         
-        notification.title = @"CoreOS GUI";
+        notification.title = @"CoreOS";
         notification.informativeText = @"VM is stopping !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -517,7 +490,7 @@
         while (vm_status_check == 1 ) {
             vm_status_check = [self checkVMStatus];
             if (vm_status_check == 0) {
-                notification.title = @"CoreOS GUI";
+                notification.title = @"CoreOS";
                 notification.informativeText = @"VM is OFF !!!";
                 [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
                 break;
@@ -533,7 +506,7 @@
     
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"Quitting CoreOS GUI App";
+    notification.title = @"Quitting CoreOS App";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     exit(0);

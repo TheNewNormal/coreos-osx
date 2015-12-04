@@ -27,7 +27,7 @@
 "UTs-as-EKD.title" = "Reload";
 
 /* Class = "NSMenuItem"; title = "About CoreOS GUI for OS X"; ObjectID = "UjW-Zi-qqY"; */
-"UjW-Zi-qqY.title" = "About CoreOS GUI for OS X";
+"UjW-Zi-qqY.title" = "About CoreOS for OS X";
 
 /* Class = "NSMenuItem"; title = "Updates"; ObjectID = "VT6-tu-oxP"; */
 "VT6-tu-oxP.title" = "Updates";

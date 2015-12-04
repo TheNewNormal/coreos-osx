@@ -13,7 +13,7 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
-# get VM IP
+# get VM's IP
 vm_ip=$(cat ~/coreos-osx/.env/ip_address);
 
 # Set the environment variables

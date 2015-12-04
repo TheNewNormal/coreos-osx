@@ -9,17 +9,6 @@ function pause(){
     read -p "$*"
 }
 
-function check_vm_status() {
-# check VM status
-status=$(ps aux | grep "[c]oreos-osx/bin/xhyve" | awk '{print $2}')
-if [ "$status" = "" ]; then
-    echo " "
-    echo "CoreOS VM is not running, please start VM !!!"
-    pause "Press any key to continue ..."
-    exit 1
-fi
-}
-
 
 function release_channel(){
 # Set release channel
@@ -41,8 +30,8 @@ do
     if [ $RESPONSE = 1 ]
     then
         VALID_MAIN=1
-        sed -i "" "s/CHANNEL=stable/CHANNEL=alpha/" ~/coreos-osx/custom.conf
-        sed -i "" "s/CHANNEL=beta/CHANNEL=alpha/" ~/coreos-osx/custom.conf
+        sed -i "" 's/channel = "stable"/channel = "alpha"/g' ~/coreos-osx/settings/*.toml
+        sed -i "" 's/channel = "beta"/channel = "alpha"/g' ~/coreos-osx/settings/*.toml
         channel="Alpha"
         LOOP=0
     fi
@@ -50,8 +39,8 @@ do
     if [ $RESPONSE = 2 ]
     then
         VALID_MAIN=1
-        sed -i "" "s/CHANNEL=alpha/CHANNEL=beta/" ~/coreos-osx/custom.conf
-        sed -i "" "s/CHANNEL=stable/CHANNEL=beta/" ~/coreos-osx/custom.conf
+        sed -i "" 's/channel = "stable"/channel = "beta"/g' ~/coreos-osx/settings/*.toml
+        sed -i "" 's/channel = "alpha"/channel = "beta"/g' ~/coreos-osx/settings/*.toml
         channel="Beta"
         LOOP=0
     fi
@@ -59,8 +48,8 @@ do
     if [ $RESPONSE = 3 ]
     then
         VALID_MAIN=1
-        sed -i "" "s/CHANNEL=alpha/CHANNEL=stable/" ~/coreos-osx/custom.conf
-        sed -i "" "s/CHANNEL=beta/CHANNEL=stable/" ~/coreos-osx/custom.conf
+        sed -i "" 's/channel = "beta"/channel = "stable"/g' ~/coreos-osx/settings/*.toml
+        sed -i "" 's/channel = "alpha"/channel = "stable"/g' ~/coreos-osx/settings/*.toml
         channel="Stable"
         LOOP=0
     fi
@@ -82,55 +71,38 @@ echo -n [default is 5]:
 read disk_size
 if [ -z "$disk_size" ]
 then
+    echo " "
     echo "Creating 5GB disk ..."
     dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*5120]
 else
-    echo "Creating "$disk_size"GB disk ..."
+    echo "Creating "$disk_size"GB disk (ould take a while for big disks)..."
     dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*$disk_size*1024]
 fi
-echo " "
 #
 
 ### format ROOT disk
-# Start webserver
-cd ~/coreos-osx/cloud-init
-"${res_folder}"/bin/webserver start
 
 # Get password
 my_password=$(security find-generic-password -wa coreos-osx-app)
+# reset sudo
+sudo -k > /dev/null 2>&1
+#
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-
-# Start VM
-echo "Waiting for VM to boot up for ROOT disk to be formated ... "
-cd ~/coreos-osx
-export XHYVE=~/coreos-osx/bin/xhyve
-
-# enable format mode
-sed -i "" "s/user-data/user-data-format-root/" ~/coreos-osx/custom.conf
-sed -i "" "s/ROOT_HDD=/#ROOT_HDD=/" ~/coreos-osx/custom.conf
-sed -i "" "s/#IMG_HDD=/IMG_HDD=/" ~/coreos-osx/custom.conf
 #
-"${res_folder}"/bin/coreos-xhyve-run -f custom.conf coreos-osx
-#
-# disable format mode
-sed -i "" "s/user-data-format-root/user-data/" ~/coreos-osx/custom.conf
-sed -i "" "s/IMG_HDD=/#IMG_HDD=/" ~/coreos-osx/custom.conf
-sed -i "" "s/#ROOT_HDD=/ROOT_HDD=/" ~/coreos-osx/custom.conf
-#
+echo " "
+echo "Formating core-01 ROOT disk ..."
+sudo "${res_folder}"/bin/corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' > ~/coreos-osx/.env/ip_address
 
 echo " "
 echo "ROOT disk got created and formated... "
 echo "---"
 
-# Stop webserver
-"${res_folder}"/bin/webserver stop
-###
-
 }
+
 
 function download_osx_clients() {
 # download fleetctl file
-LATEST_RELEASE=$(ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no core@$vm_ip 'fleetctl version' | cut -d " " -f 3- | tr -d '\r')
+LATEST_RELEASE=$(corectl ssh core-01 "fleetctl version" | cut -d " " -f 3- | tr -d '\r')
 cd ~/coreos-osx/bin
 echo "Downloading fleetctl v$LATEST_RELEASE for OS X"
 curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST_RELEASE/fleet-v$LATEST_RELEASE-darwin-amd64.zip"
@@ -141,11 +113,11 @@ echo "fleetctl was copied to ~/coreos-osx/bin "
 
 echo " "
 # download docker file
-DOCKER_VERSION=$(ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no core@$vm_ip  'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r' | sed 's/^[ \t]*//;s/[ \t]*$//' )
+DOCKER_VERSION=$(corectl ssh core-01 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r' | sed 's/^[ \t]*//;s/[ \t]*$//' )
 
 if [ "$DOCKER_VERSION" = "" ]
 then
-    DOCKER_VERSION=$(ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no core@$vm_ip  'docker version' | grep 'Version:' | cut -d " " -f 3- | tr -d '\r' | head -1 | sed 's/^[ \t]*//;s/[ \t]*$//' )
+    DOCKER_VERSION=$(corectl ssh core-01 'docker version' | grep 'Version:' | cut -d " " -f 3- | tr -d '\r' | head -1 | sed 's/^[ \t]*//;s/[ \t]*$//' )
 fi
 
 CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
@@ -174,20 +146,6 @@ echo "docker was copied to ~/coreos-osx/bin"
 }
 
 
-function check_for_images() {
-# Check if set channel's images are present
-CHANNEL=$(cat ~/coreos-osx/custom.conf | grep CHANNEL= | head -1 | cut -f2 -d"=")
-LATEST=$(ls -r ~/coreos-osx/imgs/${CHANNEL}.*.vmlinuz | head -n 1 | sed -e "s,.*${CHANNEL}.,," -e "s,.coreos_.*,," )
-if [[ -z ${LATEST} ]]; then
-    echo "Couldn't find anything to load locally (${CHANNEL} channel)."
-    echo "Fetching lastest $CHANNEL channel ISO ..."
-    echo " "
-    cd ~/coreos-osx/
-    "${res_folder}"/bin/coreos-xhyve-fetch -f custom.conf
-fi
-}
-
-
 function deploy_fleet_units() {
 # deploy fleet units from ~/coreos-osx/fleet
 if [ "$(ls ~/coreos-osx/fleet | grep -o -m 1 service)" = "service" ]
@@ -199,6 +157,7 @@ then
     echo " "
 fi
 }
+
 
 function deploy_my_fleet_units() {
 # deploy fleet units from ~/coreos-osx/fleet
@@ -251,49 +210,29 @@ security add-generic-password -a coreos-osx-app -s coreos-osx-app -w $my_passwor
 
 
 function clean_up_after_vm {
-sleep 3
+sleep 1
 
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
-# Get password
+# get password for sudo
 my_password=$(security find-generic-password -wa coreos-osx-app)
+# reset sudo
+sudo -k
+# enable sudo
+echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
-# Stop webserver
-kill $(ps aux | grep "[c]oreos-osx-web" | awk {'print $2'})
+# send halt to VM
+sudo "${res_folder}"/bin/corectl halt core-01
 
 # Stop docker registry
+"${res_folder}"/docker_registry.sh stop
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
 
-# kill all coreos-osx/bin/xhyve instances
-# ps aux | grep "[c]oreos-osx/bin/xhyve" | awk '{print $2}' | sudo -S xargs kill | echo -e "$my_password\n"
-echo -e "$my_password\n" | sudo -S pkill -f [c]oreos-osx/bin/xhyve
-#
-echo -e "$my_password\n" | sudo -S pkill -f "${res_folder}"/bin/uuid2mac
-
 # kill all other scripts
-pkill -f [C]oreOS GUI.app/Contents/Resources/start_VM.command
-pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_ip
-pkill -f [C]oreOS GUI.app/Contents/Resources/bin/get_mac
-pkill -f [C]oreOS GUI.app/Contents/Resources/bin/mac2ip
 pkill -f [C]oreOS GUI.app/Contents/Resources/fetch_latest_iso.command
-pkill -f [C]oreOS GUI.app/Contents/Resources/update_k8s.command
 pkill -f [C]oreOS GUI.app/Contents/Resources/update_osx_clients_files.command
 pkill -f [C]oreOS GUI.app/Contents/Resources/change_release_channel.command
 
 }
 
-
-function kill_xhyve {
-sleep 3
-
-# get App's Resources folder
-res_folder=$(cat ~/coreos-osx/.env/resouces_path)
-
-# Get password
-my_password=$(security find-generic-password -wa coreos-osx-app)
-
-# kill all coreos-osx/bin/xhyve instances
-echo -e "$my_password\n" | sudo -S pkill -f [c]oreos-osx/bin/xhyve
-
-}

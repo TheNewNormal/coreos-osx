@@ -8,45 +8,26 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
-# get VM IP
-vm_ip=$(<~/coreos-osx/.env/ip_address)
+# get password for sudo
+my_password=$(security find-generic-password -wa coreos-osx-app)
+# reset sudo
+sudo -k
 
-# Stop VM
-ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o ConnectTimeout=5 core@$vm_ip sudo halt
-# just in case run
-kill_xhyve
-
-# wait till VM is stopped
+### Stop VM
 echo " "
-echo "Waiting for VM to shutdown..."
-spin='-\|/'
-i=0
-until "${res_folder}"/check_vm_status.command | grep "VM is stopped" >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-#
-spin='-\|/'
-i=0
-until [ ! -e ~/coreos-osx/.env/.console ] >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-#
+echo "Stopping VM ..."
+# send halt to VM
+echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
+sudo "${res_folder}"/bin/corectl halt core-01
 
-echo " "
-# Check if set channel's images are present
-check_for_images
-#
+sleep 2
 
 # Start VM
-rm -f ~/coreos-osx/.env/.console
-echo " "
+cd ~/coreos-osx
 echo "Starting VM ..."
-"${res_folder}"/bin/dtach -n ~/coreos-osx/.env/.console -z "${res_folder}"/start_VM.command
-#
-
-# wait till VM is booted up
-echo "You can connect to VM console from menu 'Attach to VM's console' "
-echo "When you done with console just close it's window/tab with CMD+W "
-echo "Waiting for VM to boot up..."
-spin='-\|/'
-i=0
-while ! ping -c1 $vm_ip >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+echo " "
+echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
+sudo "${res_folder}"/bin/corectl load settings/core-01.toml
 echo " "
 
 # path to the bin folder where we store our binary files
@@ -57,11 +38,14 @@ export FLEETCTL_ENDPOINT=http://$vm_ip:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
+# get VM's IP
+vm_ip=$(<~/coreos-osx/.env/ip_address)
+
 # wait till VM is ready
 echo "Waiting for VM to be ready..."
 spin='-\|/'
 i=0
-until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+#until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 
 #
 echo " "

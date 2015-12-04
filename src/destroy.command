@@ -13,11 +13,16 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 # get VM IP
 vm_ip=$(<~/coreos-osx/.env/ip_address)
 
+# get password for sudo
+my_password=$(security find-generic-password -wa coreos-osx-app)
+# reset sudo
+sudo -k
+
 LOOP=1
 while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
-    echo "VM will be stopped and destroyed !!!"
+    echo "VM will be stopped (if running) and destroyed !!!"
     echo "Do you want to continue [y/n]"
 
     read RESPONSE
@@ -27,26 +32,15 @@ do
     then
         VALID_MAIN=1
 
-        # check VM status
-        status=$(ps aux | grep "[c]oreos-osx/bin/xhyve" | awk '{print $2}')
-        if [[ $status = *[!\ ]* ]]; then
-            echo " "
-            echo "CoreOS VM is running, it will be stopped !!!"
+        # enable sudo
+        echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
-            # Stop VM
-            ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet -o ConnectTimeout=3 core@$vm_ip sudo halt
+        # send halt to VM
+        sudo "${res_folder}"/bin/corectl halt core-01
 
-            # just in case run
-            #clean_up_after_vm >/dev/null 2>&1
-            kill_xhyve >/dev/null 2>&1
-
-            # wait till VM is stopped
-            echo " "
-            echo "Waiting for VM to shutdown..."
-            spin='-\|/'
-            i=0
-            until "${res_folder}"/check_vm_status.command | grep "VM is stopped" >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-        fi
+        # Stop docker registry
+        "${res_folder}"/docker_registry.sh stop
+        kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) > /dev/null 2>&1
 
         # delete root image
         rm -f ~/coreos-osx/root.img

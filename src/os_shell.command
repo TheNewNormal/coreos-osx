@@ -2,14 +2,12 @@
 
 #  Pre-set OS shell
 #
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-source "${DIR}"/functions.sh
 
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
-# get VM IP
-#vm_ip=$(cat ~/coreos-osx/.env/ip_address)
+# get VM's IP
+#vm_ip=$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
 vm_ip=$(<~/coreos-osx/.env/ip_address)
 
 # Set the environment variable for the docker daemon
