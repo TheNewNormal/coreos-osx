@@ -44,6 +44,11 @@ release_channel
 # create ROOT disk
 create_root_disk
 
+echo " "
+corectl ps
+ps aux | grep corectl
+sleep 20
+
 # Stop docker registry first just in case it was running
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
 #
@@ -66,10 +71,10 @@ echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
-sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+sudo COREOS_DEBUG=t corectl load settings/core-01.toml
 
 # get VM IP
-#vm_ip=$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
+#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
 vm_ip=$(cat ~/coreos-osx/.env/ip_address);
 #
 
@@ -94,6 +99,7 @@ spin='-\|/'
 i=0
 until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 #
+sleep 2
 echo " "
 echo "etcdctl ls /:"
 etcdctl --no-sync ls /
@@ -109,16 +115,14 @@ echo "fleetctl list-machines:"
 fleetctl list-machines
 echo " "
 #
-deploy_fleet_unitsenv
+deploy_fleet_units
 #
 
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo " "
-echo "Assigned static VM's IP: $vm_ip"
+echo "Assigned static IP for VM: $vm_ip"
 echo " "
-echo "Docker Registry is on $vm_ip:5000 "
-echo " "
-echo "Enjoy CoreOS VM on your Mac !!!"
+echo "Docker Registry is on: 192.168.64.1:5000 "
 echo " "
 echo "You can control this App via status bar icon... "
 echo " "

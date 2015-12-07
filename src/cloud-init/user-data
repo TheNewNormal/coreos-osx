@@ -1,7 +1,5 @@
 #cloud-config
 
-hostname: core-01
-
 coreos:
   update:
     reboot-strategy: off

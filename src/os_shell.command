@@ -6,8 +6,11 @@
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
 # get VM's IP
-#vm_ip=$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
+#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
 vm_ip=$(<~/coreos-osx/.env/ip_address)
 
 # Set the environment variable for the docker daemon

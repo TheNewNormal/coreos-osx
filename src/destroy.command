@@ -10,6 +10,9 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
 # get VM IP
 vm_ip=$(<~/coreos-osx/.env/ip_address)
 
@@ -22,6 +25,7 @@ LOOP=1
 while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
+    echo " "
     echo "VM will be stopped (if running) and destroyed !!!"
     echo "Do you want to continue [y/n]"
 
@@ -36,7 +40,7 @@ do
         echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
         # send halt to VM
-        sudo "${res_folder}"/bin/corectl halt core-01
+        sudo corectl halt core-01
 
         # Stop docker registry
         "${res_folder}"/docker_registry.sh stop

@@ -10,6 +10,9 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
 # check if iTerm.app exists
 App="/Applications/iTerm.app"
 if [ ! -d "$App" ]
@@ -18,7 +21,7 @@ then
 fi
 
 # copy corectl to bin folder
-cp -f "${res_folder}"/bin/corectl ~/coreos-osx/bin
+cp -f corectl ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/corectl
 
 # copy registry files
@@ -28,12 +31,11 @@ chmod 755 ~/coreos-osx/bin/registry
 
 # check for password in Keychain
 my_password=$(security 2>&1 >/dev/null find-generic-password -wa coreos-osx-app)
-
-#if [ "$my_password" = "security: SecKeychainSearchCopyNext: The specified item could not be found in the keychain." ]
-if [ "$my_password" = "" ]
+if [ "$my_password" = "security: SecKeychainSearchCopyNext: The specified item could not be found in the keychain." ]
+#if [ "$my_password" = "" ]
 then
     echo " "
-    echo "Saved password in 'Keychain' is not found: "
+    echo "Saved password could not be found in the 'Keychain': "
     # save user password to Keychain
     save_password
 fi
@@ -41,11 +43,11 @@ fi
 new_vm=0
 # check if root disk exists, if not create it
 if [ ! -f $HOME/coreos-osx/root.img ]; then
+    echo " "
     echo "ROOT disk does not exist, it will be created now ..."
     create_root_disk
     new_vm=1
 fi
-
 
 # Stop docker registry first just in case it was running
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
@@ -68,19 +70,17 @@ echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
-sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+sudo corectl load settings/core-01.toml
 
 # get VM IP
-#vm_ip=$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
+#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
 vm_ip=$(cat ~/coreos-osx/.env/ip_address);
 
 
 # Set the environment variables
 # docker daemon
-export DOCKER_HOST=tcp://$vm_ip:2375
 
-# path to the bin folder where we store our binary files
-export PATH=${HOME}/coreos-osx/bin:$PATH
+export DOCKER_HOST=tcp://$vm_ip:2375
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://$vm_ip:2379
@@ -88,7 +88,7 @@ export ETCDCTL_PEERS=http://$vm_ip:2379
 echo " "
 echo "Waiting for VM to be ready..."
 spin='-\|/'
-i=0
+i=1
 until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 #
 echo " "
@@ -103,7 +103,7 @@ export FLEETCTL_ENDPOINT=http://$vm_ip:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 #
-sleep 1
+sleep 2
 
 echo "fleetctl list-machines:"
 fleetctl list-machines

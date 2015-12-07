@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "01E2853918A6C4E300BC630D"
-               BuildableName = "CoreOS GUI.app"
+               BuildableName = "CoreOS.app"
                BlueprintName = "CoreOS"
                ReferencedContainer = "container:CoreOS.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "01E2853918A6C4E300BC630D"
-            BuildableName = "CoreOS GUI.app"
+            BuildableName = "CoreOS.app"
             BlueprintName = "CoreOS"
             ReferencedContainer = "container:CoreOS.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "01E2853918A6C4E300BC630D"
-            BuildableName = "CoreOS GUI.app"
+            BuildableName = "CoreOS.app"
             BlueprintName = "CoreOS"
             ReferencedContainer = "container:CoreOS.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "01E2853918A6C4E300BC630D"
-            BuildableName = "CoreOS GUI.app"
+            BuildableName = "CoreOS.app"
             BlueprintName = "CoreOS"
             ReferencedContainer = "container:CoreOS.xcodeproj">
          </BuildableReference>

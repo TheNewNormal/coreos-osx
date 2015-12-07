@@ -2,8 +2,8 @@
 
 #  ssh.command
 
-# get App's Resources folder
-res_folder=$(cat ~/coreos-osx/.env/resouces_path)
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # ssh into VM
-"${res_folder}"/bin/corectl ssh core-01
+corectl ssh core-01

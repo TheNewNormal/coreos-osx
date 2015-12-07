@@ -10,7 +10,7 @@ start() {
 }
 
 stop() {
-    kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
+    kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1
 }
 
 usage() {

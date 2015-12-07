@@ -63,11 +63,14 @@ done
 
 
 create_root_disk() {
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
 # create persistent disk
 cd ~/coreos-osx/
 echo "  "
 echo "Please type ROOT disk size in GBs followed by [ENTER]:"
-echo -n [default is 5]:
+echo -n "[default is 5]: "
 read disk_size
 if [ -z "$disk_size" ]
 then
@@ -75,7 +78,7 @@ then
     echo "Creating 5GB disk ..."
     dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*5120]
 else
-    echo "Creating "$disk_size"GB disk (ould take a while for big disks)..."
+    echo "Creating "$disk_size"GB disk (could take a while for big disks)..."
     dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*$disk_size*1024]
 fi
 #
@@ -91,7 +94,14 @@ echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
 echo " "
 echo "Formating core-01 ROOT disk ..."
-sudo "${res_folder}"/bin/corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' > ~/coreos-osx/.env/ip_address
+
+# get UUID
+#UUID=$(cat ~/coreos-osx/settings/core-01.toml | grep "uuid =" | sed -e 's/uuid = "\(.*\)"/\1/' | tr -d ' ')
+
+#sudo corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' | tr -d "\n" > ~/coreos-osx/.env/ip_address
+sudo corectl load settings/format-root.toml
+corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/' | tr -d "\n" > ~/coreos-osx/.env/ip_address
+sudo corectl halt core-01
 
 echo " "
 echo "ROOT disk got created and formated... "
@@ -212,6 +222,9 @@ security add-generic-password -a coreos-osx-app -s coreos-osx-app -w $my_passwor
 function clean_up_after_vm {
 sleep 1
 
+# path to the bin folder where we store our binary files
+export PATH=${HOME}/coreos-osx/bin:$PATH
+
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
@@ -223,7 +236,7 @@ sudo -k
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
 # send halt to VM
-sudo "${res_folder}"/bin/corectl halt core-01
+sudo corectl halt core-01
 
 # Stop docker registry
 "${res_folder}"/docker_registry.sh stop
