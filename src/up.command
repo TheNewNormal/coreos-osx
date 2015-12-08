@@ -21,7 +21,7 @@ then
 fi
 
 # copy corectl to bin folder
-cp -f corectl ~/coreos-osx/bin
+cp -f "${res_folder}"/bin/corectl ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/corectl
 
 # copy registry files
@@ -118,6 +118,7 @@ fi
 # deploy fleet units from my_fleet folder
 deploy_my_fleet_units
 
+sleep 1
 #
 echo "fleetctl list-units:"
 fleetctl list-units

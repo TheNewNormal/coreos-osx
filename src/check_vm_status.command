@@ -13,7 +13,7 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 status=$(corectl ps -j | "${res_folder}"/bin/jq ".[] | select(.Name==\"core-01\") | .Detached")
 
 if [ "$status" = "" ]; then
-    echo -n "VM is stopped"
+    echo -n "VM is Off"
 else
     echo -n "VM is running"
 fi

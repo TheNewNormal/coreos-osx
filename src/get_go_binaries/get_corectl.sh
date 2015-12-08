@@ -4,6 +4,8 @@
 
 current_folder=$(pwd)
 
+rm -rf $GOPATH/src/github.com/TheNewNormal/corectl
+
 #
 mkdir -p $GOPATH/src/github.com/TheNewNormal
 #

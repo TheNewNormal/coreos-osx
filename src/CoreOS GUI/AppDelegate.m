@@ -323,7 +323,7 @@
     NSString *app_version = [NSString stringWithFormat:@"%@%@", @"v", version];
     
     NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for OS X", app_version];
-    NSString *infoText = @"It is a simple wrapper around the xhyve + CoreOS VM, which allows to control VM via the Status Bar App !!!";
+    NSString *infoText = @"It is a simple wrapper around the corectl + CoreOS VM, which allows to control VM via the Status Bar App !!!";
     [self displayWithMessage:mText infoText:infoText];
 }
 
@@ -554,7 +554,7 @@
     string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     NSLog (@"Show VM status:\n%@", string);
     
-    if ( [string  isEqual: @"VM is stopped"] ) {
+    if ( [string  isEqual: @"VM is Off"] ) {
         return 0;
     } else {
         return 1;

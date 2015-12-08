@@ -44,11 +44,6 @@ release_channel
 # create ROOT disk
 create_root_disk
 
-echo " "
-corectl ps
-ps aux | grep corectl
-sleep 20
-
 # Stop docker registry first just in case it was running
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
 #
@@ -71,7 +66,7 @@ echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
-sudo COREOS_DEBUG=t corectl load settings/core-01.toml
+sudo corectl load settings/core-01.toml
 
 # get VM IP
 #vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
