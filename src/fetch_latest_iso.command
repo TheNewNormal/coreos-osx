@@ -18,4 +18,6 @@ echo " "
 corectl pull --channel="$CHANNEL"
 #
 echo " "
+echo "You need to reload your VM to be booted from the lastest version !!! "
+echo " "
 pause 'Press [Enter] key to continue...'

@@ -21,7 +21,7 @@ echo " "
 echo "Stopping VM ..."
 # send halt to VM
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-sudo corectl halt core-01
+sudo "${res_folder}"/bin/corectl halt core-01
 
 sleep 2
 
@@ -30,7 +30,7 @@ cd ~/coreos-osx
 echo " "
 echo "Starting VM ..."
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-sudo corectl load settings/core-01.toml
+sudo "${res_folder}"/bin/corectl load settings/core-01.toml
 echo " "
 
 # get VM's IP

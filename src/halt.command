@@ -16,7 +16,7 @@ sudo -k
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
 # send halt to VM
-sudo corectl halt core-01
+sudo "${res_folder}"/bin/corectl halt core-01
 
 # Stop docker registry
 "${res_folder}"/docker_registry.sh stop
