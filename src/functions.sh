@@ -107,11 +107,15 @@ rm -rf ~/.coreos/running/$UUID
 sudo "${res_folder}"/bin/corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' | tr -d "\n" > ~/coreos-osx/.env/ip_address
 spin='-\|/'
 i=1
-while [[ "$('${res_folder}'/bin/corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
+#while [[ "$('${res_folder}'/bin/corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
+while [[ "$(corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
 do
     printf "\r${spin:$i:1}"
     sleep .1
 done
+
+sleep 2
+
 # cleanup
 rm -rf ~/.coreos/running/$UUID
 

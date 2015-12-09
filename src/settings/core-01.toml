@@ -1,5 +1,5 @@
 [core-01]
-   uuid = "4420CA07-3C45-4110-86D7-D999D9FB6E2E"
+   uuid = "D1024138-F21A-4C61-8F40-ADCFC358D942"
    channel = "alpha"
    root = "root.img"
    cloud_config = "cloud-init/user-data"
