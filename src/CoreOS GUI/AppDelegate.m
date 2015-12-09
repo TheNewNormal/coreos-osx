@@ -44,6 +44,11 @@
                                                 contents:app_version
                                               attributes:nil];
         
+        // kill VM just in case it was left running from the previous instance
+        NSString *scriptName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runScript:scriptName = @"kill_VM" arguments:arguments = @""];
+        
         [self showVMStatus];
     }
     else
@@ -71,7 +76,7 @@
 
 - (IBAction)Start:(id)sender {
     int vm_status=[self checkVMStatus];
-    //NSLog (@"VM status:\n%d", vm_status);
+    NSLog (@"VM status:\n%d", vm_status);
     
     if (vm_status == 0) {
         NSLog (@"VM is Off");
@@ -554,7 +559,7 @@
     string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
     NSLog (@"Show VM status:\n%@", string);
     
-    if ( [string  isEqual: @"VM is Off"] ) {
+    if ( [string  isEqual: @"VM is stopped"] ) {
         return 0;
     } else {
         return 1;
@@ -583,7 +588,7 @@
     
     NSString *string;
     string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    //NSLog (@"Returned:\n%@", string);
+    NSLog (@"Returned:\n%@", string);
     
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];

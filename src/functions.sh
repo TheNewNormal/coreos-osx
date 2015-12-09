@@ -102,30 +102,34 @@ echo "Formating core-01 ROOT disk ..."
 # get UUID
 UUID=$(cat ~/coreos-osx/settings/core-01.toml | grep "uuid =" | sed -e 's/uuid = "\(.*\)"/\1/' | tr -d ' ')
 # cleanup
-rm -rf ~/.coreos/$"UUID"
+rm -rf ~/.coreos/running/$UUID
 # start VM
-sudo corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' | tr -d "\n" > ~/coreos-osx/.env/ip_address
+sudo "${res_folder}"/bin/corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' | tr -d "\n" > ~/coreos-osx/.env/ip_address
 spin='-\|/'
 i=1
+#while [[ "$('${res_folder}'/bin/corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
 while [[ "$(corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
 do
     printf "\r${spin:$i:1}"
     sleep .1
 done
+
+sleep 2
+
 # cleanup
-rm -rf ~/.coreos/$"UUID"
+rm -rf ~/.coreos/running/$UUID
 
 # option 2
-#sudo corectl load settings/format-root.toml
+#sudo "${res_folder}"/bin/corectl load settings/format-root.toml
 #sleep 2
-#while [[ "$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .Detached")" != "true" ]]
+#while [[ "$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .Detached")" != "true" ]]
 #do
 #    sleep 1
 #done
 # get VM's IP
 #corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/' | tr -d "\n" > ~/coreos-osx/.env/ip_address
 # halt VM
-#sudo corectl halt core-01
+#sudo "${res_folder}"/bin/corectl halt core-01
 
 echo " "
 echo "ROOT disk got created and formated... "
@@ -260,7 +264,7 @@ sudo -k
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
 # send halt to VM
-sudo corectl halt core-01
+sudo "${res_folder}"/bin/corectl halt core-01
 
 # Stop docker registry
 "${res_folder}"/docker_registry.sh stop

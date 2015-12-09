@@ -70,7 +70,7 @@ echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
-sudo corectl load settings/core-01.toml
+sudo "${res_folder}"/bin/corectl load settings/core-01.toml
 
 # get VM IP
 #vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
