@@ -42,9 +42,6 @@ export FLEETCTL_ENDPOINT=http://$vm_ip:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 
-# get VM's IP
-vm_ip=$(<~/coreos-osx/.env/ip_address)
-
 # wait till VM is ready
 echo "Waiting for VM to be ready..."
 spin='-\|/'

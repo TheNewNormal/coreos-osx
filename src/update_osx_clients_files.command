@@ -17,7 +17,7 @@ vm_ip=$(cat ~/coreos-osx/.env/ip_address)
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # copy files to ~/coreos-osx/bin
-cp -f "${res_folder}"/files/* ~/coreos-osx/bin
+cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/*
 
 # download latest versions of fleetctl and docker clients

@@ -82,9 +82,6 @@ download_osx_clients
 # docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
 
-# path to the bin folder where we store our binary files
-export PATH=${HOME}/coreos-osx/bin:$PATH
-
 # set etcd endpoint
 export ETCDCTL_PEERS=http://$vm_ip:2379
 # wait till VM is ready

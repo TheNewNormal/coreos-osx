@@ -78,7 +78,8 @@ then
     echo "Creating 5GB disk ..."
     dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*5120]
 else
-    echo "Creating "$disk_size"GB disk (could take a while for big disks)..."
+    echo " "
+    echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
     dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*$disk_size*1024]
 fi
 #
@@ -94,7 +95,6 @@ echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
 echo " "
 echo "Formating core-01 ROOT disk ..."
-
 
 ## start VM
 

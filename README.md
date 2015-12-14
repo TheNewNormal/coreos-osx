@@ -42,7 +42,7 @@ Open downloaded `dmg` file and drag the App e.g. to your Desktop. Start the `Cor
 
 **The install will do the following:**
 
-- All dependent files/folders will be put under "coreos-osx" folder in the user's home folder e.g /Users/someuser/coreos-osx
+- All dependent files/folders will be put under `coreos-osx` folder in the user's home folder e.g /Users/someuser/coreos-osx
 - Mac user home folder is automaticly mounted to VM: `/Users/my_user` can be accessed on VM via the same `/Users/my_user`, it is very handy for using docker mounted volumes 
 - User's Mac password will be stored in `OS X Keychain`, it will be used to pass to `sudo` command which needs to be used starting the VM, this allows to avoid using `sudo` for `corectl` to start a VM. 
 - ISO images are stored under `~/.coreos/images`
