@@ -10,6 +10,9 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# add ssh key to Keychain
+ssh-add -K ~/.ssh/id_rsa &>/dev/null
+
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
 

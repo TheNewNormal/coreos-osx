@@ -5,7 +5,7 @@
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 start() {
-    echo "Starting docker registry on 192.168.64.1:5000 ..."
+    echo "Starting Docker Registry v2 on 192.168.64.1:5000 ..."
     nohup registry config.yml >/dev/null 2>&1 &
 }
 

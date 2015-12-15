@@ -34,6 +34,9 @@ echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-
 echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/format-root.toml
 #
 
+# add ssh key to Keychain
+ssh-add -K ~/.ssh/id_rsa &>/dev/null
+
 # save user password to Keychain
 save_password
 #

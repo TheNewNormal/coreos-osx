@@ -6,6 +6,9 @@
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# add ssh key to Keychain
+ssh-add -K ~/.ssh/id_rsa &>/dev/null
+
 # get VM's IP
 #vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
 vm_ip=$(<~/coreos-osx/.env/ip_address)
