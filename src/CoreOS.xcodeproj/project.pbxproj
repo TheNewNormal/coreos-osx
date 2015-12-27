@@ -35,6 +35,7 @@
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
 		131C2B7F1BD686CB002FF9BE /* fleet in Resources */ = {isa = PBXBuildFile; fileRef = 131C2B7E1BD686CB002FF9BE /* fleet */; };
 		134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */; };
+		134D10EA1C306D8F00A479A0 /* change_sudo_password.command in Resources */ = {isa = PBXBuildFile; fileRef = 134D10E91C306D8F00A479A0 /* change_sudo_password.command */; };
 		137018AC1C11E9D00002B2B9 /* cloud-init in Resources */ = {isa = PBXBuildFile; fileRef = 137018AB1C11E9D00002B2B9 /* cloud-init */; };
 		137018B21C11F0DE0002B2B9 /* registry in Resources */ = {isa = PBXBuildFile; fileRef = 137018B11C11F0DE0002B2B9 /* registry */; };
 		137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */ = {isa = PBXBuildFile; fileRef = 137018B31C11F1FD0002B2B9 /* docker_registry.sh */; };
@@ -79,6 +80,7 @@
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		131C2B7E1BD686CB002FF9BE /* fleet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fleet; sourceTree = SOURCE_ROOT; };
 		134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = upload_docker_images.command; sourceTree = "<group>"; };
+		134D10E91C306D8F00A479A0 /* change_sudo_password.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sudo_password.command; sourceTree = "<group>"; };
 		137018AB1C11E9D00002B2B9 /* cloud-init */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "cloud-init"; sourceTree = SOURCE_ROOT; };
 		137018B11C11F0DE0002B2B9 /* registry */ = {isa = PBXFileReference; lastKnownFileType = folder; path = registry; sourceTree = SOURCE_ROOT; };
 		137018B31C11F1FD0002B2B9 /* docker_registry.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = docker_registry.sh; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				137018B31C11F1FD0002B2B9 /* docker_registry.sh */,
 				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
+				134D10E91C306D8F00A479A0 /* change_sudo_password.command */,
 				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
 				01CFC2DC1A2AA48300F251C2 /* destroy.command */,
@@ -296,6 +299,7 @@
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */,
+				134D10EA1C306D8F00A479A0 /* change_sudo_password.command in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
