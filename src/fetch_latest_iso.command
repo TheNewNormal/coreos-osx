@@ -15,9 +15,13 @@ echo " "
 echo "Fetching lastest CoreOS $CHANNEL channel ISO ..."
 echo " "
 #
-corectl pull --channel="$CHANNEL"
+corectl pull --channel="$CHANNEL" 2>&1 | tee ~/coreos-osx/tmp/check_channel
+CHECK_CHANNEL=$(cat ~/coreos-osx/tmp/check_channel | grep "already available")
 #
-echo " "
-echo "You need to reload your VM to be booted from the lastest version !!! "
+if [[ "$CHECK_CHANNEL" == "" ]]; then
+    echo " "
+    echo "You need to reload your VM to be booted from the lastest version !!! "
+    rm -f ~/coreos-osx/tmp/check_channel
+fi
 echo " "
 pause 'Press [Enter] key to continue...'

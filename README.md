@@ -3,7 +3,7 @@ CoreOS VM for OS X
 
 ***CoreOS VM for OS X App has a new home, it is now under https://github.com/TheNewNormal organisation***
 
-**CoreOS VM for OS X** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/mist64/xhyve) based VMs). 
+**CoreOS VM for OS X** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/xhyve-xyz/xhyve) based VMs). 
 
 It includes [Docker Registry v2](https://github.com/docker/distribution) (Go based and compiled for OS X)
 
@@ -95,13 +95,13 @@ and docker-exec shell scripts are stored
 
 Credits
 -----------
-* To [António Meireles](https://github.com/AntonioMeireles) for his awesome [corectl](https://github.com/TheNewNormal/corectl) tool to easily control [xhyve](https://github.com/mist64/xhyve)
+* To [António Meireles](https://github.com/AntonioMeireles) for his awesome [corectl](https://github.com/TheNewNormal/corectl) tool to easily control [xhyve](https://github.com/xhyve-xyz/xhyve)
 * To [Michael Steil](https://github.com/mist64) for the awesome [xhyve](https://github.com/mist64/xhyve) lightweight OS X virtualization solution
 * To Kelsey Hightower for [Docker Registry OS X Setup Guide](https://github.com/kelseyhightower/docker-registry-osx-setup-guide).
 
 
 Other CoreOS VM based Apps
 -----------
-* Cluster one CoreOS VM App can be found here [CoreOS Cluster for OSX](https://github.com/rimusz/coreos-osx-cluster).
-* Kubernetes Solo Cluster VM App (corectl based) can be found here [Kube Solo](https://github.com/TheNewNormal/kube-solo-osx).
-* Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster for OSX ](https://github.com/rimusz/coreos-osx-kubernetes-cluster).
+* Cluster one CoreOS VM App can be found here [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
+* Kubernetes Solo Cluster VM App (corectl based) can be found here [Kube Solo for OS X](https://github.com/TheNewNormal/kube-solo-osx).
+* Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster for OS X ](https://github.com/rimusz/coreos-osx-kubernetes-cluster).

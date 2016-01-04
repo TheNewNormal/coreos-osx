@@ -76,11 +76,13 @@ if [ -z "$disk_size" ]
 then
     echo " "
     echo "Creating 5GB disk ..."
-    dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*5120]
+#    dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*5120]
+    dd if=/dev/zero of=root.img bs=1m count=$[5120]
 else
     echo " "
     echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
-    dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*$disk_size*1024]
+#    dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*$disk_size*1024]
+    dd if=/dev/zero of=root.img bs=1m count=$[$disk_size*1024]
 fi
 #
 
@@ -137,26 +139,7 @@ echo "---"
 
 }
 
-
-function download_osx_clients() {
-# download fleetctl file
-LATEST_RELEASE=$(corectl ssh core-01 "fleetctl version" | cut -d " " -f 3- | tr -d '\r')
-cd ~/coreos-osx/bin
-echo "Downloading fleetctl v$LATEST_RELEASE for OS X"
-curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST_RELEASE/fleet-v$LATEST_RELEASE-darwin-amd64.zip"
-unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl"
-rm -f fleet.zip
-echo "fleetctl was copied to ~/coreos-osx/bin "
-#
-
-echo " "
-# download docker file
-DOCKER_VERSION=$(corectl ssh core-01 'docker version' | grep 'Server version:' | cut -d " " -f 3- | tr -d '\r' | sed 's/^[ \t]*//;s/[ \t]*$//' )
-
-if [ "$DOCKER_VERSION" = "" ]
-then
-    DOCKER_VERSION=$(corectl ssh core-01 'docker version' | grep 'Version:' | cut -d " " -f 3- | tr -d '\r' | head -1 | sed 's/^[ \t]*//;s/[ \t]*$//' )
-fi
+function download_osx_docker() {
 
 CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
 if [ -n "$CHECK_DOCKER_RC" ]
@@ -165,22 +148,80 @@ then
     if [ -n "$(curl -s --head https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION | head -n 1 | grep "HTTP/1.[01] [23].." | grep 200)" ]
     then
         # we check if RC is still available
+        echo " "
         echo "Downloading docker $DOCKER_VERSION client for OS X"
         curl -o ~/coreos-osx/bin/docker https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
     else
         # RC is not available anymore, so we download stable release
+        echo " "
         DOCKER_VERSION_STABLE=$(echo $DOCKER_VERSION | cut -d"-" -f1)
         echo "Downloading docker $DOCKER_VERSION_STABLE client for OS X"
         curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION_STABLE
     fi
 else
-    # docker stable release
-    echo "Downloading docker $DOCKER_VERSION client for OS X"
-    curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+# docker stable release
+echo "Downloading docker $DOCKER_VERSION client for OS X"
+curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
 fi
 # Make it executable
 chmod +x ~/coreos-osx/bin/docker
-echo "docker was copied to ~/coreos-osx/bin"
+
+}
+
+
+function download_osx_clients() {
+# download fleetctl file
+FLEETCTL_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'fleetctl --version' | awk '{print $3}' | tr -d '\r')
+# check if the binary exists
+if [ ! -f ~/coreos-osx/bin/fleetctl ]; then
+    cd ~/coreos-osx/bin
+    echo "Downloading fleetctl v$FLEETCTL_VERSION for OS X"
+    curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$FLEETCTL_VERSION/fleet-v$FLEETCTL_VERSION-darwin-amd64.zip"
+    unzip -j -o "fleet.zip" "fleet-v$FLEETCTL_VERSION-darwin-amd64/fleetctl" > /dev/null 2>&1
+    rm -f fleet.zip
+    osx_clients_upgrade=1
+else
+    # we check the version of the binary
+    INSTALLED_VERSION=$(~/coreos-osx/bin/fleetctl --version | awk '{print $3}' | tr -d '\r')
+    MATCH=$(echo "${INSTALLED_VERSION}" | grep -c "${FLEETCTL_VERSION}")
+    if [ $MATCH -eq 0 ]; then
+        # the version is different
+        cd ~/coreos-osx/bin
+        echo "Downloading fleetctl v$FLEETCTL_VERSION for OS X"
+        curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$FLEETCTL_VERSION/fleet-v$FLEETCTL_VERSION-darwin-amd64.zip"
+        unzip -j -o "fleet.zip" "fleet-v$FLEETCTL_VERSION-darwin-amd64/fleetctl" > /dev/null 2>&1
+        rm -f fleet.zip
+        osx_clients_upgrade=1
+    else
+        echo " "
+        echo "OS X fleetctl client is up to date with VM's version ..."
+    fi
+fi
+
+# download docker file
+# check docker server version
+DOCKER_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | sed -n 2p )
+# check if the binary exists
+if [ ! -f ~/coreos-osx/bin/docker ]; then
+    cd ~/coreos-osx/bin
+    download_osx_docker
+    osx_clients_upgrade=1
+else
+    # docker client version
+    INSTALLED_VERSION=$(~/coreos-osx/bin/docker version | grep 'Version:' | awk '{print $2}' | tr -d '\r' | head -1 )
+    MATCH=$(echo "${INSTALLED_VERSION}" | grep -c "${DOCKER_VERSION}")
+    if [ $MATCH -eq 0 ]; then
+        # the version is different
+        cd ~/coreos-osx/bin
+        download_osx_docker
+        osx_clients_upgrade=1
+    else
+        echo " "
+        echo "OS X docker client is up to date with VM's version ..."
+    fi
+fi
+
+
 }
 
 
@@ -264,7 +305,7 @@ sudo -k
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
 # send halt to VM
-sudo "${res_folder}"/bin/corectl halt core-01
+sudo "${res_folder}"/bin/corectl halt core-01 > /dev/null 2>&1
 
 # Stop docker registry
 "${res_folder}"/docker_registry.sh stop

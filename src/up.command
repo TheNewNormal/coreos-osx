@@ -82,7 +82,6 @@ vm_ip=$(cat ~/coreos-osx/.env/ip_address);
 
 # Set the environment variables
 # docker daemon
-
 export DOCKER_HOST=tcp://$vm_ip:2375
 
 # set etcd endpoint
