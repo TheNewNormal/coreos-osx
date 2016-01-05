@@ -97,43 +97,30 @@ echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
 echo " "
 echo "Formating core-01 ROOT disk ..."
-
-## start VM
-
-# option 1
+# multi user workaround
+sudo sed -i.bak '/^$/d' /etc/exports
+sudo sed -i.bak '/Users.*/d' /etc/exports
+#
 # get UUID
 UUID=$(cat ~/coreos-osx/settings/core-01.toml | grep "uuid =" | sed -e 's/uuid = "\(.*\)"/\1/' | tr -d ' ')
 # cleanup
 rm -rf ~/.coreos/running/$UUID
 # start VM
-sudo "${res_folder}"/bin/corectl load settings/format-root.toml 2>&1 | grep IP | awk -v FS="(IP | and)" '{print $2}' | tr -d "\n" > ~/coreos-osx/.env/ip_address
-spin='-\|/'
-i=1
-#while [[ "$('${res_folder}'/bin/corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
-while [[ "$(corectl ps 2>&1 | grep '[c]ore-01')" != "" ]]
-do
-    printf "\r${spin:$i:1}"
-    sleep .1
-done
-
+sudo "${res_folder}"/bin/corectl load settings/format-root.toml
+# format disk
+"${res_folder}"/bin/corectl ssh core-01 "sudo /usr/sbin/mkfs.ext4 -L ROOT /dev/vda"
+# get VM's IP
+"${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
+#
 sleep 2
-
+#
+# halt VM
+sudo "${res_folder}"/bin/corectl halt core-01
+#
+sleep 2
 # cleanup
 rm -rf ~/.coreos/running/$UUID
-
-# option 2
-#sudo "${res_folder}"/bin/corectl load settings/format-root.toml
-#sleep 2
-#while [[ "$("${res_folder}"/bin/corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .Detached")" != "true" ]]
-#do
-#    sleep 1
-#done
-# get VM's IP
-#corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/' | tr -d "\n" > ~/coreos-osx/.env/ip_address
-# halt VM
-#sudo "${res_folder}"/bin/corectl halt core-01
-
-echo " "
+#echo " "
 echo "ROOT disk got created and formated... "
 echo "---"
 
