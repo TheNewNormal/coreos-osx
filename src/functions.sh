@@ -76,13 +76,13 @@ if [ -z "$disk_size" ]
 then
     echo " "
     echo "Creating 5GB disk ..."
-#    dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*5120]
-    dd if=/dev/zero of=root.img bs=1m count=$[5120]
+    mkfile 5g root.img
+    echo "Created 5GB ROOT disk"
 else
     echo " "
     echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
-#    dd if=/dev/zero of=root.img bs=1024 count=0 seek=$[1024*$disk_size*1024]
-    dd if=/dev/zero of=root.img bs=1m count=$[$disk_size*1024]
+    mkfile "$disk_size"g root.img
+    echo "Created "$disk_size"GB ROOT disk"
 fi
 #
 
@@ -105,6 +105,8 @@ sudo sed -i.bak '/Users.*/d' /etc/exports
 UUID=$(cat ~/coreos-osx/settings/core-01.toml | grep "uuid =" | sed -e 's/uuid = "\(.*\)"/\1/' | tr -d ' ')
 # cleanup
 rm -rf ~/.coreos/running/$UUID
+# copy user-data-format-root
+cp -f "${res_folder}"/cloud-init/user-data-format-root ~/coreos-osx/cloud-init
 # start VM
 sudo "${res_folder}"/bin/corectl load settings/format-root.toml
 # format disk
