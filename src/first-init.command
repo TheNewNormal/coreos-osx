@@ -77,8 +77,9 @@ sudo sed -i.bak '/Users.*/d' /etc/exports
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml
 
 # get VM IP
-#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
-vm_ip=$(cat ~/coreos-osx/.env/ip_address);
+vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
+# save VM's IP
+"${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 #
 
 echo " "

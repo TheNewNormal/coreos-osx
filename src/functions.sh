@@ -111,7 +111,7 @@ cp -f "${res_folder}"/cloud-init/user-data-format-root ~/coreos-osx/cloud-init
 sudo "${res_folder}"/bin/corectl load settings/format-root.toml
 # format disk
 "${res_folder}"/bin/corectl ssh core-01 "sudo /usr/sbin/mkfs.ext4 -L ROOT /dev/vda"
-# get VM's IP
+# save VM's IP
 "${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 #
 sleep 2
