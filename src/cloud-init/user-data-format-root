@@ -1,8 +1,0 @@
-#cloud-config
-
-#hostname: core-01
-
-coreos:
-  units:
-    - name: update-engine.service
-      command: stop

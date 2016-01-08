@@ -46,8 +46,8 @@ do
         "${res_folder}"/docker_registry.sh stop
         kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) > /dev/null 2>&1
 
-        # delete root image
-        rm -f ~/coreos-osx/root.img
+        # delete data image
+        rm -f ~/coreos-osx/data.img
 
         # delete password in keychain
         security 2>&1 >/dev/null delete-generic-password -a coreos-osx-app 2>&1 >/dev/null

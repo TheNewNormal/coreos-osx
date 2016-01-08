@@ -31,7 +31,6 @@ done
 echo " "
 echo "$file found, updating setting files ..."
 echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-01.toml
-echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/format-root.toml
 #
 
 # add ssh key to Keychain
@@ -45,7 +44,7 @@ save_password
 release_channel
 
 # create ROOT disk
-create_root_disk
+create_data_disk
 
 # Stop docker registry first just in case it was running
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
@@ -68,10 +67,6 @@ echo " "
 echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-
-# multi user workaround
-sudo sed -i.bak '/^$/d' /etc/exports
-sudo sed -i.bak '/Users.*/d' /etc/exports
 
 #
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml

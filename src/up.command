@@ -44,11 +44,11 @@ then
 fi
 
 new_vm=0
-# check if root disk exists, if not create it
-if [ ! -f $HOME/coreos-osx/root.img ]; then
+# check if data disk exists, if not create it
+if [ ! -f $HOME/coreos-osx/data.img ]; then
     echo " "
-    echo "ROOT disk does not exist, it will be created now ..."
-    create_root_disk
+    echo "Data disk does not exist, it will be created now ..."
+    create_data_disk
     new_vm=1
 fi
 
@@ -72,10 +72,6 @@ echo " "
 echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-
-# multi user workaround
-sudo sed -i.bak '/^$/d' /etc/exports
-sudo sed -i.bak '/Users.*/d' /etc/exports
 
 #
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml

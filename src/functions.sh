@@ -62,69 +62,32 @@ done
 }
 
 
-create_root_disk() {
+create_data_disk() {
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # create persistent disk
 cd ~/coreos-osx/
 echo "  "
-echo "Please type ROOT disk size in GBs followed by [ENTER]:"
+echo "Please type Data disk size in GBs followed by [ENTER]:"
 echo -n "[default is 5]: "
 read disk_size
 if [ -z "$disk_size" ]
 then
     echo " "
     echo "Creating 5GB disk ..."
-    mkfile 5g root.img
-    echo "Created 5GB ROOT disk"
+    mkfile 5g data.img
+    echo "-"
+    echo "Created 5GB Data disk"
 else
     echo " "
     echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
-    mkfile "$disk_size"g root.img
-    echo "Created "$disk_size"GB ROOT disk"
+    mkfile "$disk_size"g data.img
+    echo "-"
+    echo "Created "$disk_size"GB Data disk"
 fi
-#
-
-### format ROOT disk
-
-# Get password
-my_password=$(security find-generic-password -wa coreos-osx-app)
-# reset sudo
-sudo -k > /dev/null 2>&1
-#
-echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-#
 echo " "
-echo "Formating core-01 ROOT disk ..."
-# multi user workaround
-sudo sed -i.bak '/^$/d' /etc/exports
-sudo sed -i.bak '/Users.*/d' /etc/exports
 #
-# get UUID
-UUID=$(cat ~/coreos-osx/settings/core-01.toml | grep "uuid =" | sed -e 's/uuid = "\(.*\)"/\1/' | tr -d ' ')
-# cleanup
-rm -rf ~/.coreos/running/$UUID
-# copy user-data-format-root
-cp -f "${res_folder}"/cloud-init/user-data-format-root ~/coreos-osx/cloud-init
-# start VM
-sudo "${res_folder}"/bin/corectl load settings/format-root.toml
-# format disk
-"${res_folder}"/bin/corectl ssh core-01 "sudo /usr/sbin/mkfs.ext4 -L ROOT /dev/vda"
-# save VM's IP
-"${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
-#
-sleep 2
-#
-# halt VM
-sudo "${res_folder}"/bin/corectl halt core-01
-#
-sleep 2
-# cleanup
-rm -rf ~/.coreos/running/$UUID
-#echo " "
-echo "ROOT disk got created and formated... "
-echo "---"
 
 }
 
