@@ -68,7 +68,7 @@ How it works
 Just start `CoreOS OSX GUI ` application and you will find a small icon with the CoreOS logo with `h`in the Status Bar.
 
 * There you can `Up`, `Halt`, `Reload` CoreOS VM
-* `SSH to core-01` (vagrant ssh) will open VM shell
+* `SSH to core-01` will open VM shell
 * Under `Up` OS Shell will be opened when VM boot finishes up and it will have such environment pre-set:
 
 ```
