@@ -22,6 +22,7 @@ How to install CoreOS VM for OS X
  -----------
   - **OS X 10.10.3** Yosemite or later 
   - Mac 2010 or later for this to work.
+  - Vagrant if you want to mount your Mac user folder inside your CoreOS VM
   - If you want to use this App with any other VirtualBox based VM, you need to use newest versions of VirtualBox 4.3.x or 5.0.x.
 
 
@@ -68,7 +69,7 @@ How it works
 Just start `CoreOS OSX GUI ` application and you will find a small icon with the CoreOS logo with `h`in the Status Bar.
 
 * There you can `Up`, `Halt`, `Reload` CoreOS VM
-* `SSH to core-01` (vagrant ssh) will open VM shell
+* `SSH to core-01` (vagrant ssh) will open VM shell. Note this requires [Vagrant](https://www.vagrantup.com/) to be installed
 * Under `Up` OS Shell will be opened when VM boot finishes up and it will have such environment pre-set:
 
 ```
@@ -92,6 +93,23 @@ and docker-exec shell scripts are stored
 * Local Docker Registry v2 (Go based and compiled for  OS X) is running on `192.168.64.1:5000`, which gets started/stopped on each VM Up/Halt.
 * This App has as much automation as possible to make easier to use CoreOS on OS X, e.g. you can change CoreOS release channel and reload VM as `root` persistant disk for VM will be created and mounted to `/` so data will survive VM reboots.
 
+Troubleshooting
+-----------
+
+**Mac user folder fails to mount inside the CoreOS VM**
+
+If you have not installed [Vagrant](https://www.vagrantup.com/), when you SSH into your CoreOS VM you will see the following message:
+
+```
+bash-3.2$ /Applications/CoreOS.app/Contents/Resources/ssh.command; exit;
+Last login: Sat Jan  9 05:03:57 2016 from 192.168.64.1
+CoreOS stable (835.9.0)
+Update Strategy: No Reboots
+Failed Units: 1
+  Users.mount
+```
+
+Nothing will be mounted under ``/Users``. To fix this, exit, download and install Vagrant and try it again. If successful the ``Failed Units`` message will no longer appear and the contents of your Mac ``/Users/`` folder will appear under ``/Users/`` in your shell.
 
 Credits
 -----------
