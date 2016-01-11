@@ -30,7 +30,10 @@ cd ~/coreos-osx
 echo " "
 echo "Starting VM ..."
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
+#
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+# check id /Users/homefolder is mounted, if not mount it
+"${res_folder}"/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 echo " "
 
 # get VM's IP

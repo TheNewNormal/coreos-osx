@@ -17,21 +17,7 @@ echo " "
 echo "Setting up CoreOS VM on OS X"
 
 # add ssh key to *.toml files
-echo " "
-echo "Reading ssh key from $HOME/.ssh/id_rsa.pub ..."
-file="$HOME/.ssh/id_rsa.pub"
-
-while [ ! -f "$file" ]
-do
-    echo "$file not found."
-    echo "please run 'ssh-keygen -t rsa' before you continue !!!"
-    pause 'Press [Enter] key to continue...'
-done
-
-echo " "
-echo "$file found, updating setting files ..."
-echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-01.toml
-#
+sshkey
 
 # add ssh key to Keychain
 ssh-add -K ~/.ssh/id_rsa &>/dev/null
@@ -67,9 +53,10 @@ echo " "
 echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-
 #
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+# check id /Users/homefolder is mounted, if not mount it
+"${res_folder}"/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 
 # get VM IP
 vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
