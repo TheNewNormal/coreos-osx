@@ -59,7 +59,14 @@ That allows to share the same images between different `corectl` based Apps and 
 - Will install [Fleet-UI](http://fleetui.com) and [DockerUI](https://github.com/crosbymichael/dockerui) via unit files
 - Via assigned static IP (it will be shown in first boot and will survive VM's reboots) you can access any port on CoreOS VM
 - user-data file enables docker flag `--insecure-registry` to access insecure registries.
-- Root persistant disk will be created and mounted to `/` so data will survive VM reboots. 
+- Persistant disk `data.img` will be created and mounted to `/data` for these mount binds:
+
+```
+/data/var/lib/docker -> /var/lib/docker
+/data/var/lib/rkt -> /var/lib/rkt
+/data/var/lib/etcd2 -> /var/lib/etcd2
+/data/opt/bin -> /opt/bin
+```
 
 
 How it works

@@ -10,6 +10,9 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
+# add ssh key to *.toml files
+sshkey
+
 # add ssh key to Keychain
 ssh-add -K ~/.ssh/id_rsa &>/dev/null
 
@@ -23,19 +26,28 @@ then
     unzip "${res_folder}"/files/iTerm2.zip -d /Applications/
 fi
 
-# copy corectl to bin folder
-cp -f "${res_folder}"/bin/corectl ~/coreos-osx/bin
-chmod 755 ~/coreos-osx/bin/corectl
-
+# copy bin files to bin folder
+cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
+chmod 755 ~/coreos-osx/bin/*
 # copy registry files
 cp -f "${res_folder}"/registry/config.yml ~/coreos-osx/registry
 cp -f "${res_folder}"/bin/registry ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/registry
+## copy user-data
+rm -f ~/coreos-osx/cloud-init/*
+cp -f "${res_folder}"/cloud-init/* ~/coreos-osx/cloud-init
+### copy and update settings
+used_channel=$(cat ~/coreos-osx/settings/core-01.toml | grep channel | cut -f 2 -d"=" | awk -F '"' '{print $2}' )
+rm -f ~/coreos-osx/settings/*
+cp -f "${res_folder}"/settings/* ~/coreos-osx/settings
+# restore coreos channel and sshkey
+sed -i '' "s/"alpha"/$used_channel/g" ~/coreos-osx/settings/*.toml
+echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-01.toml
+#
 
 # check for password in Keychain
 my_password=$(security 2>&1 >/dev/null find-generic-password -wa coreos-osx-app)
 if [ "$my_password" = "security: SecKeychainSearchCopyNext: The specified item could not be found in the keychain." ]
-#if [ "$my_password" = "" ]
 then
     echo " "
     echo "Saved password could not be found in the 'Keychain': "
@@ -44,11 +56,11 @@ then
 fi
 
 new_vm=0
-# check if root disk exists, if not create it
-if [ ! -f $HOME/coreos-osx/root.img ]; then
+# check if data disk exists, if not create it
+if [ ! -f $HOME/coreos-osx/data.img ]; then
     echo " "
-    echo "ROOT disk does not exist, it will be created now ..."
-    create_root_disk
+    echo "Data disk does not exist, it will be created now ..."
+    create_data_disk
     new_vm=1
 fi
 
@@ -72,18 +84,15 @@ echo " "
 echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-
-# multi user workaround
-sudo sed -i.bak '/^$/d' /etc/exports
-sudo sed -i.bak '/Users.*/d' /etc/exports
-
 #
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+# check id /Users/homefolder is mounted, if not mount it
+"${res_folder}"/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 
 # get VM IP
-#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
-vm_ip=$(cat ~/coreos-osx/.env/ip_address);
-
+vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
+# save VM's IP
+"${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 
 # Set the environment variables
 # docker daemon

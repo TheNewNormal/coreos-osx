@@ -14,7 +14,7 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # get VM IP
-vm_ip=$(<~/coreos-osx/.env/ip_address)
+vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 
 # get password for sudo
 my_password=$(security find-generic-password -wa coreos-osx-app)
@@ -46,8 +46,8 @@ do
         "${res_folder}"/docker_registry.sh stop
         kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) > /dev/null 2>&1
 
-        # delete root image
-        rm -f ~/coreos-osx/root.img
+        # delete data image
+        rm -f ~/coreos-osx/data.img
 
         # delete password in keychain
         security 2>&1 >/dev/null delete-generic-password -a coreos-osx-app 2>&1 >/dev/null

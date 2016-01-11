@@ -10,8 +10,7 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 ssh-add -K ~/.ssh/id_rsa &>/dev/null
 
 # get VM's IP
-#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
-vm_ip=$(<~/coreos-osx/.env/ip_address)
+vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH

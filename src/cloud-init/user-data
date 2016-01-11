@@ -15,10 +15,6 @@ coreos:
     listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
     advertise-client-urls:  http://0.0.0.0:2379,http://0.0.0.0:4001
   units:
-    - name: etcd2.service
-      command: start
-    - name: fleet.service
-      command: start
     - name: docker-tcp.socket
       command: start
       enable: true
@@ -33,6 +29,97 @@ coreos:
 
         [Install]
         WantedBy=sockets.target
+    - name: format-persistent-disk.service
+      command: start
+      content: |
+        [Unit]
+        Description=Formats the persistent drive (if not formated yet)
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/bin/sh -c '/usr/sbin/blkid -pi /dev/vda | grep TYPE= || /usr/sbin/mkfs.ext4 /dev/vda'
+    - name: data.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mounts ephemeral to /data
+        Requires=format-persistent-disk.service
+        After=format-persistent-disk.service
+        Before=etcd2.service fleet.service docker.service rkt-metadata.socket
+        [Mount]
+        What=/dev/vda
+        Where=/data
+        Type=ext4
+    - name: persistent-data-checks.service
+      command: start
+      content: |
+        [Unit]
+        Description=prepare for etcd,docker,rkt,opt
+        Requires=data.mount
+        After=data.mount
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStart=/bin/sh -c '[[ -d /data/var/lib/docker ]] || mkdir -p /data/var/lib/docker'
+        ExecStart=/bin/sh -c '[[ -d /data/var/lib/rkt ]] || mkdir -p /data/var/lib/rkt'
+        ExecStart=/bin/sh -c '[[ -d /data/var/lib/etcd2 ]] || mkdir -p /data/var/lib/etcd2 && /usr/bin/chown etcd:etcd /data/var/lib/etcd2'
+        ExecStart=/bin/sh -c '[[ -d /data/opt/bin ]] || mkdir -p /data/opt/bin'
+    - name: var-lib-etcd2.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Binds /data/var/lib/etcd2 to /var/lib/etcd2
+        After=persistent-data-checks.service
+        Requires=persistent-data-checks docker.service
+        Before=etcd2.service
+        [Mount]
+        What=/data/var/lib/etcd2
+        Where=/var/lib/etcd2
+        Type=none
+        Options=bind
+    - name: var-lib-docker.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Binds /data/var/lib/docker to /var/lib/docker
+        After=persistent-data-checks.service
+        Requires=persistent-data-checks docker.service
+        Before=docker.service
+        [Mount]
+        What=/data/var/lib/docker
+        Where=/var/lib/docker
+        Type=none
+        Options=bind
+    - name: var-lib-rkt.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Binds /data/var/lib/rkt to /var/lib/rkt
+        Requires=persistent-data-checks.service rkt-metadata.socket
+        After=persistent-data-checks.service
+        Before=rkt-metadata.socket
+        [Mount]
+        What=/data/var/lib/rkt
+        Where=/var/lib/rkt
+        Type=none
+        Options=bind
+    - name: opt-bin.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Binds /data/opt/bin to /opt/bin
+        Requires=persistent-data-checks.service
+        After=persistent-data-checks.service
+        Before=docker.service rkt-metadata.socket
+        [Mount]
+        What=/data/opt/bin
+        Where=/opt/bin
+        Type=none
+        Options=bind
+    - name: etcd2.service
+      command: start
+    - name: fleet.service
+      command: start
     - name: docker.service
       command: start
       drop-ins:
@@ -43,21 +130,6 @@ coreos:
             Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
     - name: update-engine.service
       command: stop
-    - name: setup-network-environment.service
-      command: start
-      content: |
-        [Unit]
-        Description=Setup Network Environment
-        Documentation=https://github.com/kelseyhightower/setup-network-environment
-        Requires=network-online.target
-        After=network-online.target
-        [Service]
-        ExecStartPre=/usr/bin/mkdir -p /opt/bin
-        ExecStartPre=/usr/bin/wget -P /opt/bin https://github.com/kelseyhightower/setup-network-environment/releases/download/1.0.1/setup-network-environment
-        ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment
-        ExecStart=/opt/bin/setup-network-environment
-        RemainAfterExit=yes
-        Type=oneshot
 write-files:
  - path: /home/core/.ssh/id_rsa
    permissions: '0600'

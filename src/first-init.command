@@ -17,22 +17,7 @@ echo " "
 echo "Setting up CoreOS VM on OS X"
 
 # add ssh key to *.toml files
-echo " "
-echo "Reading ssh key from $HOME/.ssh/id_rsa.pub ..."
-file="$HOME/.ssh/id_rsa.pub"
-
-while [ ! -f "$file" ]
-do
-    echo "$file not found."
-    echo "please run 'ssh-keygen -t rsa' before you continue !!!"
-    pause 'Press [Enter] key to continue...'
-done
-
-echo " "
-echo "$file found, updating setting files ..."
-echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-01.toml
-echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/format-root.toml
-#
+sshkey
 
 # add ssh key to Keychain
 ssh-add -K ~/.ssh/id_rsa &>/dev/null
@@ -45,7 +30,7 @@ save_password
 release_channel
 
 # create ROOT disk
-create_root_disk
+create_data_disk
 
 # Stop docker registry first just in case it was running
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
@@ -68,17 +53,15 @@ echo " "
 echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
-
-# multi user workaround
-sudo sed -i.bak '/^$/d' /etc/exports
-sudo sed -i.bak '/Users.*/d' /etc/exports
-
 #
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+# check id /Users/homefolder is mounted, if not mount it
+"${res_folder}"/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 
 # get VM IP
-#vm_ip=$(corectl ps -j | jq ".[] | select(.Name==\"core-01\") | .PublicIP" | sed -e 's/"\(.*\)"/\1/')
-vm_ip=$(cat ~/coreos-osx/.env/ip_address);
+vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
+# save VM's IP
+"${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 #
 
 echo " "
