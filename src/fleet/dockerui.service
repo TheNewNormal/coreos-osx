@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 User=core
 TimeoutStartSec=0
-#EnvironmentFile=/etc/environment
+EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker pull dockerui/dockerui:latest
 ExecStartPre=-/usr/bin/docker rm dockerui
 ExecStart=/usr/bin/docker run --rm --name dockerui --memory="128m" \
