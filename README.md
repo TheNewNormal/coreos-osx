@@ -112,3 +112,4 @@ Other CoreOS VM based Apps
 * Cluster one CoreOS VM App can be found here [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
 * Kubernetes Solo Cluster VM App (corectl based) can be found here [Kube Solo for OS X](https://github.com/TheNewNormal/kube-solo-osx).
 * Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster for OS X ](https://github.com/rimusz/coreos-osx-kubernetes-cluster).
+
