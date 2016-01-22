@@ -10,12 +10,6 @@ source "${DIR}"/functions.sh
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
-# add ssh key to *.toml files
-sshkey
-
-# add ssh key to Keychain
-ssh-add -K ~/.ssh/id_rsa &>/dev/null
-
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
@@ -40,9 +34,12 @@ cp -f "${res_folder}"/cloud-init/* ~/coreos-osx/cloud-init
 used_channel=$(cat ~/coreos-osx/settings/core-01.toml | grep channel | cut -f 2 -d"=" | awk -F '"' '{print $2}' )
 rm -f ~/coreos-osx/settings/*
 cp -f "${res_folder}"/settings/* ~/coreos-osx/settings
-# restore coreos channel and sshkey
+# restore coreos channel
 sed -i '' "s/"alpha"/$used_channel/g" ~/coreos-osx/settings/*.toml
-echo "   sshkey = '$(cat $HOME/.ssh/id_rsa.pub)'" >> ~/coreos-osx/settings/core-01.toml
+# add ssh key to *.toml file
+sshkey
+# add ssh key to Keychain
+ssh-add -K ~/.ssh/id_rsa &>/dev/null
 #
 
 # check for password in Keychain
