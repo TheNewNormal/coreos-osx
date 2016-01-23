@@ -7,6 +7,9 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "${DIR}"/functions.sh
 
+# create logs dir
+mkdir -p ~/coreos-osx/logs > /dev/null 2>&1
+
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
@@ -82,7 +85,19 @@ echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
-sudo "${res_folder}"/bin/corectl load settings/core-01.toml
+sudo "${res_folder}"/bin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_up.log
+CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/vm_up.log | grep "started")
+#
+if [[ "$CHECK_VM_STATUS" == "" ]]; then
+    echo " "
+    echo "VM have not booted, please check '~/coreos-osx/logs/vm_up.log' and report the problem !!! "
+    echo " "
+    pause 'Press [Enter] key to continue...'
+    exit 0
+else
+    echo "VM successfully started !!!" >> ~/coreos-osx/logs/vm_up.log
+fi
+
 # check id /Users/homefolder is mounted, if not mount it
 "${res_folder}"/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 

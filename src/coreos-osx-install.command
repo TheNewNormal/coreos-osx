@@ -6,6 +6,7 @@
     # create in "coreos-osx" all required folders and files at user's home folder where all the data will be stored
     mkdir ~/coreos-osx
     mkdir ~/coreos-osx/tmp
+    mkdir ~/coreos-osx/logs
     mkdir ~/coreos-osx/bin
     mkdir ~/coreos-osx/cloud-init
     mkdir ~/coreos-osx/settings
