@@ -42,7 +42,9 @@ sed -i '' "s/"alpha"/$used_channel/g" ~/coreos-osx/settings/*.toml
 # add ssh key to *.toml file
 sshkey
 # add ssh key to Keychain
-ssh-add -K ~/.ssh/id_rsa &>/dev/null
+if ! ssh-add -l | grep -q ssh/id_rsa; then
+  ssh-add -K ~/.ssh/id_rsa &>/dev/null
+fi
 #
 
 # check for password in Keychain
