@@ -44,7 +44,7 @@ else
     echo "VM successfully started !!!" >> ~/coreos-osx/logs/vm_reload.log
 fi
 
-# check id /Users/homefolder is mounted, if not mount it
+# check if /Users/homefolder is mounted, if not mount it
 "${res_folder}"/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 echo " "
 
