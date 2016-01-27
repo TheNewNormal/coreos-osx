@@ -97,17 +97,18 @@ if [ -z "$disk_size" ]
 then
     echo " "
     echo "Creating 5GB disk ..."
-    mkfile 5g data.img
-    echo "-"
+#    mkfile 5g data.img
+    pv -s 5g -S < /dev/zero > data.img
+#    echo "-"
     echo "Created 5GB Data disk"
 else
     echo " "
     echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
-    mkfile "$disk_size"g data.img
-    echo "-"
+#    mkfile "$disk_size"g data.img
+    pv -s "$disk_size"g -S < /dev/zero > data.img
+#    echo "-"
     echo "Created "$disk_size"GB Data disk"
 fi
-echo " "
 #
 
 }
