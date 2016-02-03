@@ -26,21 +26,13 @@ fi
 # copy bin files to bin folder
 cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/*
+
 # copy registry files
 cp -f "${res_folder}"/registry/config.yml ~/coreos-osx/registry
 cp -f "${res_folder}"/bin/registry ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/registry
-## copy user-data
-rm -f ~/coreos-osx/cloud-init/*
-cp -f "${res_folder}"/cloud-init/* ~/coreos-osx/cloud-init
-### copy and update settings
-used_channel=$(cat ~/coreos-osx/settings/core-01.toml | grep channel | cut -f 2 -d"=" | awk -F '"' '{print $2}' )
-rm -f ~/coreos-osx/settings/*
-cp -f "${res_folder}"/settings/* ~/coreos-osx/settings
-# restore coreos channel
-sed -i '' "s/"alpha"/$used_channel/g" ~/coreos-osx/settings/*.toml
-# add ssh key to *.toml file
-sshkey
+
+
 # add ssh key to Keychain
 if ! ssh-add -l | grep -q ssh/id_rsa; then
   ssh-add -K ~/.ssh/id_rsa &>/dev/null

@@ -41,7 +41,7 @@ do
     echo "Set CoreOS Release Channel:"
     echo " 1)  Alpha "
     echo " 2)  Beta "
-    echo " 3)  Stable "
+    echo " 3)  Stable (recommended)"
     echo " "
     echo -n "Select an option: "
 
@@ -91,16 +91,16 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 cd ~/coreos-osx/
 echo "  "
 echo "Please type Data disk size in GBs followed by [ENTER]:"
-echo -n "[default is 5]: "
+echo -n "[default is 15]: "
 read disk_size
 if [ -z "$disk_size" ]
 then
     echo " "
-    echo "Creating 5GB disk ..."
-#    mkfile 5g data.img
-    pv -s 5g -S < /dev/zero > data.img
+    echo "Creating 15GB disk (it could take a while for big disks)..."
+#    mkfile 15g data.img
+    pv -s 15g -S < /dev/zero > data.img
 #    echo "-"
-    echo "Created 5GB Data disk"
+    echo "Created 15GB Data disk"
 else
     echo " "
     echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
