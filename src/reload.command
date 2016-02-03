@@ -23,7 +23,7 @@ echo "Stopping VM ..."
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 sudo "${res_folder}"/bin/corectl halt core-01
 
-sleep 2
+sleep 5
 
 # Start VM
 cd ~/coreos-osx
