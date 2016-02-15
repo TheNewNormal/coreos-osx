@@ -59,13 +59,14 @@ if [ ! -f $HOME/coreos-osx/data.img ]; then
 fi
 
 # Stop docker registry first just in case it was running
-kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
+#kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
 #
 
 # Start docker registry
 cd ~/coreos-osx/registry
 echo " "
 "${res_folder}"/docker_registry.sh start
+"${res_folder}"/docker_registry.sh start > /dev/null 2>&1
 
 # get password for sudo
 my_password=$(security find-generic-password -wa coreos-osx-app)
@@ -79,6 +80,7 @@ echo "Starting VM ..."
 echo " "
 echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
+cd $HOME/coreos-osx
 sudo "${res_folder}"/bin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_up.log
 CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/vm_up.log | grep "started")
 #
@@ -103,6 +105,8 @@ vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 # Set the environment variables
 # docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
+export DOCKER_TLS_VERIFY=
+export DOCKER_CERT_PATH=
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://$vm_ip:2379
