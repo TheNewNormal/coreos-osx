@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export=GO15VENDOREXPERIMENT=1
+
 # compile corectl binary
 
 current_folder=$(pwd)

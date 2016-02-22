@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  CoreOS GUI
+//  CoreOS OS X
 //
 //  Created by Rimantas on 01/04/2014.
 //  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
@@ -23,6 +23,21 @@
     // get the App's main bundle path
     _resoucesPathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
     NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
+    
+    NSString *dmgPath = @"/Volumes/CoreOS/CoreOS.app/Contents/Resources";
+    NSLog(@"DMG resource path: '%@'", dmgPath);
+    
+    // check resourcePath and exit the App if it runs from the dmg
+    if ( [ _resoucesPathFromApp isEqual: dmgPath] ) {
+        // show alert message
+        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS for OS X App cannot be started from DMG !!!"];
+        NSString *infoText = @"Please copy App e.g. to your Applications folder ...";
+        [self displayWithMessage:mText infoText:infoText];
+        
+        // exiting App
+        [[NSApplication sharedApplication] terminate:self];
+    }
+    
 
     NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
     

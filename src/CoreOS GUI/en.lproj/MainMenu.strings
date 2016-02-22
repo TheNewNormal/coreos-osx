@@ -12,7 +12,7 @@
 "HWe-7a-OCV.title" = "Destroy VM";
 
 /* Class = "NSMenuItem"; title = "SSH to VM"; ObjectID = "Khg-WF-X5I"; */
-"Khg-WF-X5I.title" = "SSH to VM";
+"Khg-WF-X5I.title" = "SSH to core-01 VM";
 
 /* Class = "NSMenuItem"; title = "Halt"; ObjectID = "LI8-og-yJl"; */
 "LI8-og-yJl.title" = "Halt";
@@ -39,7 +39,7 @@
 "Yrd-Gf-8zH.title" = "Initial setup of CoreOS VM";
 
 /* Class = "NSMenuItem"; title = "OS Shell"; ObjectID = "dvF-TI-XNx"; */
-"dvF-TI-XNx.title" = "OS Shell";
+"dvF-TI-XNx.title" = "Preset OS Shell";
 
 /* Class = "NSMenuItem"; title = "Change Release Channel (needs reload of VM)"; ObjectID = "lI7-r8-M4c"; */
 "lI7-r8-M4c.title" = "Change Release Channel";

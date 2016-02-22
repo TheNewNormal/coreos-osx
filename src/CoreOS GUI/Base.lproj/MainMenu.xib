@@ -48,7 +48,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="lIy-88-Fmd"/>
-                <menuItem title="OS Shell" id="dvF-TI-XNx">
+                <menuItem title="Preset OS Shell" id="dvF-TI-XNx">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runShell:" target="494" id="dpS-4v-YJb"/>
