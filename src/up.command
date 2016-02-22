@@ -57,9 +57,6 @@ if [ ! -f $HOME/coreos-osx/data.img ]; then
     create_data_disk
     new_vm=1
 fi
-
-# Stop docker registry first just in case it was running
-#kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
 #
 
 # Start docker registry

@@ -34,11 +34,6 @@ release_channel
 # create ROOT disk
 create_data_disk
 
-# Stop docker registry first just in case it was running
-#kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1 &
-#
-#sleep 1
-
 # Start docker registry
 cd ~/coreos-osx/registry
 echo " "

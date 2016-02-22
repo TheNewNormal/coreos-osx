@@ -1,16 +1,11 @@
 CoreOS VM for OS X 
 ========================
 
-***CoreOS VM for OS X App has a new home, it is now under https://github.com/TheNewNormal organisation***
-
 **CoreOS VM for OS X** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/xhyve-xyz/xhyve) based VMs). 
 
 It includes [Docker Registry v2](https://github.com/docker/distribution) (Go based and compiled for OS X)
 
 It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
-
-**New** v1.1.0 is based on [corectl](https://github.com/TheNewNormal/corectl) which brings more stablity to the App. App got renamed from `CoreOS GUI` to `CoreOS`. Mac user home folder is automaticly mounted to VM.
-
 
 ![CoreOS-OSX](coreos-osx-gui.png "CoreOS-OSX-GUI")
 
