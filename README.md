@@ -33,6 +33,7 @@ Open downloaded `dmg` file and drag the App e.g. to your Desktop. Start the `Cor
 - Docker registry runs on `192.168.64.1:5000` and images are stored under `~/coreos-osx/registry`
 - Mac user home folder is automaticly mounted to VM: `/Users/my_user`:`/Users/my_user`
 - OS X `fleetctl` and `docker` clients are installed to `~/coreos-osx/bin` and preset in `OS shell` to be used from there
+- Put your fleet units into `~/coreos-osx/my_fleet` folder and they will be automaticly started on each VM boot.
 
 **The install will do the following:**
 
