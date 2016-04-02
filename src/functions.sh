@@ -233,7 +233,7 @@ echo " "
 echo "This is not the password to access VM via ssh or console !!!"
 echo " "
 echo "Please type your Mac user's password followed by [ENTER]:"
-read -s my_password
+read -s -r my_password
 passwd_ok=0
 
 # check if sudo password is correct
@@ -242,7 +242,7 @@ do
     # reset sudo
     sudo -k
     # check sudo
-    echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
+    printf '%s\n' "$my_password" | sudo -Sv > /dev/null 2>&1
     CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
     if [ ${CAN_I_RUN_SUDO} -gt 0 ]
     then
@@ -253,7 +253,7 @@ do
         echo " "
         echo "The password you entered does not match your Mac user password !!!"
         echo "Please type your Mac user's password followed by [ENTER]:"
-        read -s my_password
+        read -s -r my_password
     fi
 done
 
@@ -276,7 +276,7 @@ my_password=$(security find-generic-password -wa coreos-osx-app)
 # reset sudo
 sudo -k
 # enable sudo
-echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
+printf '%s\n' "$my_password" | sudo -Sv > /dev/null 2>&1
 
 # send halt to VM
 sudo "${res_folder}"/bin/corectl halt core-01 > /dev/null 2>&1
