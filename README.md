@@ -51,7 +51,7 @@ That allows to share the same images between different `corectl` based Apps and 
  into ~/coreos-osx/bin/ too, which allows to enter container with just a simple command:
  docker-exec container_name 
 - Also `docker2aci` binary will be installed to ~/coreos-osx/bin/, which allows to convert docker images to `rkt` aci images
-- Will install [Fleet-UI](http://fleetui.com) and [DockerUI](https://github.com/crosbymichael/dockerui) via unit files
+- Will install [Fleet UI](http://fleetui.com) and [UI for Docker](https://github.com/kevana/ui-for-docker) via unit files
 - Via assigned static IP (it will be shown in first boot and will survive VM's reboots) you can access any port on CoreOS VM
 - user-data file enables docker flag `--insecure-registry` to access insecure registries.
 - Persistent disk `data.img` will be created and mounted to `/data` for these mount binds:
@@ -87,8 +87,8 @@ and docker-exec shell scripts are stored
 * `OS Shell` opens OS Shell with the same enviroment preset as `Up`
 * `Updates/Check updates for OS X fleetctl and docker clients` will update fleet and docker OS X clients to the same versions as CoreOS VM runs.
 * `Updates/Fetch latest CoreOS ISO` will download the lasted CoreOS ISO file for the currently set release channel. 
-* [Fleet-UI](http://fleetui.com) dashboard will show running `fleet` units and etc
-* [DockerUI](https://github.com/crosbymichael/dockerui) will show all running containers and etc
+* [Fleet UI](http://fleetui.com) dashboard will show up running `fleet` units and etc
+* [UI for Docker](https://github.com/kevana/ui-for-docker) will show up all running containers and etc
 * Put your fleet units into `~/coreos-osx/my_fleet` folder and they will be automaticly started on each VM boot.
 * You can upload your saved/exported docker images place in `~/coreos-osx/docker_images` folder via `Upload docker images`
 * Local Docker Registry v2 (Go based and compiled for  OS X) is running on `192.168.64.1:5000`, which gets started/stopped on each VM Up/Halt.
