@@ -7,12 +7,12 @@ Requires=docker.service
 User=core
 TimeoutStartSec=0
 EnvironmentFile=/etc/environment
-ExecStartPre=-/usr/bin/docker pull kevan/dockerui:latest
+ExecStartPre=-/usr/bin/docker pull uifd/ui-for-docker:latest
 ExecStartPre=-/usr/bin/docker rm dockerui
 ExecStart=/usr/bin/docker run --rm --name dockerui --memory="128m" \
  -p 9000:9000 \
  -v /var/run/docker.sock:/docker.sock \
- kevan/dockerui -e /docker.sock
+ uifd/ui-for-docker -e /docker.sock
 #
 ExecStop=/usr/bin/docker stop dockerui
 ExecStopPost=-/usr/bin/docker rm dockerui
