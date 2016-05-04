@@ -18,7 +18,7 @@
 "LI8-og-yJl.title" = "Halt";
 
 /* Class = "NSMenuItem"; title = "Fleet-UI"; ObjectID = "LkH-Oi-Kkr"; */
-"LkH-Oi-Kkr.title" = "Fleet-UI";
+"LkH-Oi-Kkr.title" = "Fleet UI";
 
 /* Class = "NSMenuItem"; title = "Attach to VM's console"; ObjectID = "NVQ-p7-0FG"; */
 "NVQ-p7-0FG.title" = "Attach to VM's console";
@@ -48,7 +48,7 @@
 "ozW-cb-XTh.title" = "Fetch latest CoreOS ISO";
 
 /* Class = "NSMenuItem"; title = "DockerUI"; ObjectID = "sCD-se-Vah"; */
-"sCD-se-Vah.title" = "DockerUI";
+"sCD-se-Vah.title" = "UI for Docker";
 
 /* Class = "NSMenuItem"; title = "Check updates for OS X fleetctl and docker clients"; ObjectID = "sEE-aC-0Ob"; */
 "sEE-aC-0Ob.title" = "Check updates for OS X fleetctl and docker clients";
