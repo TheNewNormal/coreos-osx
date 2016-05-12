@@ -100,6 +100,9 @@ vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 "${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 
 # Set the environment variables
+# set etcd endpoint
+export ETCDCTL_PEERS=http://$vm_ip:2379
+
 # docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
 export DOCKER_TLS_VERIFY=

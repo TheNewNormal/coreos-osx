@@ -79,7 +79,11 @@ echo " "
 download_osx_clients
 #
 
-# Set the environment variables for docker daemon
+# Set the environment variables
+# set etcd endpoint
+export ETCDCTL_PEERS=http://$vm_ip:2379
+
+# docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
 export DOCKER_TLS_VERIFY=
 export DOCKER_CERT_PATH=

@@ -5,6 +5,15 @@ hostname: core-01
 coreos:
   update:
     reboot-strategy: off
+  etcd2:
+    name: core-01
+    initial-advertise-peer-urls: http://127.0.0.1:2380
+    initial-cluster-token: core-01_etcd
+    initial-cluster: core-01=http://127.0.0.1:2380
+    initial-cluster-state: new
+    listen-peer-urls: http://0.0.0.0:2380,http://0.0.0.0:7001
+    listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
+    advertise-client-urls:  http://0.0.0.0:2379,http://0.0.0.0:4001
   units:
     - name: docker-tcp.socket
       command: start
@@ -107,6 +116,8 @@ coreos:
         Where=/opt/bin
         Type=none
         Options=bind
+    - name: etcd2.service
+      command: start
     - name: docker.service
       command: start
       drop-ins:

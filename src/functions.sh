@@ -113,7 +113,7 @@ fi
 
 }
 
-function download_osx_docker() {
+function download_osx_docker_old() {
 #
 CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
 if [ -n "$CHECK_DOCKER_RC" ]
@@ -150,7 +150,10 @@ DOCKER_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'docker version' | grep
 # check if the binary exists
 if [ ! -f ~/coreos-osx/bin/docker ]; then
     cd ~/coreos-osx/bin
-    download_osx_docker
+    echo "Downloading docker $DOCKER_VERSION client for OS X"
+    curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+    # Make it executable
+    chmod +x ~/coreos-osx/bin/docker
     osx_clients_upgrade=1
 else
     # docker client version
@@ -159,7 +162,10 @@ else
     if [ $MATCH -eq 0 ]; then
         # the version is different
         cd ~/coreos-osx/bin
-        download_osx_docker
+        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+        # Make it executable
+        chmod +x ~/coreos-osx/bin/docker
         osx_clients_upgrade=1
     else
         echo " "
