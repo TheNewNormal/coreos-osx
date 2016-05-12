@@ -50,8 +50,8 @@
 /* Class = "NSMenuItem"; title = "DockerUI"; ObjectID = "sCD-se-Vah"; */
 "sCD-se-Vah.title" = "UI for Docker";
 
-/* Class = "NSMenuItem"; title = "Check updates for OS X fleetctl and docker clients"; ObjectID = "sEE-aC-0Ob"; */
-"sEE-aC-0Ob.title" = "Check updates for OS X fleetctl and docker clients";
+/* Class = "NSMenuItem"; title = "Check for update of docker OS X client"; ObjectID = "sEE-aC-0Ob"; */
+"sEE-aC-0Ob.title" = "Check for update of docker OS X client";
 
 /* Class = "NSMenuItem"; title = "Quit"; ObjectID = "zsR-Hu-nBe"; */
 "zsR-Hu-nBe.title" = "Quit";

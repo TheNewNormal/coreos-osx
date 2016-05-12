@@ -114,7 +114,7 @@ fi
 }
 
 function download_osx_docker() {
-
+#
 CHECK_DOCKER_RC=$(echo $DOCKER_VERSION | grep rc)
 if [ -n "$CHECK_DOCKER_RC" ]
 then
@@ -144,34 +144,6 @@ chmod +x ~/coreos-osx/bin/docker
 
 
 function download_osx_clients() {
-# download fleetctl file
-FLEETCTL_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'fleetctl --version' | awk '{print $3}' | tr -d '\r')
-# check if the binary exists
-if [ ! -f ~/coreos-osx/bin/fleetctl ]; then
-    cd ~/coreos-osx/bin
-    echo "Downloading fleetctl v$FLEETCTL_VERSION for OS X"
-    curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$FLEETCTL_VERSION/fleet-v$FLEETCTL_VERSION-darwin-amd64.zip"
-    unzip -j -o "fleet.zip" "fleet-v$FLEETCTL_VERSION-darwin-amd64/fleetctl" > /dev/null 2>&1
-    rm -f fleet.zip
-    osx_clients_upgrade=1
-else
-    # we check the version of the binary
-    INSTALLED_VERSION=$(~/coreos-osx/bin/fleetctl --version | awk '{print $3}' | tr -d '\r')
-    MATCH=$(echo "${INSTALLED_VERSION}" | grep -c "${FLEETCTL_VERSION}")
-    if [ $MATCH -eq 0 ]; then
-        # the version is different
-        cd ~/coreos-osx/bin
-        echo "Downloading fleetctl v$FLEETCTL_VERSION for OS X"
-        curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$FLEETCTL_VERSION/fleet-v$FLEETCTL_VERSION-darwin-amd64.zip"
-        unzip -j -o "fleet.zip" "fleet-v$FLEETCTL_VERSION-darwin-amd64/fleetctl" > /dev/null 2>&1
-        rm -f fleet.zip
-        osx_clients_upgrade=1
-    else
-        echo " "
-        echo "OS X fleetctl client is up to date with VM's version ..."
-    fi
-fi
-
 # download docker file
 # check docker server version
 DOCKER_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | sed -n 2p )
@@ -196,31 +168,6 @@ else
 fi
 
 
-}
-
-
-function deploy_fleet_units() {
-# deploy fleet units from ~/coreos-osx/fleet
-if [ "$(ls ~/coreos-osx/fleet | grep -o -m 1 service)" = "service" ]
-then
-    cd ~/coreos-osx/fleet
-    echo "Starting all fleet units in ~/coreos-osx/fleet:"
-    fleetctl submit *.service
-    fleetctl start *.service
-    echo " "
-fi
-}
-
-
-function deploy_my_fleet_units() {
-# deploy fleet units from ~/coreos-osx/fleet
-if [ "$(ls ~/coreos-osx/my_fleet | grep -o -m 1 service)" = "service" ]
-then
-    cd ~/coreos-osx/my_fleet
-    echo "Starting all fleet units in ~/coreos-osx/my_fleet:"
-    fleetctl start *.service
-    echo " "
-fi
 }
 
 

@@ -10,11 +10,9 @@
     mkdir ~/coreos-osx/bin
     mkdir ~/coreos-osx/cloud-init
     mkdir ~/coreos-osx/settings
-    mkdir ~/coreos-osx/fleet
-    mkdir ~/coreos-osx/my_fleet
     mkdir ~/coreos-osx/registry
     mkdir ~/coreos-osx/docker_images
-    ###mkdir ~/coreos-osx/rkt_images
+    mkdir ~/coreos-osx/rkt_images
 
     # cd to App's Resources folder
     cd "$1"
@@ -28,9 +26,6 @@
 
     # copy settings
     cp -f "$1"/settings/* ~/coreos-osx/settings
-
-    # copy fleet units
-    cp -f "$1"/fleet/* ~/coreos-osx/fleet
 
     # copy docker registry config
     cp -f "$1"/registry/config.yml ~/coreos-osx/registry

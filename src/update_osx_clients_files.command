@@ -22,7 +22,7 @@ export DOCKER_HOST=tcp://$vm_ip:2375
 cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/*
 
-# download latest versions of fleetctl and docker clients
+# download latest version of docker clients
 osx_clients_upgrade=0
 download_osx_clients
 if [ $osx_clients_upgrade -eq 0 ]; then
