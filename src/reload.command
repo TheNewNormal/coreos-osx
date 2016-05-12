@@ -52,29 +52,6 @@ echo " "
 vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 # save VM's IP
 "${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
-
-# set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://$vm_ip:2379
-export FLEETCTL_DRIVER=etcd
-export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
-
-# wait till VM is ready
-echo "Waiting for VM to be ready..."
-spin='-\|/'
-i=0
-until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-echo " "
-#
-
-sleep 2
-
-echo " "
-echo "fleetctl list-machines:"
-fleetctl list-machines
-echo " "
-
-# deploy fleet units from ~/coreos-osx/my_fleet
-deploy_my_fleet_units
 #
 
 echo "CoreOS VM was reloaded !!!"

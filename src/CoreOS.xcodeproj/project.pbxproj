@@ -27,10 +27,8 @@
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
-		131C2B7F1BD686CB002FF9BE /* fleet in Resources */ = {isa = PBXBuildFile; fileRef = 131C2B7E1BD686CB002FF9BE /* fleet */; };
 		133DD11C1CE49AB900059FCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 133DD10E1CE49AB900059FCC /* AppDelegate.m */; };
 		133DD11D1CE49AB900059FCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133DD10F1CE49AB900059FCC /* MainMenu.xib */; };
-		133DD11E1CE49AB900059FCC /* CoreOS-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1111CE49AB900059FCC /* CoreOS-Info.plist */; };
 		133DD11F1CE49AB900059FCC /* CoreOS.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1131CE49AB900059FCC /* CoreOS.entitlements */; };
 		133DD1201CE49AB900059FCC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1141CE49AB900059FCC /* Credits.rtf */; };
 		133DD1211CE49AB900059FCC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1161CE49AB900059FCC /* InfoPlist.strings */; };
@@ -70,7 +68,6 @@
 		01E2854218A6C4E300BC630D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		131C2B7E1BD686CB002FF9BE /* fleet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fleet; sourceTree = SOURCE_ROOT; };
 		133DD10D1CE49AB900059FCC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		133DD10E1CE49AB900059FCC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		133DD1101CE49AB900059FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 				019662171B04C6EA005FA955 /* files */,
 				137018AB1C11E9D00002B2B9 /* cloud-init */,
 				019662131B04C598005FA955 /* settings */,
-				131C2B7E1BD686CB002FF9BE /* fleet */,
 				137018B11C11F0DE0002B2B9 /* registry */,
 				01741B56190DB7B800BB1F91 /* coreos-osx-install.command */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
@@ -231,7 +227,7 @@
 		01E2853218A6C4E300BC630D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Rimantas Mocevicius";
 				TargetAttributes = {
 					01E2853918A6C4E300BC630D = {
@@ -280,7 +276,6 @@
 				01741B65190DB81400BB1F91 /* up.command in Resources */,
 				133DD1221CE49AB900059FCC /* MainMenu.strings in Resources */,
 				137018B21C11F0DE0002B2B9 /* registry in Resources */,
-				133DD11E1CE49AB900059FCC /* CoreOS-Info.plist in Resources */,
 				137018AC1C11E9D00002B2B9 /* cloud-init in Resources */,
 				133DD11D1CE49AB900059FCC /* MainMenu.xib in Resources */,
 				01993A4F1B63DD730096E2E1 /* halt.command in Resources */,
@@ -294,7 +289,6 @@
 				01B675D61B602FC2004349CC /* check_vm_status.command in Resources */,
 				0106B34A1B65277F001709E0 /* functions.sh in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-osx-install.command in Resources */,
-				131C2B7F1BD686CB002FF9BE /* fleet in Resources */,
 				019410641BE0E5F200723E19 /* kill_VM.command in Resources */,
 				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */,
