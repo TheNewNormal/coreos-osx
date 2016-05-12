@@ -19,4 +19,4 @@ cd $current_folder
 cp -f $GOPATH/src/github.com/docker/distribution/bin/registry ../bin
 
 # clean up go folder
-rm -fr mkdir -p $GOPATH/src/github.com/docker
+rm -fr $GOPATH/src/github.com/docker

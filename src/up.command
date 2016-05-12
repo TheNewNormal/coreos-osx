@@ -100,51 +100,14 @@ vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 "${res_folder}"/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 
 # Set the environment variables
+# set etcd endpoint
+export ETCDCTL_PEERS=http://$vm_ip:2379
+
 # docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
 export DOCKER_TLS_VERIFY=
 export DOCKER_CERT_PATH=
 
-# set etcd endpoint
-export ETCDCTL_PEERS=http://$vm_ip:2379
-# wait till VM is ready
-echo " "
-echo "Waiting for VM to be ready..."
-spin='-\|/'
-i=1
-until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-#
-echo " "
-echo "etcdctl ls /:"
-etcdctl --no-sync ls /
-echo " "
-#
-
-# set fleetctl endpoint
-export FLEETCTL_TUNNEL=
-export FLEETCTL_ENDPOINT=http://$vm_ip:2379
-export FLEETCTL_DRIVER=etcd
-export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
-#
-sleep 2
-
-echo "fleetctl list-machines:"
-fleetctl list-machines
-echo " "
-
-# deploy fleet units
-if [ $new_vm = 1 ]
-then
-    deploy_fleet_units
-fi
-
-# deploy fleet units from my_fleet folder
-deploy_my_fleet_units
-
-sleep 1
-#
-echo "fleetctl list-units:"
-fleetctl list-units
 echo " "
 #
 cd ~/coreos-osx

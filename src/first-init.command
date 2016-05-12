@@ -75,44 +75,21 @@ vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
 #
 
 echo " "
-# download latest versions of etcdctl, fleetctl and docker clients
+# download latest version of docker client
 download_osx_clients
 #
 
 # Set the environment variables
+# set etcd endpoint
+export ETCDCTL_PEERS=http://$vm_ip:2379
+
 # docker daemon
 export DOCKER_HOST=tcp://$vm_ip:2375
 export DOCKER_TLS_VERIFY=
 export DOCKER_CERT_PATH=
 
-# set etcd endpoint
-export ETCDCTL_PEERS=http://$vm_ip:2379
-# wait till VM is ready
 echo " "
-echo "Waiting for VM to be ready..."
-spin='-\|/'
-i=0
-until curl -o /dev/null http://$vm_ip:2379 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
-#
-sleep 2
 echo " "
-echo "etcdctl ls /:"
-etcdctl --no-sync ls /
-#
-
-# set fleetctl endpoint and install fleet units
-export FLEETCTL_TUNNEL=
-export FLEETCTL_ENDPOINT=http://$vm_ip:2379
-export FLEETCTL_DRIVER=etcd
-export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
-echo " "
-echo "fleetctl list-machines:"
-fleetctl list-machines
-echo " "
-#
-deploy_fleet_units
-#
-
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo " "
 echo "Assigned static IP for VM: $vm_ip"
