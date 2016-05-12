@@ -7,7 +7,7 @@ It includes [Docker Registry v2](https://github.com/docker/distribution) (Go bas
 
 It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
 
-![CoreOS-OSX](coreos-osx-gui.png "CoreOS-OSX-GUI")
+![CoreOS-OSX](coreos-osx.png "CoreOS-OSX")
 
 
 How to install CoreOS VM for OS X
