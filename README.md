@@ -3,9 +3,9 @@ CoreOS VM for OS X
 
 **CoreOS VM for OS X** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/xhyve-xyz/xhyve) based VMs). 
 
-It includes [Docker Registry v2](https://github.com/docker/distribution) (Go based and compiled for OS X)
-
-It supports only a standalone CoreOS VM, cluster one (Vagrant based) is at [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
+The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
+You can use included [Docker Registry v2](https://github.com/docker/distribution) (Go based and compiled for OS X) to store
+your Docker images and share with Kubernetes Apps for OS X: [Kube-solo](https://github.com/TheNewNormal/kube-solo-osx) and [Kube-Cluster](https://github.com/TheNewNormal/kube-cluster-osx)
 
 ![CoreOS-OSX](coreos-osx.png "CoreOS-OSX")
 
