@@ -6,11 +6,11 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 
 start() {
     echo "Starting Docker Registry v2 on 192.168.64.1:5000 ..."
-    nohup registry config.yml >/dev/null 2>&1 &
+    nohup registry serve config.yml >/dev/null 2>&1 &
 }
 
 stop() {
-    kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) >/dev/null 2>&1
+    kill $(ps aux | grep "[r]egistry serve config.yml" | awk {'print $2'}) >/dev/null 2>&1
 }
 
 usage() {
