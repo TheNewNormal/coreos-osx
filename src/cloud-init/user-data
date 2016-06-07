@@ -61,7 +61,7 @@ coreos:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/bin/sh -c '[[ -d /data/var/lib/docker ]] || mkdir -p /data/var/lib/docker'
-        ExecStart=/bin/sh -c '[[ -d /data/var/lib/rkt ]] || mkdir -p /data/var/lib/rkt'
+        ExecStart=/bin/sh -c '[[ -d /data/var/lib/rkt ]] || mkdir -p /data/var/lib/rkt && /usr/bin/chgrp rkt /data/var/lib/rkt'
         ExecStart=/bin/sh -c '[[ -d /data/var/lib/etcd2 ]] || mkdir -p /data/var/lib/etcd2 && /usr/bin/chown etcd:etcd /data/var/lib/etcd2'
         ExecStart=/bin/sh -c '[[ -d /data/opt/bin ]] || mkdir -p /data/opt/bin'
     - name: var-lib-etcd2.mount
