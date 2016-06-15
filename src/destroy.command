@@ -14,7 +14,7 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # get VM IP
-vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
+vm_ip=$(/usr/local/sbin/corectl q -i core-01)
 
 # get password for sudo
 my_password=$(security find-generic-password -wa coreos-osx-app)
@@ -40,7 +40,7 @@ do
         echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 
         # send halt to VM
-        sudo "${res_folder}"/bin/corectl halt core-01 > /dev/null 2>&1
+        /usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
 
         # Stop docker registry
         "${res_folder}"/docker_registry.sh stop

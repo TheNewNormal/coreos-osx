@@ -40,6 +40,7 @@
 		137018AC1C11E9D00002B2B9 /* cloud-init in Resources */ = {isa = PBXBuildFile; fileRef = 137018AB1C11E9D00002B2B9 /* cloud-init */; };
 		137018B21C11F0DE0002B2B9 /* registry in Resources */ = {isa = PBXBuildFile; fileRef = 137018B11C11F0DE0002B2B9 /* registry */; };
 		137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */ = {isa = PBXBuildFile; fileRef = 137018B31C11F1FD0002B2B9 /* docker_registry.sh */; };
+		13C745411D117F89009E35D2 /* server_up.command in Resources */ = {isa = PBXBuildFile; fileRef = 13C745401D117F89009E35D2 /* server_up.command */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		137018AB1C11E9D00002B2B9 /* cloud-init */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "cloud-init"; sourceTree = SOURCE_ROOT; };
 		137018B11C11F0DE0002B2B9 /* registry */ = {isa = PBXFileReference; lastKnownFileType = folder; path = registry; sourceTree = SOURCE_ROOT; };
 		137018B31C11F1FD0002B2B9 /* docker_registry.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = docker_registry.sh; sourceTree = "<group>"; };
+		13C745401D117F89009E35D2 /* server_up.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = server_up.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				137018B31C11F1FD0002B2B9 /* docker_registry.sh */,
 				01741B64190DB81400BB1F91 /* up.command */,
+				13C745401D117F89009E35D2 /* server_up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
 				134D10E91C306D8F00A479A0 /* change_sudo_password.command */,
 				01B675D51B602FC2004349CC /* check_vm_status.command */,
@@ -263,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13C745411D117F89009E35D2 /* server_up.command in Resources */,
 				019662121B04C562005FA955 /* bin in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,

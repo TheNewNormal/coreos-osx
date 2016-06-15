@@ -3,7 +3,7 @@
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # get VM's IP
-vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
+vm_ip=$(/usr/local/sbin/corectl q -i core-01)
 
 cmd=(ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet core@$vm_ip sudo /usr/bin/etcdctl "${@+$@}")
 

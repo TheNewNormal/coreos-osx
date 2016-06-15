@@ -146,7 +146,7 @@ chmod +x ~/coreos-osx/bin/docker
 function download_osx_clients() {
 # download docker file
 # check docker server version
-DOCKER_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | sed -n 2p )
+DOCKER_VERSION=$(/usr/local/sbin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | sed -n 2p )
 # check if the binary exists
 if [ ! -f ~/coreos-osx/bin/docker ]; then
     cd ~/coreos-osx/bin
@@ -232,7 +232,7 @@ sudo -k
 printf '%s\n' "$my_password" | sudo -Sv > /dev/null 2>&1
 
 # send halt to VM
-sudo "${res_folder}"/bin/corectl halt core-01 > /dev/null 2>&1
+/usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
 
 # Stop docker registry
 "${res_folder}"/docker_registry.sh stop

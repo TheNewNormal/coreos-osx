@@ -11,7 +11,7 @@ source "${DIR}"/functions.sh
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # get VM's IP
-vm_ip=$("${res_folder}"/bin/corectl q -i core-01)
+vm_ip=$(/usr/local/sbin/corectl q -i core-01)
 
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
