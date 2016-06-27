@@ -20,5 +20,9 @@ export DOCKER_HOST=tcp://$vm_ip:2375
 
 cd ~/coreos-osx
 
+#
+echo " "
+echo "Preset CoreOS VM App shell ..."
+
 # open bash shell
 /bin/bash

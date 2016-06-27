@@ -20,9 +20,6 @@
 /* Class = "NSMenuItem"; title = "Fleet-UI"; ObjectID = "LkH-Oi-Kkr"; */
 "LkH-Oi-Kkr.title" = "Fleet UI";
 
-/* Class = "NSMenuItem"; title = "Attach to VM's console"; ObjectID = "NVQ-p7-0FG"; */
-"NVQ-p7-0FG.title" = "Attach to VM's console";
-
 /* Class = "NSMenuItem"; title = "Reload"; ObjectID = "UTs-as-EKD"; */
 "UTs-as-EKD.title" = "Reload";
 

@@ -7,6 +7,9 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "${DIR}"/functions.sh
 
+# check corectld server
+check_corectld_server
+
 # create logs dir
 mkdir -p ~/coreos-osx/logs > /dev/null 2>&1
 
@@ -39,15 +42,6 @@ if ! ssh-add -l | grep -q ssh/id_rsa; then
 fi
 #
 
-# check for password in Keychain
-my_password=$(security 2>&1 >/dev/null find-generic-password -wa coreos-osx-app)
-if [ "$my_password" = "security: SecKeychainSearchCopyNext: The specified item could not be found in the keychain." ]
-then
-    echo " "
-    echo "Saved password could not be found in the 'Keychain': "
-    # save user password to Keychain
-    save_password
-fi
 
 new_vm=0
 # check if data disk exists, if not create it
@@ -65,21 +59,11 @@ echo " "
 "${res_folder}"/docker_registry.sh start
 "${res_folder}"/docker_registry.sh start > /dev/null 2>&1
 
-# get password for sudo
-my_password=$(security find-generic-password -wa coreos-osx-app)
-# reset sudo
-sudo -k > /dev/null 2>&1
-
-# start corectl server
-###sudo /usr/local/sbin/corectl server -u $USER --start >/dev/null 2>&1 &
-#sudo /usr/local/sbin/corectl server --start
-
 # Start VM
 cd ~/coreos-osx
 echo " "
 echo "Starting VM ..."
 echo " "
-echo -e "$my_password\n" | sudo -Sv > /dev/null 2>&1
 #
 cd $HOME/coreos-osx
 /usr/local/sbin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_up.log
@@ -87,7 +71,7 @@ CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/vm_up.log | grep "started")
 #
 if [[ "$CHECK_VM_STATUS" == "" ]]; then
     echo " "
-    echo "VM have not booted, please check '~/coreos-osx/logs/vm_up.log' and report the problem !!! "
+    echo "VM has not booted, please check '~/coreos-osx/logs/vm_up.log' and report the problem !!! "
     echo " "
     pause 'Press [Enter] key to continue...'
     exit 0
@@ -112,9 +96,12 @@ export DOCKER_HOST=tcp://$vm_ip:2375
 export DOCKER_TLS_VERIFY=
 export DOCKER_CERT_PATH=
 
-echo " "
 #
 cd ~/coreos-osx
+
+#
+echo " "
+echo "Preset CoreOS VM App shell ..."
 
 # open bash shell
 /bin/bash

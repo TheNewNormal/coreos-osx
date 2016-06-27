@@ -9,7 +9,7 @@ source "${DIR}"/functions.sh
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # get channel from the config file
-CHANNEL=$(cat ~/coreos-osx/settings/core-01.toml | grep "channel =" | head -1 | cut -f2 -d"=" | sed -e 's/ "\(.*\)"/\1/')
+CHANNEL=$(cat ~/coreos-osx/settings/core-01.toml | grep "channel =" | head -1 | cut -f2 -d"=" | /usr/bin/sed -e 's/ "\(.*\)"/\1/')
 
 echo " "
 echo "Fetching lastest CoreOS $CHANNEL channel ISO ..."
