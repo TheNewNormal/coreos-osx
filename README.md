@@ -1,4 +1,4 @@
-CoreOS VM for OS X 
+CoreOS VM for macOS 
 ========================
 
 **CoreOS VM for OS X** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/xhyve-xyz/xhyve) based VMs). 
