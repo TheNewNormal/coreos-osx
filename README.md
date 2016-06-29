@@ -1,7 +1,7 @@
 CoreOS VM for macOS 
 ========================
 
-**CoreOS VM for OS X** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/xhyve-xyz/xhyve) based VMs). 
+**CoreOS VM for macOS** (coreos-machine) is a Mac Status bar App which works like a wrapper around the [corectl](https://github.com/TheNewNormal/corectl) command line tool (it makes easier to control [xhyve](https://github.com/xhyve-xyz/xhyve) based VMs). 
 
 The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
 You can use included [Docker Registry v2](https://github.com/docker/distribution) (Go based and compiled for OS X) to store
@@ -10,12 +10,12 @@ your Docker images and share with Kubernetes Apps for OS X: [Kube-solo](https://
 ![CoreOS-OSX](coreos-osx.png "CoreOS-OSX")
 
 
-How to install CoreOS VM for OS X
+How to install CoreOS VM for macOS
 ----------
 
 **Requirements**
  -----------
-  - **OS X 10.10.3** Yosemite or later 
+  - **macOS 10.10.3** Yosemite or later 
   - Mac 2010 or later for this to work.
 
 
@@ -99,7 +99,7 @@ Credits
 
 Other CoreOS VM based Apps
 -----------
-* Cluster one CoreOS VM App can be found here [CoreOS Cluster for OS X](https://github.com/rimusz/coreos-osx-cluster).
-* Kubernetes Solo Cluster VM App (corectl based) can be found here [Kube Solo for OS X](https://github.com/TheNewNormal/kube-solo-osx).
-* Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster for OS X ](https://github.com/rimusz/coreos-osx-kubernetes-cluster).
+* Cluster one CoreOS VM App can be found here [CoreOS Cluster for macOS](https://github.com/rimusz/coreos-osx-cluster).
+* Kubernetes Solo Cluster VM App (corectl based) can be found here [Kube Solo for macOS](https://github.com/TheNewNormal/kube-solo-osx).
+* Kubernetes Cluster one CoreOS VM App can be found here [CoreOS Kubernetes Cluster for macOS](https://github.com/rimusz/coreos-osx-kubernetes-cluster).
 
