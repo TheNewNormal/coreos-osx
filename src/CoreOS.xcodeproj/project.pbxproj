@@ -19,7 +19,6 @@
 		019662141B04C598005FA955 /* settings in Resources */ = {isa = PBXBuildFile; fileRef = 019662131B04C598005FA955 /* settings */; };
 		019662181B04C6EA005FA955 /* files in Resources */ = {isa = PBXBuildFile; fileRef = 019662171B04C6EA005FA955 /* files */; };
 		01993A4F1B63DD730096E2E1 /* halt.command in Resources */ = {isa = PBXBuildFile; fileRef = 01993A4E1B63DD730096E2E1 /* halt.command */; };
-		01AD94BF1A278C94009A400B /* fetch_latest_iso.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* fetch_latest_iso.command */; };
 		01B675D61B602FC2004349CC /* check_vm_status.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B675D51B602FC2004349CC /* check_vm_status.command */; };
 		01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */; };
 		01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DC1A2AA48300F251C2 /* destroy.command */; };
@@ -54,7 +53,6 @@
 		019662131B04C598005FA955 /* settings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings; sourceTree = SOURCE_ROOT; };
 		019662171B04C6EA005FA955 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = SOURCE_ROOT; };
 		01993A4E1B63DD730096E2E1 /* halt.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = halt.command; sourceTree = "<group>"; };
-		01AD94BE1A278C94009A400B /* fetch_latest_iso.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fetch_latest_iso.command; sourceTree = "<group>"; };
 		01B675D51B602FC2004349CC /* check_vm_status.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_vm_status.command; sourceTree = "<group>"; };
 		01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_release_channel.command; sourceTree = "<group>"; };
 		01CFC2DC1A2AA48300F251C2 /* destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = destroy.command; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				01993A4E1B63DD730096E2E1 /* halt.command */,
 				019410631BE0E5F200723E19 /* kill_VM.command */,
 				01CFC2DD1A2AA48300F251C2 /* reload.command */,
-				01AD94BE1A278C94009A400B /* fetch_latest_iso.command */,
 				01741B66190DB82100BB1F91 /* update_osx_clients_files.command */,
 				134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */,
 			);
@@ -263,7 +260,6 @@
 				019662121B04C562005FA955 /* bin in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
-				01AD94BF1A278C94009A400B /* fetch_latest_iso.command in Resources */,
 				133DD1211CE49AB900059FCC /* InfoPlist.strings in Resources */,
 				137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */,
 				0145318418FF209D007F9C95 /* ssh.command in Resources */,

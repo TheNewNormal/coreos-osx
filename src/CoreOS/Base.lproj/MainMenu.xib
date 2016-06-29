@@ -79,13 +79,6 @@
                                     <action selector="updates:" target="494" id="3Va-Du-QFm"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="00T-L7-qDD"/>
-                            <menuItem title="Fetch latest CoreOS ISO" id="ozW-cb-XTh">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="fetchLatestISO:" target="494" id="gtc-q9-d8H"/>
-                                </connections>
-                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
