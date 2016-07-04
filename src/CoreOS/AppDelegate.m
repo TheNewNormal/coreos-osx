@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  CoreOS OS X
+//  CoreOS macOS
 //
 //  Created by Rimantas on 01/04/2014.
 //  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
@@ -30,7 +30,7 @@
     // check resourcePath and exit the App if it runs from the dmg
     if ( [ _resoucesPathFromApp isEqual: dmgPath] ) {
         // show alert message
-        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS for OS X App cannot be started from DMG !!!"];
+        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS for macOS App cannot be started from DMG !!!"];
         NSString *infoText = @"Please copy App e.g. to your Applications folder ...";
         [self displayWithMessage:mText infoText:infoText];
         
@@ -241,7 +241,7 @@
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = @"CoreOS";
-        notification.informativeText = @"OS X clients will be updated";
+        notification.informativeText = @"macOS clients will be updated";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
         NSString *appName = [[NSString alloc] init];
@@ -330,7 +330,7 @@
 //    NSString *app_version = [NSString stringWithFormat:@"%@%@.%@", @"v", version, build];
     NSString *app_version = [NSString stringWithFormat:@"%@%@", @"v", version];
     
-    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for OS X", app_version];
+    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for macOS", app_version];
     NSString *infoText = @"It is a simple wrapper around the corectl + CoreOS VM, which allows to control VM via the Status Bar App !!!";
     [self displayWithMessage:mText infoText:infoText];
 }
@@ -356,7 +356,7 @@
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = @"CoreOS";
-        notification.informativeText = @"OS X shell will be opened";
+        notification.informativeText = @"macOS shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
         NSString *appName = [[NSString alloc] init];

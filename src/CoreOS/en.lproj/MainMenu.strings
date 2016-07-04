@@ -23,8 +23,8 @@
 /* Class = "NSMenuItem"; title = "Reload"; ObjectID = "UTs-as-EKD"; */
 "UTs-as-EKD.title" = "Reload";
 
-/* Class = "NSMenuItem"; title = "About CoreOS for OS X"; ObjectID = "UjW-Zi-qqY"; */
-"UjW-Zi-qqY.title" = "About CoreOS for OS X";
+/* Class = "NSMenuItem"; title = "About CoreOS for macOS"; ObjectID = "UjW-Zi-qqY"; */
+"UjW-Zi-qqY.title" = "About CoreOS for macOS";
 
 /* Class = "NSMenuItem"; title = "Updates"; ObjectID = "VT6-tu-oxP"; */
 "VT6-tu-oxP.title" = "Updates";
@@ -41,14 +41,11 @@
 /* Class = "NSMenuItem"; title = "Change Release Channel (needs reload of VM)"; ObjectID = "lI7-r8-M4c"; */
 "lI7-r8-M4c.title" = "Change Release Channel";
 
-/* Class = "NSMenuItem"; title = "Fetch latest CoreOS ISO"; ObjectID = "ozW-cb-XTh"; */
-"ozW-cb-XTh.title" = "Fetch latest CoreOS ISO";
-
 /* Class = "NSMenuItem"; title = "DockerUI"; ObjectID = "sCD-se-Vah"; */
 "sCD-se-Vah.title" = "UI for Docker";
 
-/* Class = "NSMenuItem"; title = "Check for update of docker OS X client"; ObjectID = "sEE-aC-0Ob"; */
-"sEE-aC-0Ob.title" = "Check for update of docker OS X client";
+/* Class = "NSMenuItem"; title = "Check for update of docker macOS client"; ObjectID = "sEE-aC-0Ob"; */
+"sEE-aC-0Ob.title" = "Check for update of docker macOS client";
 
 /* Class = "NSMenuItem"; title = "Quit"; ObjectID = "zsR-Hu-nBe"; */
 "zsR-Hu-nBe.title" = "Quit";

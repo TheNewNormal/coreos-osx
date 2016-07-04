@@ -73,7 +73,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Updates" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Check for update of docker OS X client" id="sEE-aC-0Ob">
+                            <menuItem title="Check for update of docker macOS client" id="sEE-aC-0Ob">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="updates:" target="494" id="3Va-Du-QFm"/>
@@ -111,7 +111,7 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="amp-XY-DBJ"/>
-                <menuItem title="About CoreOS for OS X" id="UjW-Zi-qqY">
+                <menuItem title="About CoreOS for macOS" id="UjW-Zi-qqY">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="About:" target="494" id="W2K-DS-RDk"/>

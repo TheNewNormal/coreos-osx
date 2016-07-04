@@ -137,18 +137,18 @@ then
     then
         # we check if RC is still available
         echo " "
-        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        echo "Downloading docker $DOCKER_VERSION client for macOS"
         curl -o ~/coreos-osx/bin/docker https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
     else
         # RC is not available anymore, so we download stable release
         echo " "
         DOCKER_VERSION_STABLE=$(echo $DOCKER_VERSION | cut -d"-" -f1)
-        echo "Downloading docker $DOCKER_VERSION_STABLE client for OS X"
+        echo "Downloading docker $DOCKER_VERSION_STABLE client for macOS"
         curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION_STABLE
     fi
 else
 # docker stable release
-echo "Downloading docker $DOCKER_VERSION client for OS X"
+echo "Downloading docker $DOCKER_VERSION client for macOS"
 curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
 fi
 # Make it executable
@@ -164,7 +164,7 @@ DOCKER_VERSION=$(/usr/local/sbin/corectl ssh core-01 'docker version' | grep 'Ve
 # check if the binary exists
 if [ ! -f ~/coreos-osx/bin/docker ]; then
     cd ~/coreos-osx/bin
-    echo "Downloading docker $DOCKER_VERSION client for OS X"
+    echo "Downloading docker $DOCKER_VERSION client for macOS"
     curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
     # Make it executable
     chmod +x ~/coreos-osx/bin/docker
@@ -176,14 +176,14 @@ else
     if [ $MATCH -eq 0 ]; then
         # the version is different
         cd ~/coreos-osx/bin
-        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        echo "Downloading docker $DOCKER_VERSION client for macOS"
         curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
         # Make it executable
         chmod +x ~/coreos-osx/bin/docker
         osx_clients_upgrade=1
     else
         echo " "
-        echo "OS X docker client is up to date with VM's version ..."
+        echo "macOS docker client is up to date with VM's version ..."
     fi
 fi
 

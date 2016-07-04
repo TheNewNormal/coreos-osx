@@ -14,7 +14,7 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 echo " "
-echo "Setting up CoreOS VM on OS X"
+echo "Setting up CoreOS VM on macOS"
 
 # add ssh key to *.toml files
 sshkey
