@@ -94,6 +94,13 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="w1d-Wt-nh1"/>
+                            <menuItem title="Enable shared NFS user home folder" id="7qw-TA-DJZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="enableNFS:" target="494" id="gW6-MD-nYx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="np2-EM-hxu"/>
                             <menuItem title="Destroy VM" id="HWe-7a-OCV">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
