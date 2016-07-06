@@ -18,7 +18,11 @@ echo "Stopping VM ..."
 # send halt to VM
 /usr/local/sbin/corectl halt core-01
 
-sleep 5
+#
+sleep 3
+
+# check corectld server
+check_corectld_server
 
 # Start VM
 cd ~/coreos-osx
