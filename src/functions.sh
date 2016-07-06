@@ -10,6 +10,16 @@ function pause(){
 }
 
 
+function check_corectld_server() {
+# check corectld server
+#
+CHECK_SERVER_STATUS=$(/usr/local/sbin/corectld status 2>&1 | grep "Uptime:")
+if [[ "$CHECK_SERVER_STATUS" == "" ]]; then
+    open -a /Applications/corectl.app
+fi
+
+}
+
 function sshkey(){
 # add ssh key to *.toml files
 echo " "
@@ -51,8 +61,8 @@ do
     if [ $RESPONSE = 1 ]
     then
         VALID_MAIN=1
-        sed -i "" 's/channel = "stable"/channel = "alpha"/g' ~/coreos-osx/settings/*.toml
-        sed -i "" 's/channel = "beta"/channel = "alpha"/g' ~/coreos-osx/settings/*.toml
+        /usr/bin/sed -i "" 's/channel = "stable"/channel = "alpha"/g' ~/coreos-osx/settings/*.toml
+        /usr/bin/sed -i "" 's/channel = "beta"/channel = "alpha"/g' ~/coreos-osx/settings/*.toml
         channel="Alpha"
         LOOP=0
     fi
@@ -60,8 +70,8 @@ do
     if [ $RESPONSE = 2 ]
     then
         VALID_MAIN=1
-        sed -i "" 's/channel = "stable"/channel = "beta"/g' ~/coreos-osx/settings/*.toml
-        sed -i "" 's/channel = "alpha"/channel = "beta"/g' ~/coreos-osx/settings/*.toml
+        /usr/bin/sed -i "" 's/channel = "stable"/channel = "beta"/g' ~/coreos-osx/settings/*.toml
+        /usr/bin/sed -i "" 's/channel = "alpha"/channel = "beta"/g' ~/coreos-osx/settings/*.toml
         channel="Beta"
         LOOP=0
     fi
@@ -69,8 +79,8 @@ do
     if [ $RESPONSE = 3 ]
     then
         VALID_MAIN=1
-        sed -i "" 's/channel = "beta"/channel = "stable"/g' ~/coreos-osx/settings/*.toml
-        sed -i "" 's/channel = "alpha"/channel = "stable"/g' ~/coreos-osx/settings/*.toml
+        /usr/bin/sed -i "" 's/channel = "beta"/channel = "stable"/g' ~/coreos-osx/settings/*.toml
+        /usr/bin/sed -i "" 's/channel = "alpha"/channel = "stable"/g' ~/coreos-osx/settings/*.toml
         channel="Stable"
         LOOP=0
     fi
@@ -123,18 +133,18 @@ then
     then
         # we check if RC is still available
         echo " "
-        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        echo "Downloading docker $DOCKER_VERSION client for macOS"
         curl -o ~/coreos-osx/bin/docker https://test.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
     else
         # RC is not available anymore, so we download stable release
         echo " "
         DOCKER_VERSION_STABLE=$(echo $DOCKER_VERSION | cut -d"-" -f1)
-        echo "Downloading docker $DOCKER_VERSION_STABLE client for OS X"
+        echo "Downloading docker $DOCKER_VERSION_STABLE client for macOS"
         curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION_STABLE
     fi
 else
 # docker stable release
-echo "Downloading docker $DOCKER_VERSION client for OS X"
+echo "Downloading docker $DOCKER_VERSION client for macOS"
 curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
 fi
 # Make it executable
@@ -146,11 +156,11 @@ chmod +x ~/coreos-osx/bin/docker
 function download_osx_clients() {
 # download docker file
 # check docker server version
-DOCKER_VERSION=$("${res_folder}"/bin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | sed -n 2p )
+DOCKER_VERSION=$(/usr/local/sbin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | /usr/bin/sed -n 2p )
 # check if the binary exists
 if [ ! -f ~/coreos-osx/bin/docker ]; then
     cd ~/coreos-osx/bin
-    echo "Downloading docker $DOCKER_VERSION client for OS X"
+    echo "Downloading docker $DOCKER_VERSION client for macOS"
     curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
     # Make it executable
     chmod +x ~/coreos-osx/bin/docker
@@ -162,55 +172,17 @@ else
     if [ $MATCH -eq 0 ]; then
         # the version is different
         cd ~/coreos-osx/bin
-        echo "Downloading docker $DOCKER_VERSION client for OS X"
+        echo "Downloading docker $DOCKER_VERSION client for macOS"
         curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
         # Make it executable
         chmod +x ~/coreos-osx/bin/docker
         osx_clients_upgrade=1
     else
         echo " "
-        echo "OS X docker client is up to date with VM's version ..."
+        echo "macOS docker client is up to date with VM's version ..."
     fi
 fi
 
-
-}
-
-
-function save_password {
-# save user's password to Keychain
-echo "  "
-echo "Your Mac user's password will be saved in to 'Keychain' "
-echo "and later one used for 'sudo' command to start VM !!!"
-echo " "
-echo "This is not the password to access VM via ssh or console !!!"
-echo " "
-echo "Please type your Mac user's password followed by [ENTER]:"
-read -s -r my_password
-passwd_ok=0
-
-# check if sudo password is correct
-while [ ! $passwd_ok = 1 ]
-do
-    # reset sudo
-    sudo -k
-    # check sudo
-    printf '%s\n' "$my_password" | sudo -Sv > /dev/null 2>&1
-    CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
-    if [ ${CAN_I_RUN_SUDO} -gt 0 ]
-    then
-        echo "The sudo password is fine !!!"
-        echo " "
-        passwd_ok=1
-    else
-        echo " "
-        echo "The password you entered does not match your Mac user password !!!"
-        echo "Please type your Mac user's password followed by [ENTER]:"
-        read -s -r my_password
-    fi
-done
-
-security add-generic-password -a coreos-osx-app -s coreos-osx-app -w $my_password -U
 
 }
 
@@ -224,24 +196,17 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 # get App's Resources folder
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
-# get password for sudo
-my_password=$(security find-generic-password -wa coreos-osx-app)
-# reset sudo
-sudo -k
-# enable sudo
-printf '%s\n' "$my_password" | sudo -Sv > /dev/null 2>&1
-
 # send halt to VM
-sudo "${res_folder}"/bin/corectl halt core-01 > /dev/null 2>&1
+/usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
 
 # Stop docker registry
 "${res_folder}"/docker_registry.sh stop
 kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
 
 # kill all other scripts
-pkill -f [C]oreOS GUI.app/Contents/Resources/fetch_latest_iso.command
-pkill -f [C]oreOS GUI.app/Contents/Resources/update_osx_clients_files.command
-pkill -f [C]oreOS GUI.app/Contents/Resources/change_release_channel.command
+pkill -f [C]oreOS.app/Contents/Resources/fetch_latest_iso.command
+pkill -f [C]oreOS.app/Contents/Resources/update_osx_clients_files.command
+pkill -f [C]oreOS.app/Contents/Resources/change_release_channel.command
 
 }
 

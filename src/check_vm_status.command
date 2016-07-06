@@ -7,7 +7,7 @@
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # check VM status
-status=$("${res_folder}"/bin/corectl ps 2>&1 | grep "[c]ore-01")
+status=$(/usr/local/sbin/corectl ps 2>&1 | grep "[c]ore-01")
 
 if [ "$status" = "" ]; then
     echo -n "VM is stopped"

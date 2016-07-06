@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  CoreOS OS X
+//  CoreOS macOS
 //
 //  Created by Rimantas on 01/04/2014.
 //  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
@@ -30,9 +30,26 @@
     // check resourcePath and exit the App if it runs from the dmg
     if ( [ _resoucesPathFromApp isEqual: dmgPath] ) {
         // show alert message
-        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS for OS X App cannot be started from DMG !!!"];
+        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS for macOS App cannot be started from DMG !!!"];
         NSString *infoText = @"Please copy App e.g. to your Applications folder ...";
         [self displayWithMessage:mText infoText:infoText];
+        
+        // exiting App
+        [[NSApplication sharedApplication] terminate:self];
+    }
+    
+    // check that corectl.app is installed at /Applications folder
+    if(![[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/corectl.app"]) {
+        NSLog(@"corectl failed to launch");
+
+        // show alert message
+        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS App cannot start !!!"];
+        NSString *infoText = @"corectl.app cannot be found in /Applications folder, the download link will be opened in your browser ...";
+        [self displayWithMessage:mText infoText:infoText];
+        
+        // open corectl.app releases URL
+        NSString *url = [@[@"https://github.com/TheNewNormal/corectl.app/releases"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
         
         // exiting App
         [[NSApplication sharedApplication] terminate:self];
@@ -90,6 +107,23 @@
 
 
 - (IBAction)Start:(id)sender {
+    // check that corectl.app is installed in /Applications folder
+    if(![[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/corectl.app"]) {
+        NSLog(@"corectl failed to launch");
+        
+        // show alert message
+        NSString *mText = [NSString stringWithFormat:@"%@", @"Cannot start VM !!!"];
+        NSString *infoText = @"corectl.app cannot be found in /Applications folder, the download link will be opened in your browser ...";
+        [self displayWithMessage:mText infoText:infoText];
+        
+        // open corectl.app releases URL
+        NSString *url = [@[@"https://github.com/TheNewNormal/corectl.app/releases"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+        
+        //
+        return;
+    }
+    
     int vm_status=[self checkVMStatus];
     NSLog (@"VM status:\n%d", vm_status);
     
@@ -142,7 +176,6 @@
         notification.informativeText = @"VM is already running !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
-
 }
 
 
@@ -241,26 +274,13 @@
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = @"CoreOS";
-        notification.informativeText = @"OS X clients will be updated";
+        notification.informativeText = @"macOS clients will be updated";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
         NSString *appName = [[NSString alloc] init];
         NSString *arguments = [[NSString alloc] init];
         [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update_osx_clients_files.command"]];
     }
-}
-
-
-- (IBAction)fetchLatestISO:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"CoreOS";
-    notification.informativeText = @"CoreOS ISO image will be updated";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"fetch_latest_iso.command"]];
 }
 // Updates menu
 
@@ -279,17 +299,18 @@
 }
 
 
-- (IBAction)changeSudoPassword:(id)sender {
+- (IBAction)enableNFS:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"CoreOS";
-    notification.informativeText = @"sudo password change";
+    notification.informativeText = @"Enable shared NFS folder";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"change_sudo_password.command"]];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"enable_disable_nfs.command"]];
 }
+
 
 
 - (IBAction)destroy:(id)sender {
@@ -356,7 +377,7 @@
 //    NSString *app_version = [NSString stringWithFormat:@"%@%@.%@", @"v", version, build];
     NSString *app_version = [NSString stringWithFormat:@"%@%@", @"v", version];
     
-    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for OS X", app_version];
+    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for macOS", app_version];
     NSString *infoText = @"It is a simple wrapper around the corectl + CoreOS VM, which allows to control VM via the Status Bar App !!!";
     [self displayWithMessage:mText infoText:infoText];
 }
@@ -382,7 +403,7 @@
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = @"CoreOS";
-        notification.informativeText = @"OS X shell will be opened";
+        notification.informativeText = @"macOS shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
         NSString *appName = [[NSString alloc] init];

@@ -37,5 +37,8 @@
         unzip "$1"/files/iTerm2.zip -d /Applications/
     fi
 
+    # check corectld server
+    check_corectld_server
+
     # initial init
     open -a iTerm.app "$1"/first-init.command

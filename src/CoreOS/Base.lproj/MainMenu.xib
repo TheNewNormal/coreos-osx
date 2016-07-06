@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <development version="6300" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -73,17 +73,10 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Updates" id="DFA-8C-ne3">
                         <items>
-                            <menuItem title="Check for update of docker OS X client" id="sEE-aC-0Ob">
+                            <menuItem title="Check for update of docker macOS client" id="sEE-aC-0Ob">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="updates:" target="494" id="3Va-Du-QFm"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="00T-L7-qDD"/>
-                            <menuItem title="Fetch latest CoreOS ISO" id="ozW-cb-XTh">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="fetchLatestISO:" target="494" id="gtc-q9-d8H"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -100,14 +93,14 @@
                                     <action selector="changeReleaseChannel:" target="494" id="aSD-te-ATl"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="HZd-4l-v9B"/>
-                            <menuItem title="Change 'sudo' password" id="g60-3S-24l" userLabel="Change 'sudo' password">
+                            <menuItem isSeparatorItem="YES" id="w1d-Wt-nh1"/>
+                            <menuItem title="Enable shared NFS user home folder" id="7qw-TA-DJZ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="changeSudoPassword:" target="494" id="Oqj-gr-u9b"/>
+                                    <action selector="enableNFS:" target="494" id="gW6-MD-nYx"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="w1d-Wt-nh1"/>
+                            <menuItem isSeparatorItem="YES" id="np2-EM-hxu"/>
                             <menuItem title="Destroy VM" id="HWe-7a-OCV">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -125,7 +118,7 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="amp-XY-DBJ"/>
-                <menuItem title="About CoreOS for OS X" id="UjW-Zi-qqY">
+                <menuItem title="About CoreOS for macOS" id="UjW-Zi-qqY">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="About:" target="494" id="W2K-DS-RDk"/>

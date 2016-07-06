@@ -19,7 +19,6 @@
 		019662141B04C598005FA955 /* settings in Resources */ = {isa = PBXBuildFile; fileRef = 019662131B04C598005FA955 /* settings */; };
 		019662181B04C6EA005FA955 /* files in Resources */ = {isa = PBXBuildFile; fileRef = 019662171B04C6EA005FA955 /* files */; };
 		01993A4F1B63DD730096E2E1 /* halt.command in Resources */ = {isa = PBXBuildFile; fileRef = 01993A4E1B63DD730096E2E1 /* halt.command */; };
-		01AD94BF1A278C94009A400B /* fetch_latest_iso.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* fetch_latest_iso.command */; };
 		01B675D61B602FC2004349CC /* check_vm_status.command in Resources */ = {isa = PBXBuildFile; fileRef = 01B675D51B602FC2004349CC /* check_vm_status.command */; };
 		01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */; };
 		01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 01CFC2DC1A2AA48300F251C2 /* destroy.command */; };
@@ -27,6 +26,7 @@
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		13164EBA1D2D2E8400642B0A /* run_corectl_app.command in Resources */ = {isa = PBXBuildFile; fileRef = 13164EB91D2D2E8400642B0A /* run_corectl_app.command */; };
 		133DD11C1CE49AB900059FCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 133DD10E1CE49AB900059FCC /* AppDelegate.m */; };
 		133DD11D1CE49AB900059FCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133DD10F1CE49AB900059FCC /* MainMenu.xib */; };
 		133DD11F1CE49AB900059FCC /* CoreOS.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1131CE49AB900059FCC /* CoreOS.entitlements */; };
@@ -35,8 +35,8 @@
 		133DD1221CE49AB900059FCC /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1181CE49AB900059FCC /* MainMenu.strings */; };
 		133DD1231CE49AB900059FCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133DD11A1CE49AB900059FCC /* Images.xcassets */; };
 		133DD1241CE49AB900059FCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 133DD11B1CE49AB900059FCC /* main.m */; };
+		134182F61D2A9DD7001021BD /* enable_disable_nfs.command in Resources */ = {isa = PBXBuildFile; fileRef = 134182F51D2A9DD7001021BD /* enable_disable_nfs.command */; };
 		134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */; };
-		134D10EA1C306D8F00A479A0 /* change_sudo_password.command in Resources */ = {isa = PBXBuildFile; fileRef = 134D10E91C306D8F00A479A0 /* change_sudo_password.command */; };
 		137018AC1C11E9D00002B2B9 /* cloud-init in Resources */ = {isa = PBXBuildFile; fileRef = 137018AB1C11E9D00002B2B9 /* cloud-init */; };
 		137018B21C11F0DE0002B2B9 /* registry in Resources */ = {isa = PBXBuildFile; fileRef = 137018B11C11F0DE0002B2B9 /* registry */; };
 		137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */ = {isa = PBXBuildFile; fileRef = 137018B31C11F1FD0002B2B9 /* docker_registry.sh */; };
@@ -55,7 +55,6 @@
 		019662131B04C598005FA955 /* settings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings; sourceTree = SOURCE_ROOT; };
 		019662171B04C6EA005FA955 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = SOURCE_ROOT; };
 		01993A4E1B63DD730096E2E1 /* halt.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = halt.command; sourceTree = "<group>"; };
-		01AD94BE1A278C94009A400B /* fetch_latest_iso.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fetch_latest_iso.command; sourceTree = "<group>"; };
 		01B675D51B602FC2004349CC /* check_vm_status.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_vm_status.command; sourceTree = "<group>"; };
 		01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_release_channel.command; sourceTree = "<group>"; };
 		01CFC2DC1A2AA48300F251C2 /* destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = destroy.command; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		01E2854218A6C4E300BC630D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		13164EB91D2D2E8400642B0A /* run_corectl_app.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run_corectl_app.command; sourceTree = "<group>"; };
 		133DD10D1CE49AB900059FCC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		133DD10E1CE49AB900059FCC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		133DD1101CE49AB900059FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 		133DD1191CE49AB900059FCC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		133DD11A1CE49AB900059FCC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		133DD11B1CE49AB900059FCC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		134182F51D2A9DD7001021BD /* enable_disable_nfs.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = enable_disable_nfs.command; sourceTree = "<group>"; };
 		134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = upload_docker_images.command; sourceTree = "<group>"; };
-		134D10E91C306D8F00A479A0 /* change_sudo_password.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_sudo_password.command; sourceTree = "<group>"; };
 		137018AB1C11E9D00002B2B9 /* cloud-init */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "cloud-init"; sourceTree = SOURCE_ROOT; };
 		137018B11C11F0DE0002B2B9 /* registry */ = {isa = PBXFileReference; lastKnownFileType = folder; path = registry; sourceTree = SOURCE_ROOT; };
 		137018B31C11F1FD0002B2B9 /* docker_registry.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = docker_registry.sh; sourceTree = "<group>"; };
@@ -155,19 +155,19 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				13164EB91D2D2E8400642B0A /* run_corectl_app.command */,
 				137018B31C11F1FD0002B2B9 /* docker_registry.sh */,
 				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
-				134D10E91C306D8F00A479A0 /* change_sudo_password.command */,
 				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
+				134182F51D2A9DD7001021BD /* enable_disable_nfs.command */,
 				01CFC2DC1A2AA48300F251C2 /* destroy.command */,
 				0145318318FF209D007F9C95 /* ssh.command */,
 				0111FADA1A7FA2A10021F258 /* os_shell.command */,
 				01993A4E1B63DD730096E2E1 /* halt.command */,
 				019410631BE0E5F200723E19 /* kill_VM.command */,
 				01CFC2DD1A2AA48300F251C2 /* reload.command */,
-				01AD94BE1A278C94009A400B /* fetch_latest_iso.command */,
 				01741B66190DB82100BB1F91 /* update_osx_clients_files.command */,
 				134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */,
 			);
@@ -266,12 +266,12 @@
 				019662121B04C562005FA955 /* bin in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
-				01AD94BF1A278C94009A400B /* fetch_latest_iso.command in Resources */,
 				133DD1211CE49AB900059FCC /* InfoPlist.strings in Resources */,
 				137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */,
 				0145318418FF209D007F9C95 /* ssh.command in Resources */,
 				01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */,
 				133DD1231CE49AB900059FCC /* Images.xcassets in Resources */,
+				134182F61D2A9DD7001021BD /* enable_disable_nfs.command in Resources */,
 				133DD11F1CE49AB900059FCC /* CoreOS.entitlements in Resources */,
 				01741B65190DB81400BB1F91 /* up.command in Resources */,
 				133DD1221CE49AB900059FCC /* MainMenu.strings in Resources */,
@@ -286,13 +286,13 @@
 				134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */,
 				019662181B04C6EA005FA955 /* files in Resources */,
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
+				13164EBA1D2D2E8400642B0A /* run_corectl_app.command in Resources */,
 				01B675D61B602FC2004349CC /* check_vm_status.command in Resources */,
 				0106B34A1B65277F001709E0 /* functions.sh in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-osx-install.command in Resources */,
 				019410641BE0E5F200723E19 /* kill_VM.command in Resources */,
 				01CFC2DE1A2AA48300F251C2 /* change_release_channel.command in Resources */,
 				01741B67190DB82100BB1F91 /* update_osx_clients_files.command in Resources */,
-				134D10EA1C306D8F00A479A0 /* change_sudo_password.command in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +427,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS/CoreOS-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS/CoreOS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CoreOS;
 				PROVISIONING_PROFILE = "";
@@ -447,7 +447,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS/CoreOS-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS/CoreOS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CoreOS;
 				PROVISIONING_PROFILE = "";
