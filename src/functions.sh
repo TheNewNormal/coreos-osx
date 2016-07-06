@@ -18,6 +18,9 @@ if [[ "$CHECK_SERVER_STATUS" == "" ]]; then
     open -a /Applications/corectl.app
 fi
 
+if [[ "$CHECK_SERVER_STATUS" == "" ]]; then
+    sleep 3
+fi
 }
 
 function sshkey(){
