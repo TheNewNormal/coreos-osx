@@ -38,6 +38,23 @@
         [[NSApplication sharedApplication] terminate:self];
     }
     
+    // check that corectl.app is installed at /Applications folder
+    if(![[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/corectl.app"]) {
+        NSLog(@"corectl failed to launch");
+
+        // show alert message
+        NSString *mText = [NSString stringWithFormat:@"%@", @"CoreOS App cannot start !!!"];
+        NSString *infoText = @"corectl.app cannot be found in /Applications folder, the download link will be opened in your browser ...";
+        [self displayWithMessage:mText infoText:infoText];
+        
+        // open corectl.app releases URL
+        NSString *url = [@[@"https://github.com/TheNewNormal/corectl.app/releases"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+        
+        // exiting App
+        [[NSApplication sharedApplication] terminate:self];
+    }
+    
 
     NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx"];
     
@@ -90,6 +107,23 @@
 
 
 - (IBAction)Start:(id)sender {
+    // check that corectl.app is installed in /Applications folder
+    if(![[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/corectl.app"]) {
+        NSLog(@"corectl failed to launch");
+        
+        // show alert message
+        NSString *mText = [NSString stringWithFormat:@"%@", @"Cannot start VM !!!"];
+        NSString *infoText = @"corectl.app cannot be found in /Applications folder, the download link will be opened in your browser ...";
+        [self displayWithMessage:mText infoText:infoText];
+        
+        // open corectl.app releases URL
+        NSString *url = [@[@"https://github.com/TheNewNormal/corectl.app/releases"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+        
+        //
+        return;
+    }
+    
     int vm_status=[self checkVMStatus];
     NSLog (@"VM status:\n%d", vm_status);
     
@@ -142,7 +176,6 @@
         notification.informativeText = @"VM is already running !!!";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
-
 }
 
 

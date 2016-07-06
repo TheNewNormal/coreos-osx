@@ -12,14 +12,10 @@ function pause(){
 
 function check_corectld_server() {
 # check corectld server
-
+#
 CHECK_SERVER_STATUS=$(/usr/local/sbin/corectld status 2>&1 | grep "Uptime:")
 if [[ "$CHECK_SERVER_STATUS" == "" ]]; then
-    echo " "
-    echo "corectld server is not running !!! "
-    echo "Please start the server first ... "
-    echo " "
-pause 'Press [Enter] key to continue...'
+    open -a /Applications/corectl.app
 fi
 
 }

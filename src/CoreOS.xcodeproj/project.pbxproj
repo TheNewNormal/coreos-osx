@@ -26,6 +26,7 @@
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		13164EBA1D2D2E8400642B0A /* run_corectl_app.command in Resources */ = {isa = PBXBuildFile; fileRef = 13164EB91D2D2E8400642B0A /* run_corectl_app.command */; };
 		133DD11C1CE49AB900059FCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 133DD10E1CE49AB900059FCC /* AppDelegate.m */; };
 		133DD11D1CE49AB900059FCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133DD10F1CE49AB900059FCC /* MainMenu.xib */; };
 		133DD11F1CE49AB900059FCC /* CoreOS.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1131CE49AB900059FCC /* CoreOS.entitlements */; };
@@ -66,6 +67,7 @@
 		01E2854218A6C4E300BC630D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		13164EB91D2D2E8400642B0A /* run_corectl_app.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run_corectl_app.command; sourceTree = "<group>"; };
 		133DD10D1CE49AB900059FCC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		133DD10E1CE49AB900059FCC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		133DD1101CE49AB900059FCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				13164EB91D2D2E8400642B0A /* run_corectl_app.command */,
 				137018B31C11F1FD0002B2B9 /* docker_registry.sh */,
 				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
@@ -283,6 +286,7 @@
 				134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */,
 				019662181B04C6EA005FA955 /* files in Resources */,
 				01741B63190DB80500BB1F91 /* first-init.command in Resources */,
+				13164EBA1D2D2E8400642B0A /* run_corectl_app.command in Resources */,
 				01B675D61B602FC2004349CC /* check_vm_status.command in Resources */,
 				0106B34A1B65277F001709E0 /* functions.sh in Resources */,
 				01741B57190DB7B800BB1F91 /* coreos-osx-install.command in Resources */,
@@ -423,7 +427,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS/CoreOS-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS/CoreOS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CoreOS;
 				PROVISIONING_PROFILE = "";
@@ -443,7 +447,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS/CoreOS-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS/CoreOS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CoreOS;
 				PROVISIONING_PROFILE = "";
