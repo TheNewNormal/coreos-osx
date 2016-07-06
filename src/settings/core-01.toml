@@ -1,8 +1,9 @@
 [core-01]
    uuid = "D1024138-F21A-4C61-8F40-ADCFC358D942"
-   channel = "alpha"
+   channel = "stable"
    volume = "data.img"
    cloud_config = "cloud-init/user-data"
    cpus = 2
    memory = "2048"
    local = "true"
+   #shared-homedir = "true"

@@ -6,4 +6,4 @@
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # ssh into VM
-corectl ssh core-01
+/usr/local/sbin/corectl ssh core-01
