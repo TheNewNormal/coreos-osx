@@ -20,6 +20,10 @@
     [self.statusItem setImage: [NSImage imageNamed:@"icon"]];
     [self.statusItem setHighlightMode:YES];
     
+    //check for latest app version and notify user if there is such one
+    NSString *popup = [[NSString alloc] init];
+    [self checkAppVersionGithub:popup = @"no"];
+    
     // get the App's main bundle path
     _resoucesPathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
     NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
@@ -256,6 +260,14 @@
 
 
 // Updates menu
+
+- (IBAction)checkForAppUpdates:(id)sender {
+    
+    NSString *popup = [[NSString alloc] init];
+    [self checkAppVersionGithub:popup = @"yes"];
+}
+
+
 - (IBAction)updates:(id)sender {
     int vm_status=[self checkVMStatus];
     //NSLog (@"VM status:\n%d", vm_status);
@@ -569,6 +581,41 @@
 
 
 // helping functions
+
+// check and notify about App's new version
+- (void)checkAppVersionGithub:(NSString*)popup
+{
+    // get App's current version'
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *app_version = [NSString stringWithFormat:@"%@%@", @"v", version];
+    NSLog (@"Installed App version:\n%@", app_version);
+    
+    // get lates github version
+    NSString *githubVersion = [self getAppVersionGithub];
+    
+    if (app_version == githubVersion) {
+        if ([popup  isEqual: @"yes"]) {
+            NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS for macOS", app_version];
+            NSString *infoText = @"You are-up-to-date !!!";
+            [self displayWithMessage:mText infoText:infoText];
+        }
+        else {
+            NSLog (@"App is up-to-date!!!");
+        }
+    }
+    else {
+        // show alert message
+        NSString *mText = [NSString stringWithFormat:@"%@", @"There is a new CoreOS App version available !!!"];
+        NSString *infoText = @"The download link will be opened in your browser ...";
+        [self displayWithMessage:mText infoText:infoText];
+    
+        // open coreos.app releases URL
+        NSString *url = [@[@"https://github.com/TheNewNormal/coreos-osx/releases"] componentsJoinedByString:@""];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
+    }
+}
+//
+
 - (void)runScript:(NSString*)scriptName arguments:(NSString*)arguments
 {
     NSTask *task = [[NSTask alloc] init];
@@ -583,6 +630,33 @@
 {
     // lunch an external App from the mainBundle
     [[NSWorkspace sharedWorkspace] openFile:arguments withApplication:appName];
+}
+
+
+- (NSString*)getAppVersionGithub {
+    // get App github version and return the shell script output
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"check_app_version_github" ofType:@"command"]];
+    //    task.arguments  = @[@"status"];
+    
+    NSPipe *pipe;
+    pipe = [NSPipe pipe];
+    [task setStandardOutput: pipe];
+    
+    NSFileHandle *file;
+    file = [pipe fileHandleForReading];
+    
+    [task launch];
+    [task waitUntilExit];
+    
+    NSData *data;
+    data = [file readDataToEndOfFile];
+    
+    NSString *string;
+    string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+    NSLog (@"App latest github version:\n%@", string);
+    
+    return string;
 }
 
 

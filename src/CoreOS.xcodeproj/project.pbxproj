@@ -26,6 +26,7 @@
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		1309B1F61D34ED590054C730 /* check_app_version_github.command in Resources */ = {isa = PBXBuildFile; fileRef = 1309B1F51D34ED590054C730 /* check_app_version_github.command */; };
 		13164EBA1D2D2E8400642B0A /* run_corectl_app.command in Resources */ = {isa = PBXBuildFile; fileRef = 13164EB91D2D2E8400642B0A /* run_corectl_app.command */; };
 		133DD11C1CE49AB900059FCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 133DD10E1CE49AB900059FCC /* AppDelegate.m */; };
 		133DD11D1CE49AB900059FCC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 133DD10F1CE49AB900059FCC /* MainMenu.xib */; };
@@ -67,6 +68,7 @@
 		01E2854218A6C4E300BC630D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		1309B1F51D34ED590054C730 /* check_app_version_github.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = check_app_version_github.command; sourceTree = "<group>"; };
 		13164EB91D2D2E8400642B0A /* run_corectl_app.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run_corectl_app.command; sourceTree = "<group>"; };
 		133DD10D1CE49AB900059FCC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		133DD10E1CE49AB900059FCC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -155,11 +157,12 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				1309B1F51D34ED590054C730 /* check_app_version_github.command */,
+				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				13164EB91D2D2E8400642B0A /* run_corectl_app.command */,
 				137018B31C11F1FD0002B2B9 /* docker_registry.sh */,
 				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
-				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
 				134182F51D2A9DD7001021BD /* enable_disable_nfs.command */,
 				01CFC2DC1A2AA48300F251C2 /* destroy.command */,
@@ -263,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1309B1F61D34ED590054C730 /* check_app_version_github.command in Resources */,
 				019662121B04C562005FA955 /* bin in Resources */,
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
