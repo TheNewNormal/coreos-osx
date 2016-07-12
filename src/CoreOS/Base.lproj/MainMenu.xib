@@ -63,6 +63,12 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Gmy-Y5-bmI"/>
+                <menuItem title="Check for App updates" id="VaK-HQ-cRL">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForAppUpdates:" target="494" id="Ril-Fv-4AP"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Updates" id="VT6-tu-oxP" userLabel="Menu Item - Updates">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Updates" id="DFA-8C-ne3">
