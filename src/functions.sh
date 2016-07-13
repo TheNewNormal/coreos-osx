@@ -9,6 +9,17 @@ function pause(){
     read -p "$*"
 }
 
+function check_iso_offline_setting() {
+# check if offline setting is present in settings file
+check=$(cat ~/coreos-osx/settings/core-01.toml | grep "offline" )
+
+if [[ "${check}" = "" ]]
+then
+    echo '   offline = "true"' >> ~/coreos-osx/settings/core-01.toml
+fi
+
+}
+
 
 function check_corectld_server() {
 # check corectld server
