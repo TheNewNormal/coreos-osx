@@ -94,7 +94,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="w1d-Wt-nh1"/>
-                            <menuItem title="Enable shared NFS user home folder" id="7qw-TA-DJZ">
+                            <menuItem title="Enable/disable shared NFS user home folder" id="7qw-TA-DJZ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="enableNFS:" target="494" id="gW6-MD-nYx"/>

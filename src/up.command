@@ -7,6 +7,10 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 source "${DIR}"/functions.sh
 
+
+# check if offline setting is present in settings file
+check_iso_offline_setting
+
 # check corectld server
 check_corectld_server
 
@@ -67,6 +71,7 @@ echo " "
 #
 cd $HOME/coreos-osx
 /usr/local/sbin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_up.log
+#
 CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/vm_up.log | grep "started")
 #
 if [[ "$CHECK_VM_STATUS" == "" ]]; then
@@ -78,9 +83,6 @@ if [[ "$CHECK_VM_STATUS" == "" ]]; then
 else
     echo "VM successfully started !!!" >> ~/coreos-osx/logs/vm_up.log
 fi
-
-# check if /Users/homefolder is mounted, if not mount it
-/usr/local/sbin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 
 # get VM IP
 vm_ip=$(/usr/local/sbin/corectl q -i core-01)
