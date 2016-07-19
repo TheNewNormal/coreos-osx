@@ -120,20 +120,20 @@ read disk_size
 if [ -z "$disk_size" ]
 then
     echo " "
-    echo "Creating 15GB disk (it could take a while for big disks)..."
-#    mkfile 15g data.img
-    pv -s 15g -S < /dev/zero > data.img
-#    echo "-"
+    echo "Creating 15GB sparse disk (QCow2)..."
+    /usr/local/sbin/qcow-tool create --size=15GiB data.img
+    echo "-"
     echo "Created 15GB Data disk"
 else
     echo " "
-    echo "Creating "$disk_size"GB disk (it could take a while for big disks)..."
-#    mkfile "$disk_size"g data.img
-    pv -s "$disk_size"g -S < /dev/zero > data.img
-#    echo "-"
+    echo "Creating "$disk_size"GB sparse disk (QCow2)..."
+    /usr/local/sbin/qcow-tool create --size="$disk_size"GiB data.img
+    echo "-"
     echo "Created "$disk_size"GB Data disk"
 fi
 #
+
+sleep 2
 
 }
 
