@@ -43,7 +43,7 @@ coreos:
       content: |
         [Unit]
         Description=Mounts ephemeral to /data
-        Requires=format-persistent-disk.service
+        Requires=format-persistent-disk.service etcd2.service fleet.service docker.service rkt-metadata.socket
         After=format-persistent-disk.service
         Before=etcd2.service fleet.service docker.service rkt-metadata.socket
         [Mount]
@@ -61,16 +61,18 @@ coreos:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/bin/sh -c '[[ -d /data/var/lib/docker ]] || mkdir -p /data/var/lib/docker'
-        ExecStart=/bin/sh -c '[[ -d /data/var/lib/rkt ]] || mkdir -p /data/var/lib/rkt'
+        ExecStart=/bin/sh -c '[[ -d /data/var/lib/rkt ]] || mkdir -p /data/var/lib/rkt && /usr/bin/chown root:rkt /data/var/lib/rkt && /usr/bin/chmod g+s /data/var/lib/rkt'
         ExecStart=/bin/sh -c '[[ -d /data/var/lib/etcd2 ]] || mkdir -p /data/var/lib/etcd2 && /usr/bin/chown etcd:etcd /data/var/lib/etcd2'
         ExecStart=/bin/sh -c '[[ -d /data/opt/bin ]] || mkdir -p /data/opt/bin'
+        ExecStart=/bin/sh -c '/usr/bin/chown root:rkt /data/var/lib/rkt && /usr/bin/chmod g+s /data/var/lib/rkt'
+        ExecStart=/bin/sh -c '/usr/bin/chown etcd:etcd /data/var/lib/etcd2'
     - name: var-lib-etcd2.mount
       command: start
       content: |
         [Unit]
         Description=Binds /data/var/lib/etcd2 to /var/lib/etcd2
         After=persistent-data-checks.service
-        Requires=persistent-data-checks docker.service
+        Requires=persistent-data-checks docker.service etcd2.service
         Before=etcd2.service
         [Mount]
         What=/data/var/lib/etcd2
@@ -108,7 +110,7 @@ coreos:
       content: |
         [Unit]
         Description=Binds /data/opt/bin to /opt/bin
-        Requires=persistent-data-checks.service
+        Requires=persistent-data-checks.service docker.service rkt-metadata.socket
         After=persistent-data-checks.service
         Before=docker.service rkt-metadata.socket
         [Mount]
