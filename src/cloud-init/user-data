@@ -43,9 +43,9 @@ coreos:
       content: |
         [Unit]
         Description=Mounts ephemeral to /data
-        Requires=format-persistent-disk.service etcd2.service fleet.service docker.service rkt-metadata.socket
+        Requires=format-persistent-disk.service etcd2.service fleet.service docker.service rkt-metadata.socket persistent-data-checks.service
         After=format-persistent-disk.service
-        Before=etcd2.service fleet.service docker.service rkt-metadata.socket
+        Before=etcd2.service fleet.service docker.service rkt-metadata.socket persistent-data-checks.service
         [Mount]
         What=/dev/vda
         Where=/data
@@ -72,7 +72,7 @@ coreos:
         [Unit]
         Description=Binds /data/var/lib/etcd2 to /var/lib/etcd2
         After=persistent-data-checks.service
-        Requires=persistent-data-checks docker.service etcd2.service
+        Requires=persistent-data-checks etcd2.service
         Before=etcd2.service
         [Mount]
         What=/data/var/lib/etcd2
