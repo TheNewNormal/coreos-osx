@@ -51,7 +51,7 @@ new_vm=0
 # check if data disk exists, if not create it
 if [ ! -f $HOME/coreos-osx/data.img ]; then
     echo " "
-    echo "Data disk does not exist, it will be created now ..."
+    echo "CoreOS VM data disk does not exist, it will be created now ..."
     create_data_disk
     new_vm=1
 fi
@@ -105,5 +105,10 @@ cd ~/coreos-osx
 echo " "
 echo "Preset CoreOS VM App shell ..."
 
-# open bash shell
-/bin/bash
+# open user's preferred shell
+if [[ ! -z "$SHELL" ]]; then
+    $SHELL
+else
+    /bin/bash
+fi
+

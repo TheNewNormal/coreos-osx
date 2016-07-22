@@ -23,6 +23,12 @@ cd ~/coreos-osx
 #
 echo " "
 echo "Preset CoreOS VM App shell ..."
+echo " "
 
-# open bash shell
-/bin/bash
+# open user's preferred shell
+if [[ ! -z "$SHELL" ]]; then
+    $SHELL
+else
+    /bin/bash
+fi
+
