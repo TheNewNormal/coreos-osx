@@ -7,6 +7,7 @@ coreos:
     reboot-strategy: off
   etcd2:
     name: core-01
+    data-dir: /data/var/lib/etcd2
     initial-advertise-peer-urls: http://127.0.0.1:2380
     initial-cluster-token: core-01_etcd
     initial-cluster: core-01=http://127.0.0.1:2380
@@ -33,19 +34,21 @@ coreos:
       command: start
       content: |
         [Unit]
-        Description=Formats the persistent drive (if not formated yet)
+        Description=Formats the persistent drive (if not formated)
+        Requires=data.mount
+        Before=data.mount
         [Service]
         Type=oneshot
         RemainAfterExit=yes
-        ExecStart=/bin/sh -c '/usr/sbin/blkid -pi /dev/vda | grep TYPE= || /usr/sbin/mkfs.ext4 -i 8192 /dev/vda'
+        ExecStart=/bin/sh -c '/usr/sbin/blkid -pi /dev/vda | grep TYPE= || /usr/sbin/mkfs.ext4 -i 8192 -L core_data /dev/vda'
     - name: data.mount
       command: start
       content: |
         [Unit]
         Description=Mounts ephemeral to /data
-        Requires=format-persistent-disk.service etcd2.service fleet.service docker.service rkt-metadata.socket
+        Requires=format-persistent-disk.service etcd2.service docker.service rkt-metadata.socket
         After=format-persistent-disk.service
-        Before=etcd2.service fleet.service docker.service rkt-metadata.socket
+        Before=etcd2.service docker.service rkt-metadata.socket
         [Mount]
         What=/dev/vda
         Where=/data
@@ -55,30 +58,18 @@ coreos:
       content: |
         [Unit]
         Description=prepare for etcd,docker,rkt,opt
-        Requires=data.mount
+        Requires=data.mount etcd2.service
+        Before=etcd2.service
         After=data.mount
         [Service]
         Type=oneshot
         RemainAfterExit=yes
+        ExecStart=/bin/sh -c '[[ -d /data/var/lib/etcd2 ]] || mkdir -p /data/var/lib/etcd2 && /usr/bin/chown etcd:etcd /data/var/lib/etcd2'
+        ExecStart=/bin/sh -c '/usr/bin/chown etcd:etcd /data/var/lib/etcd2'
         ExecStart=/bin/sh -c '[[ -d /data/var/lib/docker ]] || mkdir -p /data/var/lib/docker'
         ExecStart=/bin/sh -c '[[ -d /data/var/lib/rkt ]] || mkdir -p /data/var/lib/rkt && /usr/bin/chown root:rkt /data/var/lib/rkt && /usr/bin/chmod g+s /data/var/lib/rkt'
-        ExecStart=/bin/sh -c '[[ -d /data/var/lib/etcd2 ]] || mkdir -p /data/var/lib/etcd2 && /usr/bin/chown etcd:etcd /data/var/lib/etcd2'
-        ExecStart=/bin/sh -c '[[ -d /data/opt/bin ]] || mkdir -p /data/opt/bin'
         ExecStart=/bin/sh -c '/usr/bin/chown root:rkt /data/var/lib/rkt && /usr/bin/chmod g+s /data/var/lib/rkt'
-        ExecStart=/bin/sh -c '/usr/bin/chown etcd:etcd /data/var/lib/etcd2'
-    - name: var-lib-etcd2.mount
-      command: start
-      content: |
-        [Unit]
-        Description=Binds /data/var/lib/etcd2 to /var/lib/etcd2
-        After=persistent-data-checks.service
-        Requires=persistent-data-checks docker.service etcd2.service
-        Before=etcd2.service
-        [Mount]
-        What=/data/var/lib/etcd2
-        Where=/var/lib/etcd2
-        Type=none
-        Options=bind
+        ExecStart=/bin/sh -c '[[ -d /data/opt/bin ]] || mkdir -p /data/opt/bin'
     - name: var-lib-docker.mount
       command: start
       content: |

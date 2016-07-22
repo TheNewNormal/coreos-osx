@@ -13,9 +13,6 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
-# get VM IP
-vm_ip=$(/usr/local/sbin/corectl q -i core-01)
-
 
 LOOP=1
 while [ $LOOP -gt 0 ]
