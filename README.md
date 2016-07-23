@@ -23,7 +23,7 @@ How to install CoreOS VM for macOS
 
 
 ####Install:
-- Download [corectl](https://github.com/TheNewNormal/corectl) server control [Corectl App](https://github.com/TheNewNormal/corectl.app) `latest dmg` from the [Releases Page](https://github.com/TheNewNormal/corectl.app/releases) and install it to `/Applications` folder
+- Download [Corectl App](https://github.com/TheNewNormal/corectl.app) `latest dmg` from the [Releases Page](https://github.com/TheNewNormal/corectl.app/releases) and install it to `/Applications` folder, it allows to start/stop/update [corectl](https://github.com/TheNewNormal/corectl) tools needed to run CoreOS VMs on macOS
 - Download `CoreOS latest.dmg` from the [Releases Page](https://github.com/TheNewNormal/coreos-osx/releases). Open downloaded `dmg` file and drag the App e.g. to your Desktop. Start the `CoreOS` app and `Initial setup` will beggin.
 
 **TL;DR**
