@@ -5,7 +5,7 @@ CoreOS VM for macOS
 
 It leverages macOS native Hypervisor framework of using [xhyve](https://github.com/xhyve-xyz/xhyve) based [corectl](https://github.com/TheNewNormal/corectl) command line tool without any needs to use VirtualBox or similar virtualisation software.
 
-**New:** After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`. Just copy the `corevm` to your pre-set path and you are good to control Vm via cli, it is specially handy for automation tasks.
+**New:** After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`. Just copy the `corevm` to your pre-set path and you are good to control VM via cli, it is specially handy for automation tasks.
 
 The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
 You can push your Docker images to [Docker Registry](https://github.com/docker/distribution) on `192.168.64.1:5000` run by [Corectl App](https://github.com/TheNewNormal/corectl.app), to store
