@@ -213,10 +213,6 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 # send halt to VM
 /usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
 
-# Stop docker registry
-"${res_folder}"/docker_registry.sh stop
-kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'})
-
 # kill all other scripts
 pkill -f [C]oreOS.app/Contents/Resources/fetch_latest_iso.command
 pkill -f [C]oreOS.app/Contents/Resources/update_osx_clients_files.command

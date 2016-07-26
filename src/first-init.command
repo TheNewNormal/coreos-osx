@@ -31,13 +31,6 @@ release_channel
 # create ROOT disk
 create_data_disk
 
-# Start docker registry
-cd ~/coreos-osx/registry
-echo " "
-"${res_folder}"/docker_registry.sh start
-"${res_folder}"/docker_registry.sh start > /dev/null 2>&1
-
-
 # Start VM
 cd ~/coreos-osx
 echo " "
@@ -82,8 +75,6 @@ echo " "
 echo "Installation has finished, CoreOS VM is up and running !!!"
 echo " "
 echo "Assigned static IP for VM: $vm_ip"
-echo " "
-echo "Docker Registry is on: 192.168.64.1:5000 "
 echo " "
 echo "You can control this App via status bar icon... "
 echo " "
