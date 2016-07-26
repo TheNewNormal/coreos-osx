@@ -10,7 +10,6 @@
     mkdir ~/coreos-osx/bin
     mkdir ~/coreos-osx/cloud-init
     mkdir ~/coreos-osx/settings
-    mkdir ~/coreos-osx/registry
     mkdir ~/coreos-osx/docker_images
     mkdir ~/coreos-osx/rkt_images
 
@@ -26,9 +25,6 @@
 
     # copy settings
     cp -f "$1"/settings/* ~/coreos-osx/settings
-
-    # copy docker registry config
-    cp -f "$1"/registry/config.yml ~/coreos-osx/registry
 
     # check if iTerm.app exists
     App="/Applications/iTerm.app"

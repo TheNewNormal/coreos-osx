@@ -32,10 +32,6 @@ do
         # send halt to VM
         /usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
 
-        # Stop docker registry
-        "${res_folder}"/docker_registry.sh stop
-        kill $(ps aux | grep "[r]egistry config.yml" | awk {'print $2'}) > /dev/null 2>&1
-
         # delete data image
         rm -f ~/coreos-osx/data.img
 

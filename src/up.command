@@ -34,12 +34,6 @@ fi
 cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/*
 
-# copy registry files
-cp -f "${res_folder}"/registry/config.yml ~/coreos-osx/registry
-cp -f "${res_folder}"/bin/registry ~/coreos-osx/bin
-chmod 755 ~/coreos-osx/bin/registry
-
-
 # add ssh key to Keychain
 if ! ssh-add -l | grep -q ssh/id_rsa; then
   ssh-add -K ~/.ssh/id_rsa &>/dev/null
@@ -56,12 +50,6 @@ if [ ! -f $HOME/coreos-osx/data.img ]; then
     new_vm=1
 fi
 #
-
-# Start docker registry
-cd ~/coreos-osx/registry
-echo " "
-"${res_folder}"/docker_registry.sh start
-"${res_folder}"/docker_registry.sh start > /dev/null 2>&1
 
 # Start VM
 cd ~/coreos-osx
