@@ -1,0 +1,48 @@
+#!/bin/bash
+# coreos-vm cli
+
+app_path=$(cat ~/coreos-osx/.env/resouces_path)
+
+#
+start() {
+    "${app_path}"/up.command
+}
+
+
+stop() {
+    "${app_path}"/halt.command
+}
+
+
+status() {
+    echo "$(/usr/local/sbin/corectl q -a core-01)"
+}
+
+
+ip() {
+    echo "$(/usr/local/sbin/corectl q -i core-01)"
+}
+
+
+usage() {
+    echo "Usage: corevm start|stop|status|ip"
+}
+
+
+case "$1" in
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        status)
+                status
+                ;;
+        ip)
+                ip
+                ;;
+        *)
+                usage
+                ;;
+esac
