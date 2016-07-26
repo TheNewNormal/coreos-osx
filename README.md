@@ -6,7 +6,7 @@ CoreOS VM for macOS
 It leverages macOS native Hypervisor framework of using [xhyve](https://github.com/xhyve-xyz/xhyve) based [corectl](https://github.com/TheNewNormal/corectl) command line tool without any needs to use VirtualBox or similar virtualisation software.
 
 The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
-You can use included [Docker Registry v2](https://github.com/docker/distribution) (Go based and compiled for macOS) to store
+You can push your Docker images to [Docker Registry](https://github.com/docker/distribution) on `192.168.64.1:5000` run by [Corectl App](https://github.com/TheNewNormal/corectl.app), to store
 your Docker images and share with Kubernetes Apps for macOS: [Kube-solo](https://github.com/TheNewNormal/kube-solo-osx) and [Kube-Cluster](https://github.com/TheNewNormal/kube-cluster-osx)
 
 ![CoreOS-OSX](coreos-osx.png "CoreOS-OSX")
@@ -29,8 +29,7 @@ How to install CoreOS VM for macOS
 **TL;DR**
 
 - App's files are installed to `~/coreos-osx` folder
-- CoreOS ISO files are stored under `~/.coreos` folder
-- Docker registry runs on `192.168.64.1:5000` and images are stored under `~/coreos-osx/registry`
+- CoreOS ISO files are stored under `~/.coreos/images` folder
 - Mac user home folder can be enabled via `Setup\Enable shared NFS user home folder` to automaticly mounted to VM: `/Users/my_user`:`/Users/my_user` on each VM boot
 - macOS `docker` client is installed to `~/coreos-osx/bin` and preset in `OS shell` to be used from there
 
@@ -84,9 +83,8 @@ and docker-exec shell scripts are stored
 * `Updates/Check for update of docker macOS client` will update fleet and docker macOS clients to the same versions as CoreOS VM runs.
 * [UI for Docker](https://github.com/kevana/ui-for-docker) will show up all running containers and etc
 * You can upload your saved/exported docker images place in `~/coreos-osx/docker_images` folder via `Upload docker images`
-* Local Docker Registry v2 (Go based and compiled for  macOS) is running on `192.168.64.1:5000`, which gets started/stopped on each VM Up/Halt.
-* Persistent disk `data.img` will be created and mounted to `/data` to these mount binds (data persists between reboots):
-* 
+* Persistent sparse disk `data.img` will be created and mounted to `/data` to these mount binds (data persists between reboots):
+
 ```
 /data/var/lib/docker -> /var/lib/docker
 /data/var/lib/rkt -> /var/lib/rkt

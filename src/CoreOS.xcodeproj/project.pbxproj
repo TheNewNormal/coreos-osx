@@ -39,8 +39,6 @@
 		134182F61D2A9DD7001021BD /* enable_disable_nfs.command in Resources */ = {isa = PBXBuildFile; fileRef = 134182F51D2A9DD7001021BD /* enable_disable_nfs.command */; };
 		134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */; };
 		137018AC1C11E9D00002B2B9 /* cloud-init in Resources */ = {isa = PBXBuildFile; fileRef = 137018AB1C11E9D00002B2B9 /* cloud-init */; };
-		137018B21C11F0DE0002B2B9 /* registry in Resources */ = {isa = PBXBuildFile; fileRef = 137018B11C11F0DE0002B2B9 /* registry */; };
-		137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */ = {isa = PBXBuildFile; fileRef = 137018B31C11F1FD0002B2B9 /* docker_registry.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,8 +82,6 @@
 		134182F51D2A9DD7001021BD /* enable_disable_nfs.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = enable_disable_nfs.command; sourceTree = "<group>"; };
 		134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = upload_docker_images.command; sourceTree = "<group>"; };
 		137018AB1C11E9D00002B2B9 /* cloud-init */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "cloud-init"; sourceTree = SOURCE_ROOT; };
-		137018B11C11F0DE0002B2B9 /* registry */ = {isa = PBXFileReference; lastKnownFileType = folder; path = registry; sourceTree = SOURCE_ROOT; };
-		137018B31C11F1FD0002B2B9 /* docker_registry.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = docker_registry.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +103,6 @@
 				019662171B04C6EA005FA955 /* files */,
 				137018AB1C11E9D00002B2B9 /* cloud-init */,
 				019662131B04C598005FA955 /* settings */,
-				137018B11C11F0DE0002B2B9 /* registry */,
 				01741B56190DB7B800BB1F91 /* coreos-osx-install.command */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
 			);
@@ -160,7 +155,6 @@
 				1309B1F51D34ED590054C730 /* check_app_version_github.command */,
 				01B675D51B602FC2004349CC /* check_vm_status.command */,
 				13164EB91D2D2E8400642B0A /* run_corectl_app.command */,
-				137018B31C11F1FD0002B2B9 /* docker_registry.sh */,
 				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
@@ -271,7 +265,6 @@
 				01D3685918E5C184006510B5 /* icon.icns in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
 				133DD1211CE49AB900059FCC /* InfoPlist.strings in Resources */,
-				137018B41C11F1FD0002B2B9 /* docker_registry.sh in Resources */,
 				0145318418FF209D007F9C95 /* ssh.command in Resources */,
 				01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */,
 				133DD1231CE49AB900059FCC /* Images.xcassets in Resources */,
@@ -279,7 +272,6 @@
 				133DD11F1CE49AB900059FCC /* CoreOS.entitlements in Resources */,
 				01741B65190DB81400BB1F91 /* up.command in Resources */,
 				133DD1221CE49AB900059FCC /* MainMenu.strings in Resources */,
-				137018B21C11F0DE0002B2B9 /* registry in Resources */,
 				137018AC1C11E9D00002B2B9 /* cloud-init in Resources */,
 				133DD11D1CE49AB900059FCC /* MainMenu.xib in Resources */,
 				01993A4F1B63DD730096E2E1 /* halt.command in Resources */,
@@ -424,7 +416,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx10.11]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -444,7 +435,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx10.11]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
