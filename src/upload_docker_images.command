@@ -14,7 +14,7 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # get VM's IP
-vm_ip=$(/usr/local/sbin/corectl q -i core-01)
+vm_ip=$(~/bin/corectl q -i core-01)
 
 # Set the environment variables
 # docker daemon

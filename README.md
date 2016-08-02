@@ -32,7 +32,7 @@ How to install CoreOS VM for macOS
 
 - App's files are installed to `~/coreos-osx` folder
 - CoreOS ISO files are stored under `~/.coreos/images` folder
-- Mac user home folder can be enabled via `Setup\Enable shared NFS user home folder` to automaticly mounted to VM: `/Users/my_user`:`/Users/my_user` on each VM boot
+- Mac user home folder is automaticly mounted via NFS (it has to work on Mac end of course) to `/Users/my_user`:`/Users/my_user` on each VM boot
 - macOS `docker` client is installed to `~/coreos-osx/bin` and preset in `OS shell` to be used from there
 
 

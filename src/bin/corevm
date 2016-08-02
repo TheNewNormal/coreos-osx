@@ -15,12 +15,12 @@ stop() {
 
 
 status() {
-    echo "$(/usr/local/sbin/corectl q -a core-01)"
+    echo "$(~/bin/corectl q -a core-01)"
 }
 
 
 ip() {
-    echo "$(/usr/local/sbin/corectl q -i core-01)"
+    echo "$(~/bin/corectl q -i core-01)"
 }
 
 
