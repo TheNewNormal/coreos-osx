@@ -36,7 +36,6 @@
 		133DD1221CE49AB900059FCC /* MainMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 133DD1181CE49AB900059FCC /* MainMenu.strings */; };
 		133DD1231CE49AB900059FCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133DD11A1CE49AB900059FCC /* Images.xcassets */; };
 		133DD1241CE49AB900059FCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 133DD11B1CE49AB900059FCC /* main.m */; };
-		134182F61D2A9DD7001021BD /* enable_disable_nfs.command in Resources */ = {isa = PBXBuildFile; fileRef = 134182F51D2A9DD7001021BD /* enable_disable_nfs.command */; };
 		134AB3371BD7ECAB00D55BC4 /* upload_docker_images.command in Resources */ = {isa = PBXBuildFile; fileRef = 134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */; };
 		137018AC1C11E9D00002B2B9 /* cloud-init in Resources */ = {isa = PBXBuildFile; fileRef = 137018AB1C11E9D00002B2B9 /* cloud-init */; };
 /* End PBXBuildFile section */
@@ -79,7 +78,6 @@
 		133DD1191CE49AB900059FCC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		133DD11A1CE49AB900059FCC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		133DD11B1CE49AB900059FCC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		134182F51D2A9DD7001021BD /* enable_disable_nfs.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = enable_disable_nfs.command; sourceTree = "<group>"; };
 		134AB3361BD7ECAB00D55BC4 /* upload_docker_images.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = upload_docker_images.command; sourceTree = "<group>"; };
 		137018AB1C11E9D00002B2B9 /* cloud-init */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "cloud-init"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -158,7 +156,6 @@
 				01741B64190DB81400BB1F91 /* up.command */,
 				0106B3491B65277F001709E0 /* functions.sh */,
 				01CFC2DB1A2AA48300F251C2 /* change_release_channel.command */,
-				134182F51D2A9DD7001021BD /* enable_disable_nfs.command */,
 				01CFC2DC1A2AA48300F251C2 /* destroy.command */,
 				0145318318FF209D007F9C95 /* ssh.command */,
 				0111FADA1A7FA2A10021F258 /* os_shell.command */,
@@ -268,7 +265,6 @@
 				0145318418FF209D007F9C95 /* ssh.command in Resources */,
 				01CFC2DF1A2AA48300F251C2 /* destroy.command in Resources */,
 				133DD1231CE49AB900059FCC /* Images.xcassets in Resources */,
-				134182F61D2A9DD7001021BD /* enable_disable_nfs.command in Resources */,
 				133DD11F1CE49AB900059FCC /* CoreOS.entitlements in Resources */,
 				01741B65190DB81400BB1F91 /* up.command in Resources */,
 				133DD1221CE49AB900059FCC /* MainMenu.strings in Resources */,

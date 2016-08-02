@@ -5,7 +5,7 @@ CoreOS VM for macOS
 
 It leverages macOS native Hypervisor framework of using [xhyve](https://github.com/xhyve-xyz/xhyve) based [corectl](https://github.com/TheNewNormal/corectl) command line tool without any needs to use VirtualBox or similar virtualisation software.
 
-**New:** After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`. Just copy the `corevm` to your pre-set path and you are good to control Vm via cli, it is specially handy for automation tasks.
+**New:** After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`. Just copy the `corevm` to your pre-set path and you are good to control VM via cli, it is specially handy for automation tasks.
 
 The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
 You can push your Docker images to [Docker Registry](https://github.com/docker/distribution) on `192.168.64.1:5000` run by [Corectl App](https://github.com/TheNewNormal/corectl.app), to store
@@ -32,7 +32,7 @@ How to install CoreOS VM for macOS
 
 - App's files are installed to `~/coreos-osx` folder
 - CoreOS ISO files are stored under `~/.coreos/images` folder
-- Mac user home folder can be enabled via `Setup\Enable shared NFS user home folder` to automaticly mounted to VM: `/Users/my_user`:`/Users/my_user` on each VM boot
+- Mac user home folder is automaticly mounted via NFS (it has to work on Mac end of course) to `/Users/my_user`:`/Users/my_user` on each VM boot
 - macOS `docker` client is installed to `~/coreos-osx/bin` and preset in `OS shell` to be used from there
 
 

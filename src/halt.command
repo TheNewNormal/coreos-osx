@@ -9,5 +9,5 @@ res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 export PATH=${HOME}/coreos-osx/bin:$PATH
 
 # send halt to VM
-/usr/local/sbin/corectl halt core-01
+~/bin/corectl halt core-01
 

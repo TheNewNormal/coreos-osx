@@ -30,7 +30,7 @@ do
         VALID_MAIN=1
 
         # send halt to VM
-        /usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
+        ~/bin/corectl halt core-01 > /dev/null 2>&1
 
         # delete data image
         rm -f ~/coreos-osx/data.img
