@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <development version="6300" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
@@ -83,6 +82,7 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="yw0-jk-TL8"/>
+                <menuItem isSeparatorItem="YES" id="aWh-z2-pQY"/>
                 <menuItem title="Setup" id="CrJ-Z8-7Tt" userLabel="Menu Item - Setup">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Setup" id="8I2-mE-7PD">
@@ -94,13 +94,6 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="w1d-Wt-nh1"/>
-                            <menuItem title="Enable/disable shared NFS user home folder" id="7qw-TA-DJZ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="enableNFS:" target="494" id="gW6-MD-nYx"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="np2-EM-hxu"/>
                             <menuItem title="Destroy VM" id="HWe-7a-OCV">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

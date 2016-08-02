@@ -24,7 +24,7 @@ fi
 function check_corectld_server() {
 # check corectld server
 #
-CHECK_SERVER_STATUS=$(/usr/local/sbin/corectld status 2>&1 | grep "Uptime:")
+CHECK_SERVER_STATUS=$(~/bin/corectld status 2>&1 | grep "Uptime:")
 if [[ "$CHECK_SERVER_STATUS" == "" ]]; then
     open -a /Applications/corectl.app
 fi
@@ -121,13 +121,13 @@ if [ -z "$disk_size" ]
 then
     echo " "
     echo "Creating 15GB sparse disk (QCow2)..."
-    /usr/local/sbin/qcow-tool create --size=15GiB data.img
+    ~/bin/qcow-tool create --size=15GiB data.img
     echo "-"
     echo "Created 15GB Data disk"
 else
     echo " "
     echo "Creating "$disk_size"GB sparse disk (QCow2)..."
-    /usr/local/sbin/qcow-tool create --size="$disk_size"GiB data.img
+    ~/bin/qcow-tool create --size="$disk_size"GiB data.img
     echo "-"
     echo "Created "$disk_size"GB Data disk"
 fi
@@ -170,7 +170,7 @@ chmod +x ~/coreos-osx/bin/docker
 function download_osx_clients() {
 # download docker file
 # check docker server version
-DOCKER_VERSION=$(/usr/local/sbin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | /usr/bin/sed -n 2p )
+DOCKER_VERSION=$(~/bin/corectl ssh core-01 'docker version' | grep 'Version:' | awk '{print $2}' | tr -d '\r' | /usr/bin/sed -n 2p )
 # check if the binary exists
 if [ ! -f ~/coreos-osx/bin/docker ]; then
     cd ~/coreos-osx/bin
@@ -211,7 +211,7 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 res_folder=$(cat ~/coreos-osx/.env/resouces_path)
 
 # send halt to VM
-/usr/local/sbin/corectl halt core-01 > /dev/null 2>&1
+~/bin/corectl halt core-01 > /dev/null 2>&1
 
 # kill all other scripts
 pkill -f [C]oreOS.app/Contents/Resources/fetch_latest_iso.command

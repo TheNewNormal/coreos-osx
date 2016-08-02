@@ -311,20 +311,6 @@
 }
 
 
-- (IBAction)enableNFS:(id)sender {
-    // send a notification on to the screen
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"CoreOS";
-    notification.informativeText = @"Enable shared NFS folder";
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    
-    NSString *appName = [[NSString alloc] init];
-    NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"enable_disable_nfs.command"]];
-}
-
-
-
 - (IBAction)destroy:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
@@ -451,31 +437,6 @@
     }
 }
 
-
-- (IBAction)fleetUI:(id)sender {
-    int vm_status=[self checkVMStatus];
-    //NSLog (@"VM status:\n%d", vm_status);
-    
-    if (vm_status == 0) {
-        NSLog (@"VM is Off");
-        // send a notification on to the screen
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS";
-        notification.informativeText = @"VM is Off !!!";
-        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-    }
-    else
-    {
-        NSLog (@"VM is On");
-        NSString *file_path = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-osx/.env/ip_address"];
-        // read IP from file
-        NSString *vm_ip = [NSString stringWithContentsOfFile:file_path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-        NSString *url = [@[@"http://",vm_ip,@":3000"] componentsJoinedByString:@""];
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
-    }
-}
 
 - (IBAction)dockerUI:(id)sender {
     int vm_status=[self checkVMStatus];

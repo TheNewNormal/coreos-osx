@@ -16,7 +16,7 @@ echo " "
 echo "Stopping VM ..."
 
 # send halt to VM
-/usr/local/sbin/corectl halt core-01
+~/bin/corectl halt core-01
 
 #
 sleep 3
@@ -29,7 +29,7 @@ cd ~/coreos-osx
 echo " "
 echo "Starting VM ..."
 #
-/usr/local/sbin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_reload.log
+~/bin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_reload.log
 CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/vm_reload.log | grep "started")
 #
 if [[ "$CHECK_VM_STATUS" == "" ]]; then
@@ -43,13 +43,13 @@ else
 fi
 
 # check if /Users/homefolder is mounted, if not mount it
-/usr/local/sbin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
+~/bin/corectl ssh core-01 'source /etc/environment; if df -h | grep ${HOMEDIR}; then echo 0; else sudo systemctl restart ${HOMEDIR}; fi' > /dev/null 2>&1
 echo " "
 
 # get VM's IP
-vm_ip=$(/usr/local/sbin/corectl q -i core-01)
+vm_ip=$(~/bin/corectl q -i core-01)
 # save VM's IP
-/usr/local/sbin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
+~/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 #
 
 echo "CoreOS VM was reloaded !!!"

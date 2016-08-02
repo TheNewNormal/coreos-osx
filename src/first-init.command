@@ -37,7 +37,7 @@ echo " "
 echo "Starting VM ..."
 echo " "
 #
-/usr/local/sbin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/first-init_vm_up.log
+~/bin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/first-init_vm_up.log
 CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/first-init_vm_up.log | grep "started")
 #
 if [[ "$CHECK_VM_STATUS" == "" ]]; then
@@ -51,9 +51,9 @@ else
 fi
 
 # get VM IP
-vm_ip=$(/usr/local/sbin/corectl q -i core-01)
+vm_ip=$(~/bin/corectl q -i core-01)
 # save VM's IP
-/usr/local/sbin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
+~/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 #
 
 echo " "

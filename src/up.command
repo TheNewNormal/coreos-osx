@@ -58,7 +58,7 @@ echo "Starting VM ..."
 echo " "
 #
 cd $HOME/coreos-osx
-/usr/local/sbin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_up.log
+~/bin/corectl load settings/core-01.toml 2>&1 | tee ~/coreos-osx/logs/vm_up.log
 #
 CHECK_VM_STATUS=$(cat ~/coreos-osx/logs/vm_up.log | grep "started")
 #
@@ -73,9 +73,9 @@ else
 fi
 
 # get VM IP
-vm_ip=$(/usr/local/sbin/corectl q -i core-01)
+vm_ip=$(~/bin/corectl q -i core-01)
 # save VM's IP
-/usr/local/sbin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
+~/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 
 # Set the environment variables
 # set etcd endpoint
