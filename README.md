@@ -21,7 +21,7 @@ How to install CoreOS VM for macOS
  -----------
   - **macOS 10.10.3** Yosemite or later 
   - Mac 2010 or later for this to work
-  - [Corectl App](https://github.com/TheNewNormal/corectl.app) is installed, which will serve as `corectld` server daemon control.
+  - **[Corectl App](https://github.com/TheNewNormal/corectl.app) must be installed, which will serve as `corectld` server daemon control.**
 
 
 ####Install:
