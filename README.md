@@ -1,7 +1,7 @@
 CoreOS VM for macOS
 ========================
 
-**CoreOS VM** is masOS `status bar app` which allows in an easy way to control CoreOS VM on your Mac. 
+**CoreOS VM** is macOS `status bar app` which allows in an easy way to control CoreOS VM on your Mac. 
 
 It leverages macOS native Hypervisor framework of using [xhyve](https://github.com/xhyve-xyz/xhyve) based [corectl](https://github.com/TheNewNormal/corectl) command line tool without any needs to use VirtualBox or similar virtualisation software.
 
