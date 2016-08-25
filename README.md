@@ -3,7 +3,7 @@ CoreOS VM for macOS
 
 **CoreOS VM** is macOS `status bar app` which allows in an easy way to control CoreOS VM on your Mac. 
 
-It leverages macOS native Hypervisor virtualisation framework of using [corectl](https://github.com/TheNewNormal/corectl) command line tool, so there are no needs to use VirtualBox or similar virtualisation software.
+It leverages **macOS native Hypervisor virtualisation framework** of using [corectl](https://github.com/TheNewNormal/corectl) command line tool, so there are no needs to use VirtualBox or any other virtualisation software anymore.
 
 The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
 You can push your Docker images to [Docker Registry](https://github.com/docker/distribution) on `192.168.64.1:5000` run by [Corectl App](https://github.com/TheNewNormal/corectl.app), to store
