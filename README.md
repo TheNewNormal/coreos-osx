@@ -9,6 +9,8 @@ The best use case of this App is to allow to build/test [Docker](https://www.doc
 You can push your Docker images to [Docker Registry](https://github.com/docker/distribution) on `192.168.64.1:5000` run by [Corectl App](https://github.com/TheNewNormal/corectl.app), to store
 your Docker images and share with Kubernetes Apps for macOS: [Kube-solo](https://github.com/TheNewNormal/kube-solo-osx) and [Kube-Cluster](https://github.com/TheNewNormal/kube-cluster-osx)
 
+**App's menu** looks as per image below:
+
 ![CoreOS-OSX](coreos-osx.png "CoreOS-OSX")
 
 
