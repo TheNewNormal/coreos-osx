@@ -115,15 +115,15 @@ export PATH=${HOME}/coreos-osx/bin:$PATH
 cd ~/coreos-osx/
 echo "  "
 echo "Please type Data disk size in GBs followed by [ENTER]:"
-echo -n "[default is 15]: "
+echo -n "[default is 25]: "
 read disk_size
 if [ -z "$disk_size" ]
 then
     echo " "
-    echo "Creating 15GB sparse disk (QCow2)..."
-    ~/bin/qcow-tool create --size=15GiB data.img
+    echo "Creating 25GB sparse disk (QCow2)..."
+    ~/bin/qcow-tool create --size=25GiB data.img
     echo "-"
-    echo "Created 15GB Data disk"
+    echo "Created 25GB Data disk"
 else
     echo " "
     echo "Creating "$disk_size"GB sparse disk (QCow2)..."

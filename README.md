@@ -1,15 +1,15 @@
 CoreOS VM for macOS
 ========================
 
-**CoreOS VM** is masOS `status bar app` which allows in an easy way to control CoreOS VM on your Mac. 
+**CoreOS VM** is macOS `status bar app` which allows in an easy way to control CoreOS VM on your Mac. 
 
-It leverages macOS native Hypervisor framework of using [xhyve](https://github.com/xhyve-xyz/xhyve) based [corectl](https://github.com/TheNewNormal/corectl) command line tool without any needs to use VirtualBox or similar virtualisation software.
-
-**New:** After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`. Just copy the `corevm` to your pre-set path and you are good to control VM via cli, it is specially handy for automation tasks.
+It leverages **macOS native Hypervisor virtualisation framework** of using [corectl](https://github.com/TheNewNormal/corectl) command line tool, so there are no needs to use VirtualBox or any other virtualisation software anymore.
 
 The best use case of this App is to allow to build/test [Docker](https://www.docker.com) and [rkt](https://coreos.com/rkt/) images localy.
 You can push your Docker images to [Docker Registry](https://github.com/docker/distribution) on `192.168.64.1:5000` run by [Corectl App](https://github.com/TheNewNormal/corectl.app), to store
 your Docker images and share with Kubernetes Apps for macOS: [Kube-solo](https://github.com/TheNewNormal/kube-solo-osx) and [Kube-Cluster](https://github.com/TheNewNormal/kube-cluster-osx)
+
+**App's menu** looks as per image below:
 
 ![CoreOS-OSX](coreos-osx.png "CoreOS-OSX")
 
@@ -21,7 +21,7 @@ How to install CoreOS VM for macOS
  -----------
   - **macOS 10.10.3** Yosemite or later 
   - Mac 2010 or later for this to work
-  - [Corectl App](https://github.com/TheNewNormal/corectl.app) is installed, which will serve as `corectld` server daemon control.
+  - **[Corectl App](https://github.com/TheNewNormal/corectl.app) must be installed, which will serve as `corectld` server daemon control.**
 
 
 ####Install:
@@ -34,6 +34,7 @@ How to install CoreOS VM for macOS
 - CoreOS ISO files are stored under `~/.coreos/images` folder
 - Mac user home folder is automaticly mounted via NFS (it has to work on Mac end of course) to `/Users/my_user`:`/Users/my_user` on each VM boot
 - macOS `docker` client is installed to `~/coreos-osx/bin` and preset in `OS shell` to be used from there
+- After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`, it is specially handy for automation tasks. Just copy the `corevm` to your pre-set path.
 
 
 **The install will do the following:**
