@@ -2,6 +2,9 @@
 
 #  coreos-osx-install.command
 #
+#
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "${DIR}"/functions.sh
 
     # create in "coreos-osx" all required folders and files at user's home folder where all the data will be stored
     mkdir ~/coreos-osx
