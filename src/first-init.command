@@ -56,6 +56,8 @@ vm_ip=$(~/bin/corectl q -i core-01)
 ~/bin/corectl q -i core-01 | tr -d "\n" > ~/coreos-osx/.env/ip_address
 #
 
+sleep 3
+
 echo " "
 # download latest version of docker client
 download_osx_clients

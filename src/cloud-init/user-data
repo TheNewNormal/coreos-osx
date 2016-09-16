@@ -16,20 +16,6 @@ coreos:
     listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
     advertise-client-urls:  http://0.0.0.0:2379,http://0.0.0.0:4001
   units:
-    - name: docker-tcp.socket
-      command: start
-      enable: true
-      content: |
-        [Unit]
-        Description=Docker Socket for the API
-
-        [Socket]
-        ListenStream=2375
-        BindIPv6Only=both
-        Service=docker.service
-
-        [Install]
-        WantedBy=sockets.target
     - name: format-persistent-disk.service
       command: start
       content: |
@@ -76,12 +62,12 @@ coreos:
         [Unit]
         Description=Binds /data/var/lib/docker to /var/lib/docker
         After=persistent-data-checks.service
-        Requires=persistent-data-checks docker.service
+        Requires=persistent-data-checks.service docker.service
         Before=docker.service
         [Mount]
         What=/data/var/lib/docker
         Where=/var/lib/docker
-        Type=none
+        Type=ext4
         Options=bind
     - name: var-lib-rkt.mount
       command: start
@@ -94,7 +80,7 @@ coreos:
         [Mount]
         What=/data/var/lib/rkt
         Where=/var/lib/rkt
-        Type=none
+        Type=ext4
         Options=bind
     - name: opt-bin.mount
       command: start
@@ -107,18 +93,42 @@ coreos:
         [Mount]
         What=/data/opt/bin
         Where=/opt/bin
-        Type=none
+        Type=ext4
         Options=bind
     - name: etcd2.service
       command: start
+    - name: flanneld.service
+      command: start
+      drop-ins:
+      - name: 50-network-config.conf
+        content: |
+          [Unit]
+          Requires=etcd2.service
+          [Service]
+          ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{"Network": "10.244.0.0/16", "SubnetLen": 24, "SubnetMin": "10.244.0.0", "Backend": {"Type": "vxlan"}}'
     - name: docker.service
       command: start
       drop-ins:
         - name: 50-insecure-registry.conf
           content: |
             [Unit]
+            Requires=var-lib-docker.mount flanneld.service
+            After=var-lib-docker.mount flanneld.service
             [Service]
             Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
+    - name: docker-tcp.socket
+      command: start
+      enable: true
+      content: |
+        [Unit]
+        Description=Docker Socket for the API
+        [Socket]
+        ListenStream=2375
+        BindIPv6Only=both
+        Service=docker.service
+
+        [Install]
+        WantedBy=sockets.target
     - name: update-engine.service
       command: stop
     - name: dockerui.service
