@@ -33,6 +33,7 @@ fi
 # copy bin files to bin folder
 cp -f "${res_folder}"/bin/* ~/coreos-osx/bin
 chmod 755 ~/coreos-osx/bin/*
+cp -f "${res_folder}"/bin/corevm ~/bin
 
 # add ssh key to Keychain
 if ! ssh-add -l | grep -q ssh/id_rsa; then

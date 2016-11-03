@@ -22,6 +22,7 @@ source "${DIR}"/functions.sh
     # copy files to ~/coreos-osx/bin
     cp -f "$1"/bin/* ~/coreos-osx/bin
     chmod 755 ~/coreos-osx/bin/*
+    cp -f "$1"/bin/corevm ~/bin
 
     # copy user-data
     cp -f "$1"/cloud-init/* ~/coreos-osx/cloud-init
