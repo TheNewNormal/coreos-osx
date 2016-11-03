@@ -23,6 +23,13 @@ ip() {
     echo "$(~/bin/corectl q -i core-01)"
 }
 
+ssh() {
+    ~/bin/corectl ssh k8solo-01
+}
+
+shell() {
+    "${app_path}"/os_shell.command
+}
 
 usage() {
     echo "Usage: corevm start|stop|status|ip"
@@ -41,6 +48,12 @@ case "$1" in
                 ;;
         ip)
                 ip
+                ;;
+        ssh)
+                ssh
+                ;;
+        shell)
+                shell
                 ;;
         *)
                 usage

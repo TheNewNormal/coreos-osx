@@ -35,7 +35,7 @@ How to install CoreOS VM for macOS
 - CoreOS ISO files are stored under `~/.coreos/images` folder
 - Mac user home folder is automaticly mounted via NFS (it has to work on Mac end of course) to `/Users/my_user`:`/Users/my_user` on each VM boot
 - macOS `docker` client is installed to `~/coreos-osx/bin` and preset in `OS shell` to be used from there
-- After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip`, it is specially handy for automation tasks. Just copy the `corevm` to your pre-set path.
+- After successful install you can control CoreOS VM via `corevm` cli as well. Cli resides in `~/coreos-osx/bin` folder and has simple commands: `corevm start|stop|status|ip|shell|ssh`, it is specially handy for automation tasks. Just copy the `corevm` to your pre-set path.
 
 
 **The install will do the following:**
