@@ -174,8 +174,15 @@ DOCKER_VERSION=$(~/bin/corectl ssh core-01 'docker version' | grep 'Version:' | 
 # check if the binary exists
 if [ ! -f ~/coreos-osx/bin/docker ]; then
     cd ~/coreos-osx/bin
+    echo " "
     echo "Downloading docker $DOCKER_VERSION client for macOS"
-    curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+    curl -o ~/coreos-osx/bin/docker.tgz https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
+    # tarball with directory docker containing docker executable
+    tar -xzf docker.tgz
+    mv docker dockerdir
+    mv dockerdir/docker .
+    rm docker.tgz
+    rmdir -p dockerdir
     # Make it executable
     chmod +x ~/coreos-osx/bin/docker
     osx_clients_upgrade=1
@@ -186,8 +193,15 @@ else
     if [ $MATCH -eq 0 ]; then
         # the version is different
         cd ~/coreos-osx/bin
+        echo " "
         echo "Downloading docker $DOCKER_VERSION client for macOS"
-        curl -o ~/coreos-osx/bin/docker https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION
+        curl -o ~/coreos-osx/bin/docker.tgz https://get.docker.com/builds/Darwin/x86_64/docker-$DOCKER_VERSION.tgz
+        # tarball with directory docker containing docker executable
+        tar -xzf docker.tgz
+        mv docker dockerdir
+        mv dockerdir/docker .
+        rm docker.tgz
+        rmdir -p dockerdir
         # Make it executable
         chmod +x ~/coreos-osx/bin/docker
         osx_clients_upgrade=1
